@@ -48,6 +48,8 @@ export default {
     this.control.enableKeys = false;
     this.control.enablePan = false;
     this.control.enableZoom = false;
+    this.control.minPolarAngle = Math.PI / 3;
+    this.control.maxPolarAngle = Math.PI / 3 * 2;
 
     this.animate();
   },
