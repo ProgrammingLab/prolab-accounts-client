@@ -6,7 +6,7 @@
 
 import * as THREE from 'three';
 import OrbitControls from 'three-orbitcontrols';
-import * as TWEEN from '@tweenjs/tween.js';
+// import * as TWEEN from '@tweenjs/tween.js';
 
 export default {
   props: ['isActive'],
@@ -37,12 +37,17 @@ export default {
 
     this.tree = new THREE.Mesh(
       new THREE.BoxGeometry(50, 50, 50),
-      new THREE.MeshPhongMaterial({color: 0x66B6FF,specular: 0xffffff})
+      new THREE.MeshBasicMaterial({ color: 0x66B6FF, specular: 0xffffff }),
     );
     this.tree.position.set(0, 0, 0);
     this.scene.add(this.tree);
 
     this.control = new OrbitControls(this.camera);
+    this.control.autoRotate = true;
+    this.control.autoRotateSpeed = 3;
+    this.control.enableKeys = false;
+    this.control.enablePan = false;
+    this.control.enableZoom = false;
 
     this.animate();
   },
@@ -51,7 +56,7 @@ export default {
       requestAnimationFrame(this.animate);
       this.control.update();
       this.renderer.render(this.scene, this.camera);
-    }
+    },
   },
 };
 </script>

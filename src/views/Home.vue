@@ -18,7 +18,7 @@ export default {
     return {
       // もっといい名前ありそう
       showedContributionTree: false,
-    }
+    };
   },
 
 };
