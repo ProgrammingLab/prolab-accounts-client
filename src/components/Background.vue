@@ -48,6 +48,7 @@ export default {
     this.control.enableKeys = false;
     this.control.enablePan = false;
     this.control.enableZoom = false;
+    this.control.enabled = this.isActive;
     this.control.minPolarAngle = Math.PI / 3;
     this.control.maxPolarAngle = Math.PI / 3 * 2;
 
@@ -58,6 +59,11 @@ export default {
       requestAnimationFrame(this.animate);
       this.control.update();
       this.renderer.render(this.scene, this.camera);
+    },
+  },
+  watch: {
+    isActive(val) {
+      this.control.enabled = val;
     },
   },
 };
