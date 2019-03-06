@@ -52,11 +52,11 @@ export default {
     this.control.minPolarAngle = Math.PI / 3;
     this.control.maxPolarAngle = Math.PI / 3 * 2;
 
-    this.animate();
+    this.update();
   },
   methods: {
-    animate() {
-      requestAnimationFrame(this.animate);
+    update() {
+      requestAnimationFrame(this.update);
       this.control.update();
       this.renderer.render(this.scene, this.camera);
     },
