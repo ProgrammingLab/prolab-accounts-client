@@ -37,7 +37,7 @@ export default {
 
     this.tree = new THREE.Mesh(
       new THREE.BoxGeometry(50, 50, 50),
-      new THREE.MeshBasicMaterial({ color: 0x66B6FF, specular: 0xffffff }),
+      new THREE.MeshBasicMaterial({ color: 'green' }),
     );
     this.tree.position.set(0, 0, 0);
     this.scene.add(this.tree);
