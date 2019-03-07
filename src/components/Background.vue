@@ -11,13 +11,22 @@ import OrbitControls from 'three-orbitcontrols';
 export default {
   props: ['isActive'],
   data() {
+    const scene = new THREE.Scene();
+    scene.add(new THREE.AmbientLight(0xFFFFFF, 1.0));
+
+    const tree = new THREE.Mesh(
+      new THREE.CylinderGeometry(2, 2, 100),
+      new THREE.MeshBasicMaterial({ color: 'green' }),
+    );
+    tree.position.set(0, -50, 0);
+    scene.add(tree);
+
     return {
       camera: null,
-      renderer: null,
-      scene: null,
-      tree: null,
-      light: null,
       control: null,
+      renderer: null,
+      scene,
+      tree,
     };
   },
   mounted() {
@@ -26,21 +35,9 @@ export default {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     this.renderer.setSize(width, height);
 
-    this.scene = new THREE.Scene();
-
-    this.light = new THREE.AmbientLight(0xFFFFFF, 1.0);
-    this.scene.add(this.light);
-
     this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     this.camera.position.set(0, 0, 100);
     this.scene.add(this.camera);
-
-    this.tree = new THREE.Mesh(
-      new THREE.BoxGeometry(50, 50, 50),
-      new THREE.MeshBasicMaterial({ color: 'green' }),
-    );
-    this.tree.position.set(0, 0, 0);
-    this.scene.add(this.tree);
 
     this.control = new OrbitControls(this.camera);
     this.control.autoRotate = true;
