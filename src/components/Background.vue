@@ -20,6 +20,7 @@ export default {
     );
     tree.position.set(0, -50, 0);
     scene.add(tree);
+    if (process.env.NODE_ENV === 'development') scene.add(new THREE.AxisHelper(1000));
 
     return {
       camera: null,
