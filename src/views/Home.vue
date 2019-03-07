@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button @click="showedContributionTree = ! showedContributionTree">トグルボタン</button>
+    <button @click="showedContributionTree = !showedContributionTree">トグルボタン</button>
     <Background :is-active="showedContributionTree"/>
   </div>
 </template>
