@@ -2,33 +2,54 @@
   <div id="background">
     <div id="container">
       <img width="200" height="70" src="http://placehold.jp/60/ffffff/666666/200x70.png?text=ProLab" alt="prolag">
-      <form @submit.prevent="login">
+      <form @submit.prevent="onLogin">
         <label>
           Username
-          <input type="text" autocomplete="username" v-model="username"/>
+          <input type="text" autocomplete="username" v-model="name"/>
         </label>
         <label>
           Password
           <input type="password" autocomplete="current-password" v-model="password"/>
         </label>
-        <button type="submit" :disabled="!password || !username">Login</button>
+        <ErrorMessage :error="loginError"/>
+        <button type="submit" :disabled="!password || !name">Login</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState, mapGetters } from 'vuex';
+import ErrorMessage from '@/components/ErrorMessage.vue';
+
 export default {
   name: 'login',
+  components: {
+    ErrorMessage,
+  },
   data() {
     return {
-      username: '',
+      name: '',
       password: '',
     };
   },
+  computed: {
+    ...mapState('session', [
+      'loginError',
+    ]),
+    ...mapGetters('session', [
+      'loggedIn',
+    ]),
+  },
   methods: {
-    login() {
-      console.log(this.username, this.password);
+    ...mapActions('session', [
+      'login',
+    ]),
+    async onLogin() {
+      await this.login({ name: this.name, password: this.password });
+      if (this.loggedIn) {
+        this.$router.push(this.$route.query.redirect || '/');
+      }
     },
   },
 };
