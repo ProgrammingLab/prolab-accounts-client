@@ -2,7 +2,7 @@
   <div id="background">
     <div id="container">
       <img width="200" height="70" src="http://placehold.jp/60/ffffff/666666/200x70.png?text=ProLab" alt="prolag">
-      <form @submit.prevent="login" id="loginForm">
+      <form @submit.prevent="login">
         <label>
           Username
           <input type="text" autocomplete="username" v-model="username"/>
