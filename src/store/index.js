@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import oauthLogin from './modules/oauth/login';
 import oauthConsent from './modules/oauth/consent';
+import session from './modules/session';
 
 Vue.use(Vuex);
 
@@ -10,5 +11,6 @@ export default new Vuex.Store({
   modules: {
     oauthLogin,
     oauthConsent,
+    session,
   },
 });
