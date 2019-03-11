@@ -5,7 +5,8 @@
         <h1>プロフィール編集ページ</h1>
         <b id="uname">user: prolab_user</b>
         <form>
-            <input type="checkbox" name="profile_publish" id="checkbox" value="enabled">プロフィールを公開する<br>
+            <input type="checkbox" name="profile_publish" id="checkbox" value="enabled">
+            プロフィールを公開する<br>
             <b>表示名</b><br>
             <input type="text" name="display_name" value="user"><br>
             <b>本名</b><br>
