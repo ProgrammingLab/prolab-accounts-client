@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store';
 import Home from './views/Home.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -44,3 +45,14 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach(async (to, from, next) => {
+  await store.dispatch('session/updateSession');
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
+    next({ path: '/login', query: { redirect: to.fullPath } });
+  } else {
+    next();
+  }
+});
+
+export default router;
