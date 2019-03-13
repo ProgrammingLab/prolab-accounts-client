@@ -46,8 +46,8 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  console.log(store.getters['session/loggedIn']);
+router.beforeEach(async (to, from, next) => {
+  await store.dispatch('session/updateSession');
   if (to.matched.some(record => record.meta.requiresAuth) && store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
   } else {
