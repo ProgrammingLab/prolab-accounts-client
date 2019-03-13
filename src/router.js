@@ -17,6 +17,7 @@ const router = new Router({
     {
       path: '/about',
       name: 'about',
+      meta: { requiresAuth: true },
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -48,7 +49,7 @@ const router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   await store.dispatch('session/updateSession');
-  if (to.matched.some(record => record.meta.requiresAuth) && store.getters['session/loggedIn']) {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
   } else {
     next();
