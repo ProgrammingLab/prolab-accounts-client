@@ -29,7 +29,7 @@ export default {
   },
   getters: {
     loggedIn({ sessionID, loginError }) {
-      return sessionID && !loginError;
+      return Boolean(sessionID && !loginError);
     },
   },
 };
