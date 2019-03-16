@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate';
 import oauthLogin from './modules/oauth/login';
 import oauthConsent from './modules/oauth/consent';
 import session from './modules/session';
+import criticalError from './modules/criticalError';
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     oauthLogin,
     oauthConsent,
     session,
+    criticalError,
   },
   plugins: [
     createPersistedState({
