@@ -27,7 +27,7 @@ export default {
   },
   getters: {
     isError({ number, message }) {
-      return Boolean(number !== null || message !== null);
+      return number !== null || message !== null;
     },
   },
 };
