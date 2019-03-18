@@ -1,8 +1,24 @@
 <template>
   <div id="app">
-    <router-view/>
+    <error-page v-if="isError"/>
+    <router-view v-else/>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+import ErrorPage from './views/errors/ErrorPage.vue';
+
+export default {
+  components: {
+    ErrorPage,
+  },
+  computed: {
+    ...mapGetters('criticalError', ['isError']),
+  },
+};
+</script>
+
 
 <style>
   html { height: 100%; }
