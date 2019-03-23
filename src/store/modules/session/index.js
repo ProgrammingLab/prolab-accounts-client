@@ -26,7 +26,7 @@ export default {
         commit('setLoginError', e);
       }
     },
-    async clearSessionID({ commit }) {
+    clearSessionID({ commit }) {
       commit('setSessionID', '');
     },
   },
