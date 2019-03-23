@@ -13,7 +13,7 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   actions: {
-    async getUser({ commit, sessionID }) {
+    async getUser({ commit }, sessionID) {
       commit('setUser', await userClient.getUser(sessionID));
     },
   },
