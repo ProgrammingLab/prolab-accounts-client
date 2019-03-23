@@ -11,6 +11,9 @@ export default {
     setSessionID(state, sessionID) {
       state.sessionID = sessionID;
     },
+    clearSessionID(state) {
+      state.sessionID = null;
+    },
     setLoginError(state, error) {
       state.loginError = error;
     },
@@ -25,9 +28,6 @@ export default {
       } catch (e) {
         commit('setLoginError', e);
       }
-    },
-    clearSessionID({ commit }) {
-      commit('setSessionID', '');
     },
   },
   getters: {
