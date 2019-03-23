@@ -3,12 +3,12 @@ import userClient from '@/api/user';
 export default {
   namespaced: true,
   state: {
-    user: null,
+    userData: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
     setUser(state, user) {
-      state.user = user;
+      state.userData = user;
     },
   },
   /* eslint-enable no-param-reassign */
