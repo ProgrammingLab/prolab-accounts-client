@@ -26,10 +26,8 @@ export default {
         commit('setLoginError', e);
       }
     },
-    async updateSession({ commit, state }) {
-      if (!await sesssionClient.checkSession(state.sessionID)) {
-        commit('setSessionID', '');
-      }
+    async clearSessionID({ commit }) {
+      commit('setSessionID', '');
     },
   },
   getters: {
