@@ -47,7 +47,13 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-  await store.dispatch('session/updateSession');
+  try {
+    await store.dispatch('user/getUser', store.state.session.sessionID);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    store.commit('session/clearSessionID');
+  }
   store.dispatch('criticalError/clearError');
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
