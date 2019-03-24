@@ -47,6 +47,10 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
+  store.dispatch('criticalError/clearError');
+  if (to.matched.length === 0) {
+    store.dispatch('criticalError/createError', { number: 404, message: 'Page not found' });
+  }
   try {
     await store.dispatch('user/getUser', store.state.session.sessionID);
   } catch (e) {
@@ -54,7 +58,6 @@ router.beforeEach(async (to, from, next) => {
     console.error(e);
     store.commit('session/clearSessionID');
   }
-  store.dispatch('criticalError/clearError');
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
   } else {
