@@ -6,8 +6,11 @@ export default {
     const userData = (await api.client.get('/user', getHeader(sessionID))).data;
     return userData;
   },
+  // eslint-disable-next-line camelcase
   async registerUser(name, full_name, password, registration_token) {
-    const ret = (await api.client.post('/user', {name, full_name, password, registration_token})).data;
+    const ret = (await api.client.post('/user', {
+      name, full_name, password, registration_token,
+    })).data;
     return ret;
   },
 };

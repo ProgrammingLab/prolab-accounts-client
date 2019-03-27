@@ -23,7 +23,10 @@ export default {
     async getUser({ commit }, sessionID) {
       commit('setUser', await userClient.getUser(sessionID));
     },
-    async register({ commit }, { name, full_name, password, registration_token }) {
+    async register({ commit }, {
+      // eslint-disable-next-line camelcase
+      name, full_name, password, registration_token,
+    }) {
       commit('clearRegistrationError');
       try {
         await userClient.registerUser(name, full_name, password, registration_token);
