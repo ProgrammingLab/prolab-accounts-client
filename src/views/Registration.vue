@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="box">
-            <form action='post'>
+            <form v-on:submit.prevent='onRegister'>
                 <label for="username">User Name</label>
                 <input required type="text" v-model="name">
                 <label for="full_name">Full Name</label>
