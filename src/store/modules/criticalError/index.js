@@ -6,25 +6,16 @@ export default {
   },
   /* eslint-disable no-param-reassign */
   mutations: {
-    setNumber(state, number) {
+    createError(state, { number, message }) {
       state.number = number;
-    },
-    setMessage(state, message) {
       state.message = message;
+    },
+    clearError(state) {
+      state.number = null;
+      state.message = null;
     },
   },
   /* eslint-enable no-param-reassign */
-  actions: {
-    createError({ commit, getters }, { number, message }) {
-      if (getters.isError) return;
-      commit('setNumber', number);
-      commit('setMessage', message);
-    },
-    clearError({ commit }) {
-      commit('setNumber', null);
-      commit('setMessage', null);
-    },
-  },
   getters: {
     isError({ number, message }) {
       return number !== null || message !== null;

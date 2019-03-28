@@ -25,7 +25,7 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('./views/Login.vue'),
+      component: () => import(/* webpackChunkName: "login" */'./views/Login.vue'),
     },
     {
       path: '/oauth/login',
@@ -52,9 +52,9 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-  store.dispatch('criticalError/clearError');
+  store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
-    store.dispatch('criticalError/createError', { number: 404, message: 'Page not found' });
+    store.commit('criticalError/createError', { number: 404, message: 'Page not found' });
   }
   try {
     await store.dispatch('user/getUser', store.state.session.sessionID);
