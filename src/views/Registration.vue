@@ -1,18 +1,18 @@
 <template>
-    <div class="container">
-        <div class="box">
-            <form v-on:submit.prevent='onRegister'>
-                <label for="username">User Name</label>
-                <input required type="text" v-model="name">
-                <label for="full_name">Full Name</label>
-                <input required type="text" v-model="full_name">
-                <label for="password">Password</label>
-                <input required type="password" v-model="password">
-                <button type="submit">Register</button>
-                <ErrorMessage :error="registrationError"/>
-            </form>
-        </div>
+  <div class="container">
+    <div class="box">
+      <form v-on:submit.prevent='onRegister'>
+        <label for="username">User Name</label>
+        <input required type="text" v-model="name">
+        <label for="full_name">Full Name</label>
+        <input required type="text" v-model="full_name">
+        <label for="password">Password</label>
+        <input required type="password" v-model="password">
+        <button type="submit">Register</button>
+        <ErrorMessage :error="registrationError"/>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
