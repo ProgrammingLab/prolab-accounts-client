@@ -6,7 +6,7 @@
                 <input required type="text" v-model="name">
                 <label for="full_name">Full Name</label>
                 <input required type="text" v-model="full_name">
-                <label for="password"></label>
+                <label for="password">Password</label>
                 <input required type="password" v-model="password">
                 <button type="submit">Register</button>
                 <ErrorMessage :error="registrationError"/>
