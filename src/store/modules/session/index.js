@@ -17,11 +17,14 @@ export default {
     setLoginError(state, error) {
       state.loginError = error;
     },
+    clearLoginError(state) {
+      state.loginError = null;
+    },
   },
   /* eslint-enable no-param-reassign */
   actions: {
     async login({ commit }, { name, password }) {
-      commit('setLoginError', '');
+      commit('clearLoginError');
       try {
         const res = await sesssionClient.createSession(name, password);
         commit('setSessionID', res.data.session_id);
