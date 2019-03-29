@@ -8,7 +8,7 @@ export default {
   },
   // eslint-disable-next-line camelcase
   async registerUser(name, full_name, password, registration_token) {
-    const ret = (await api.client.post('/user', {
+    const ret = (await api.client.post('/users', {
       name, full_name, password, registration_token,
     })).data;
     return ret;
