@@ -36,6 +36,9 @@ export default {
     ...mapState('user', [
       'registrationError',
     ]),
+    ...mapState('session', [
+      'loginError',
+    ]),
   },
   mounted() {
     this.registration_token = this.$route.params.token;
@@ -43,6 +46,9 @@ export default {
   methods: {
     ...mapActions('user', [
       'register',
+    ]),
+    ...mapActions('session', [
+      'login',
     ]),
     async onRegister() {
       await this.register({
@@ -52,7 +58,12 @@ export default {
         registration_token: this.registration_token,
       });
       if (!this.registrationError) {
-        this.$router.push({ name: 'login' });
+        await this.login({ name: this.name, password: this.password });
+        if (this.loginError) {
+          this.$router.push({ name: 'login' });
+        } else {
+          this.$router.push({ name: 'home' });
+        }
       }
     },
   },
