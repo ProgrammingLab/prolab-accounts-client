@@ -13,4 +13,9 @@ export default {
     })).data;
     return ret;
   },
+
+  async verifyRegistrationToken(token) {
+    const ret = (await api.client.get(`/invitations/${token}`)).data;
+    return ret;
+  },
 };

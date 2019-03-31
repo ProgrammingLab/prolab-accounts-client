@@ -5,6 +5,7 @@ export default {
   state: {
     userData: null,
     registrationError: null,
+    tokenVerificationError: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
@@ -17,11 +18,25 @@ export default {
     clearRegistrationError(state) {
       state.registrationError = null;
     },
+    setTokenVerificationError(state, error) {
+      state.tokenVerificationError = error;
+    },
+    clearTokenVerificationError(state) {
+      state.tokenVerificationError = null;
+    },
   },
   /* eslint-enable no-param-reassign */
   actions: {
     async getUser({ commit }, sessionID) {
       commit('setUser', await userClient.getUser(sessionID));
+    },
+    async verifyRegistrationToken({ commit }, token) {
+      commit('clearTokenVerificationError');
+      try {
+        await userClient.verifyRegistrationToken(token);
+      } catch (e) {
+        commit('setTokenVerificationError', e);
+      }
     },
     async register({ commit }, {
       // eslint-disable-next-line camelcase

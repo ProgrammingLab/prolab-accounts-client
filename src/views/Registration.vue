@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
@@ -34,17 +34,26 @@ export default {
   },
   computed: {
     ...mapState('user', [
+      'tokenVerificationError',
       'registrationError',
     ]),
     ...mapState('session', [
       'loginError',
     ]),
   },
-  mounted() {
+  async created() {
     this.registration_token = this.$route.params.token;
+    await this.verifyRegistrationToken(this.registration_token);
+    if (this.tokenVerificationError) {
+      this.createError({ number: 400, message: 'Invalid token' });
+    }
   },
   methods: {
+    ...mapMutations('criticalError', [
+      'createError',
+    ]),
     ...mapActions('user', [
+      'verifyRegistrationToken',
       'register',
     ]),
     ...mapActions('session', [
