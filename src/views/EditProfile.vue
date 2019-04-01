@@ -10,12 +10,19 @@
     <h1>プロフィール編集ページ</h1>
     <p id="uname" class="profileItem">user: {{user_name}}</p>
     <form v-on:submit.prevent="sendProfile">
-      <input required type="checkbox" id="checkbox" value="enabled" v-model="profile_publish">
-      <label for="checkbox">プロフィールを公開する</label>
+      <label for="checkbox">プロフィールについて</label>
+      <select id="checkbox" v-model="profile_scope">
+        <option value="dis">公開しない</option>
+        <option value="MEMBERS_ONLY">部員にのみ公開する</option>
+        <option value="pub">公開する</option>
+      </select>
       <br>
       <label for="display_name" class="profileItem">表示名</label>
       <br>
       <input type="text" v-model="display_name">
+      <!-- <br>
+      <label class="profileitem">アイコン画像</label>
+      <input type="file" accept="image/*">-->
       <br>
       <label for="real_name" class="profileItem">本名</label>
       <br>
@@ -51,11 +58,13 @@
 
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
       user_name: 'user',
-      profile_publish: true,
+      profile_scope: true,
       display_name: 'user',
       real_name: 'Real_user',
       grade: '0',
@@ -64,9 +73,22 @@ export default {
       Github: 'Github',
     };
   },
+  computed: {
+    ...mapState('user', ['userData']),
+  },
+  created() {
+    this.user_name = this.userData.name;
+    this.profile_scope = this.userData.profile_scope;
+    this.display_name = this.userData.display_name;
+    this.real_name = this.userData.full_name;
+    this.grade = this.userData.grade;
+    this.department = this.userData.department;
+    this.Twitter = this.userData.twitter_screen_name;
+    this.Github = this.userData.github_user_name;
+  },
   methods: {
-    sendProfile() {
-      // data send
+    async sendProfile() {
+      // send profile
     },
   },
 };
