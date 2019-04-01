@@ -14,11 +14,11 @@
       <AchievementsList/>
     </section>
 
-    <section style="height: 1000px">
+    <section>
       <h2>GitHub Activity Graph</h2>
     </section>
 
-    <section style="height: 1000px">
+    <section>
       <h2>AtCoder Activity Graph</h2>
     </section>
   </div>
@@ -35,7 +35,7 @@
 }
 
 .home {
-  width: 80%;
+  max-width: 1500px;
   margin: 40px auto;
 }
 
