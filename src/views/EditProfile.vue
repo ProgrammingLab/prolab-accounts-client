@@ -10,27 +10,22 @@
     <h1>プロフィール編集ページ</h1>
     <p id="uname" class="profileItem">user: {{user_name}}</p>
     <form v-on:submit.prevent="sendProfile">
-      <label for="checkbox">プロフィールについて</label>
-      <select id="checkbox" v-model="profile_scope">
-        <option value="dis">公開しない</option>
+      <label for="checkbox" class="profileItem">プロフィールについて</label>
+      <select id="checkbox" class="inputZone" v-model="profile_scope">
+        <option value="PUBLIC">公開する</option>
         <option value="MEMBERS_ONLY">部員にのみ公開する</option>
-        <option value="pub">公開する</option>
       </select>
-      <br>
+      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
+      <label for="left" class="profileItem" id="left">卒部済み</label>
       <label for="display_name" class="profileItem">表示名</label>
-      <br>
-      <input type="text" v-model="display_name">
+      <input type="text" class="inputZone" v-model="display_name">
       <!-- <br>
       <label class="profileitem">アイコン画像</label>
       <input type="file" accept="image/*">-->
-      <br>
       <label for="real_name" class="profileItem">本名</label>
-      <br>
-      <input type="text" value="Real User" v-model="real_name">
-      <br>
+      <input type="text" value="Real User" class="inputZone" v-model="real_name">
       <label for="grade" class="profileItem">学年</label>
-      <br>
-      <select v-model="grade">
+      <select class="inputZone" v-model="grade">
         <option disabled value="0">Please Select</option>
         <option>1</option>
         <option>2</option>
@@ -38,19 +33,23 @@
         <option>4</option>
         <option>5</option>
       </select>
-      <br>
       <label for="department" class="profileItem">学科</label>
-      <br>
-      <input type="text" name="department" v-model="department">
-      <br>
-      <label for="display_name" class="profileItem">Twitter ID</label>
-      <br>
-      <input type="text" name="Twitter" v-model="Twitter">
-      <br>
+      <select class="inputZone" v-model="department">
+        <option disabled value="null">Please Select</option>
+        <option value="1">A</option>
+        <option value="2">E</option>
+        <option value="3">S</option>
+        <option value="4">C</option>
+        <option value="5">M</option>
+        <option value="6">専門A</option>
+        <option value="7">専門B</option>
+      </select>
+      <label for="display_name" class="profileItem">Twitter Name</label>
+      <input type="text" name="Twitter" class="inputZone" v-model="Twitter">
       <label for="display_name" class="profileItem">Github Name</label>
-      <br>
-      <input type="text" name="Github" v-model="Github">
-      <br>
+      <input type="text" name="Github" class="inputZone" v-model="Github">
+      <label for="Atcoder" class="profileItem">Atcoder Name</label>
+      <input type="text" name="Atcoder" class="inputZone" v-model="Atcoder">
       <input type="submit" value="保存する">
     </form>
   </div>
@@ -106,5 +105,15 @@ export default {
 }
 .profileItem {
   font-weight: bold;
+  display: block;
+}
+.profileItem#left {
+  display: inline;
+}
+.inputZone {
+  display: block;
+}
+.inputZone#leftIn {
+  display: inline;
 }
 </style>
