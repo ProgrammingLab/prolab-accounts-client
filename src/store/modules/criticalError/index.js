@@ -6,9 +6,14 @@ export default {
   },
   /* eslint-disable no-param-reassign */
   mutations: {
-    createError(state, { number, message }) {
-      state.number = number;
-      state.message = message;
+    createError(state, error) {
+      if (!error.response) {
+        state.number = '';
+        state.message = 'Connection refused';
+        return;
+      }
+      state.number = error.response.status;
+      state.message = error.response.data.message || error.response.statusText;
     },
     clearError(state) {
       state.number = null;
@@ -17,8 +22,8 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   getters: {
-    isError({ number, message }) {
-      return number !== null || message !== null;
+    isError(state) {
+      return state.number !== null || state.message !== null;
     },
   },
 };
