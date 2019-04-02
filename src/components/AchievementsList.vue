@@ -1,79 +1,36 @@
 <template>
   <ul>
-    <li>
+    <li v-for="item in achievements">
       <dl>
-        <dt>花火=f(x) —関数花火—</dt>
-        <dd class="award">Hack U 2017 TOKYO 優秀賞</dd>
-        <dd class="year">2017</dd>
-        <dd>キミのオリジナル関数花火を夏の夜空に咲かせよう</dd>
+        <dt>{{ item.title }}</dt>
+        <dd class="award">{{ item.award }}</dd>
+        <dd class="year">{{ item.happened_at.split('-')[0] }}</dd>
+        <dd>{{ item.description }}</dd>
       </dl>
-      <img src="https://farm5.staticflickr.com/4374/36241356863_c1cd755cd1_k_d.jpg">
+      <img v-bind:src="item.image_url">
     </li>
-
-    <li>
-      <dl>
-        <dt>和みなしゃれ</dt>
-        <dd>Hack U 2016 FUKUOKA 最優秀賞</dd>
-        <dd class="year">2016</dd>
-        <p>気まずい空気も一発解決!</p>
-      </dl>
-      <img src="https://farm6.staticflickr.com/5828/30329987954_202dd24e0a_k_d.jpg">
-    </li>
-
-    <li>
-      <dl>
-        <dt>花火=f(x) —関数花火—</dt>
-        <dd>Hack U 2017 TOKYO 優秀賞</dd>
-        <dd class="year">2017</dd>
-        <dd>キミのオリジナル関数花火を夏の夜空に咲かせよう</dd>
-      </dl>
-      <img src="https://farm5.staticflickr.com/4374/36241356863_c1cd755cd1_k_d.jpg">
-    </li>
-
-    <li>
-      <dl>
-        <dt>和みなしゃれ</dt>
-        <dd>Hack U 2016 FUKUOKA 最優秀賞</dd>
-        <dd class="year">2016</dd>
-        <p>気まずい空気も一発解決!</p>
-      </dl>
-      <img src="https://farm6.staticflickr.com/5828/30329987954_202dd24e0a_k_d.jpg">
-    </li>
-
-    <li>
-      <dl>
-        <dt>花火=f(x) —関数花火—</dt>
-        <dd class="award">Hack U 2017 TOKYO 優秀賞</dd>
-        <dd class="year">2017</dd>
-        <dd>キミのオリジナル関数花火を夏の夜空に咲かせよう</dd>
-      </dl>
-      <img src="https://farm5.staticflickr.com/4374/36241356863_c1cd755cd1_k_d.jpg">
-    </li>
-
-    <li>
-      <dl>
-        <dt>和みなしゃれ</dt>
-        <dd>Hack U 2016 FUKUOKA 最優秀賞</dd>
-        <dd class="year">2016</dd>
-        <p>気まずい空気も一発解決!</p>
-      </dl>
-      <img src="https://farm6.staticflickr.com/5828/30329987954_202dd24e0a_k_d.jpg">
-    </li>
-
-    <li>
-      <dl>
-        <dt>花火=f(x) —関数花火—</dt>
-        <dd>Hack U 2017 TOKYO 優秀賞</dd>
-        <dd class="year">2017</dd>
-        <dd>キミのオリジナル関数花火を夏の夜空に咲かせよう</dd>
-      </dl>
-      <img src="https://farm5.staticflickr.com/4374/36241356863_c1cd755cd1_k_d.jpg">
-    </li>
-
   </ul>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<script>
+  import { mapState, mapActions } from 'vuex';
+
+  export default {
+    name: 'AchievementsList',
+    computed: mapState(
+      'achievement', ['achievements']
+    ),
+    methods: {
+      ...mapActions(
+        'achievement', ['getAchievements']
+      ),
+    },
+    async created () {
+      this.getAchievements();
+    },
+  };
+</script>
+
 <style scoped>
 ul {
   display: flex;
@@ -90,6 +47,7 @@ li {
   list-style: none;
   width: 24%;
   position: relative;
+  box-sizing: content-box;
 }
 li:hover {
   cursor: pointer;
@@ -107,7 +65,12 @@ dt {
   font-size: 1.4rem;
 }
 dd, dt {
-  width: 80%;
+  width: 85%;
+}
+dd.award {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 dd.year {
   text-align: right;

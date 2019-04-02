@@ -77,7 +77,6 @@ p {
 
 
 <script>
-// @ is an alias to /src
 import AchievementsList from '@/components/AchievementsList.vue';
 
 export default {
