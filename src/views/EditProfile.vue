@@ -24,6 +24,8 @@
       <input type="file" accept="image/*">-->
       <label for="real_name" class="profileItem">本名</label>
       <input type="text" value="Real User" class="inputZone" v-model="real_name">
+      <label for="description" class="profileItem">Description</label>
+      <textarea class="inputZone" v-model="description"></textarea>
       <label for="grade" class="profileItem">学年</label>
       <select class="inputZone" v-model="grade">
         <option disabled value="0">Please Select</option>
@@ -62,14 +64,17 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      user_name: 'user',
-      profile_scope: true,
-      display_name: 'user',
-      real_name: 'Real_user',
-      grade: '0',
-      department: 'S',
-      Twitter: '@TwitterUser',
-      Github: 'Github',
+      user_name: '',
+      profile_scope: '',
+      left: false,
+      display_name: '',
+      real_name: '',
+      description: '',
+      grade: '',
+      department: '',
+      Twitter: '',
+      Github: '',
+      Atcoder: '',
     };
   },
   computed: {
