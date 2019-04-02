@@ -123,4 +123,8 @@ export default {
     color: #FFF;
     border-radius: 3px;
   }
+
+  .errorMessage {
+    color: red;
+  }
 </style>
