@@ -43,6 +43,11 @@ const router = new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "oauthConsent" */ './views/oauth/Consent.vue'),
     },
+    {
+      path: '/registration/:token',
+      name: 'registration',
+      component: () => import(/* webpackChunkName: "registration" */ './views/Registration.vue'),
+    },
   ],
 });
 
