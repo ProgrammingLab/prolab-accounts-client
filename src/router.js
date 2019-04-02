@@ -49,7 +49,14 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
-    store.commit('criticalError/createError', { number: 404, message: 'Page not found' });
+    store.commit('criticalError/createError', {
+      responce: {
+        status: 404,
+        data: {
+          message: 'Page not Found',
+        },
+      },
+    });
   }
   try {
     await store.dispatch('user/getUser', store.state.session.sessionID);
