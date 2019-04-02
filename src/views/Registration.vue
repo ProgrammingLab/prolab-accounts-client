@@ -8,6 +8,9 @@
         <input required type="text" v-model="full_name">
         <label for="password">Password</label>
         <input required type="password" v-model="password">
+        <label for="password_confirm">Confirm Password</label>
+        <input required type="password" v-model="password_confirm">
+        <div class="errorMessage" v-if="passwordConfirmationError">パスワードが一致しません</div>
         <button type="submit">Register</button>
         <ErrorMessage :error="registrationError"/>
       </form>
@@ -29,6 +32,8 @@ export default {
       name: '',
       full_name: '',
       password: '',
+      password_confirm: '',
+      passwordConfirmationError: false,
       registration_token: '',
     };
   },
@@ -60,6 +65,11 @@ export default {
       'login',
     ]),
     async onRegister() {
+      this.passwordConfirmationError = false;
+      if (this.password !== this.password_confirm) {
+        this.passwordConfirmationError = true;
+        return;
+      }
       await this.register({
         name: this.name,
         full_name: this.full_name,
