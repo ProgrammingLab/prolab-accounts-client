@@ -7,8 +7,13 @@ export default {
   /* eslint-disable no-param-reassign */
   mutations: {
     createError(state, error) {
+      if (!error.response) {
+        state.number = '';
+        state.message = 'Connection refused';
+        return;
+      }
       state.number = error.response.status;
-      state.message = error.response.data.message;
+      state.message = error.response.data.message || error.response.statusText;
     },
     clearError(state) {
       state.number = null;
