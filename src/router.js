@@ -50,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
   store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
     store.commit('criticalError/createError', {
-      responce: {
+      response: {
         status: 404,
         data: {
           message: 'Page not Found',

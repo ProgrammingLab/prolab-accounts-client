@@ -7,8 +7,8 @@ export default {
   /* eslint-disable no-param-reassign */
   mutations: {
     createError(state, error) {
-      state.number = error.responce.status;
-      state.message = error.responce.data.message;
+      state.number = error.response.status;
+      state.message = error.response.data.message;
     },
     clearError(state) {
       state.number = null;
