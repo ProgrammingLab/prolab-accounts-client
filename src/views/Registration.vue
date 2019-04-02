@@ -50,7 +50,11 @@ export default {
     this.registration_token = this.$route.params.token;
     await this.verifyRegistrationToken(this.registration_token);
     if (this.tokenVerificationError) {
-      this.createError({ number: 400, message: 'Invalid token' });
+      if (this.tokenVerificationError.response.status === 404) {
+        this.createError({ number: 400, message: 'Invalid token' });
+      } else {
+        this.createError({ number: 500, message: 'Something happend' });
+      }
     }
   },
   methods: {
