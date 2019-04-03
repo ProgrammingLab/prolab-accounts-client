@@ -1,13 +1,23 @@
 <template>
   <ul>
-    <li v-for="item in achievements">
+    <li>
       <dl>
-        <dt>{{ item.title }}</dt>
-        <dd class="award">{{ item.award }}</dd>
-        <dd class="year">{{ item.happened_at.split('-')[0] }}</dd>
-        <dd>{{ item.description }}</dd>
+        <dt>花火=f(x) —関数花火—</dt>
+        <dd class="award">Hack U 2017 TOKYO 優秀賞</dd>
+        <dd class="year">2017</dd>
+        <dd>キミのオリジナル関数花火を夏の夜空に咲かせよう</dd>
       </dl>
-      <img v-bind:src="item.image_url">
+      <img src="https://misskey.kurume-nct.com/files/5c9af04b21552c0c0284efff?web">
+    </li>
+
+    <li>
+      <dl>
+        <dt>和みなしゃれ</dt>
+        <dd class="award">Hack U 2016 FUKUOKA 最優秀賞</dd>
+        <dd class="year">2016</dd>
+        <dd>気まずい空気になったら自動でだじゃれを放つ！現代コミュニケーションに必須の便利ツール</dd>
+      </dl>
+      <img src="https://misskey.kurume-nct.com/files/5ca4d7fb21552c0c0284fcfb?original=eb392acc-d327-4b46-b11f-3eadc94bf418">
     </li>
   </ul>
 </template>
