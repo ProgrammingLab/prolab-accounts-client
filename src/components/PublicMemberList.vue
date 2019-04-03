@@ -5,7 +5,11 @@
       <li v-for="member in filteredList" :key="member.user_id">
         <dl>
           <img class="icon" :src="member.icon_url" alt="icon">
-          <dt>{{member.displayname || member.name}}</dt>
+          <dt>
+            <router-link :to="{ name: 'memberProfile', params: { memberId: member.user_id }}">
+              {{member.displayname || member.name}}
+            </router-link>
+          </dt>
           <dd>{{member.role}}</dd>
           <dd>{{member.left ? '卒業生' : `${member.grade}年生`}}</dd>
           <dd>{{member.description}}</dd>
