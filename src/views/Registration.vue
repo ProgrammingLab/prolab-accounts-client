@@ -50,10 +50,7 @@ export default {
     this.registration_token = this.$route.params.token;
     await this.verifyRegistrationToken(this.registration_token);
     if (this.tokenVerificationError) {
-      this.createError({
-        number: this.tokenVerificationError.response.status,
-        message: this.tokenVerificationError.response.data.message,
-      });
+      this.createError(this.tokenVerificationError);
     }
   },
   methods: {
