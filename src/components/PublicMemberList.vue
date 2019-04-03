@@ -28,13 +28,15 @@
 
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue';
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'publicMemberList',
-  props:{
-    includeLeftUser:Boolean,
-    default: false,
+  props: {
+    includeLeftUser: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     ErrorMessage,
@@ -52,7 +54,7 @@ export default {
     ...mapState('memberIntroduction/memberList', ['list', 'error']),
     filteredList() {
       if (this.includeLeftUser) return this.list;
-      return list.filter(user => !user.left);
+      return this.list.filter(user => !user.left);
     },
   },
   methods: {
