@@ -37,10 +37,10 @@ export default {
       try {
         const resp = await oauthClient.startOAuthConsent(challenge);
         commit('setConsentRequest', {
-          skip: resp.data.skip,
-          redirectURL: resp.data.redirect_url,
-          requestedScopes: resp.data.requested_scopes,
-          client: resp.data.client,
+          skip: resp.skip,
+          redirectURL: resp.redirect_url,
+          requestedScopes: resp.requested_scopes,
+          client: resp.client,
         });
       } catch (e) {
         commit('setChallengeError', e);
@@ -50,7 +50,7 @@ export default {
     async accept({ commit, state }, challenge) {
       try {
         const resp = await oauthClient.consent(challenge, true, state.requestedScopes);
-        commit('setRedirectURL', resp.data.redirect_url);
+        commit('setRedirectURL', resp.redirect_url);
       } catch (e) {
         commit('setChallengeError', e);
       }
@@ -58,7 +58,7 @@ export default {
     async reject({ commit, state }, challenge) {
       try {
         const resp = await oauthClient.consent(challenge, false, state.requestedScopes);
-        commit('setRedirectURL', resp.data.redirect_url);
+        commit('setRedirectURL', resp.redirect_url);
       } catch (e) {
         commit('setChallengeError', e);
       }
