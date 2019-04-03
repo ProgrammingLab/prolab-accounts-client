@@ -2,13 +2,13 @@
   <div>
     <ErrorMessage :error="error"/>
     <ul>
-      <li v-for="user in filteredList" :key="user.user_id">
+      <li v-for="member in filteredList" :key="member.user_id">
         <dl>
-          <img class="icon" :src="user.icon_url" alt="icon">
-          <dt>{{user.displayname || user.name}}</dt>
-          <dd>{{user.role}}</dd>
-          <dd>{{user.left ? '卒業生' : `${user.grade}年生`}}</dd>
-          <dd>{{user.description}}</dd>
+          <img class="icon" :src="member.icon_url" alt="icon">
+          <dt>{{member.displayname || member.name}}</dt>
+          <dd>{{member.role}}</dd>
+          <dd>{{member.left ? '卒業生' : `${member.grade}年生`}}</dd>
+          <dd>{{member.description}}</dd>
         </dl>
       </li>
     </ul>
