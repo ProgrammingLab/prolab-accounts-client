@@ -2,7 +2,7 @@
   <div>
     <ErrorMessage :error="error"/>
     <ul>
-      <li v-for="user in list | leftUserFilter(includeLeftUser)" :key="user.user_id">
+      <li v-for="user in filteredList" :key="user.user_id">
         <dl>
           <img class="icon" :src="user.icon_url" alt="icon">
           <dt>{{user.displayname || user.name}}</dt>
@@ -45,17 +45,13 @@ export default {
   },
   computed: {
     ...mapState('memberIntroduction/memberList', ['list', 'error']),
+    filteredList() {
+      if (this.includeLeftUser) return this.list;
+      return list.filter(user => !user.left);
+    },
   },
   methods: {
     ...mapActions('memberIntroduction/memberList', ['getList']),
-  },
-  filters: {
-    leftUserFilter(list, includeLeftUser) {
-      if (includeLeftUser) {
-        return list;
-      }
-      return list.filter(user => !user.left);
-    },
   },
 };
 </script>
