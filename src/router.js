@@ -48,6 +48,11 @@ const router = new Router({
       name: 'registration',
       component: () => import(/* webpackChunkName: "registration" */ './views/Registration.vue'),
     },
+    {
+      path: '/members',
+      name: 'memeberList',
+      component: () => import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
+    },
   ],
 });
 

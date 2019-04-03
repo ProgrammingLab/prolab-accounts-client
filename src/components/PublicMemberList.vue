@@ -27,8 +27,10 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'memberList',
-  props:['includeLeftUser'],
+  name: 'publicMemberList',
+  props:{
+    includeLeftUser:Boolean,
+  },
   components: {
     ErrorMessage,
   },
@@ -42,10 +44,10 @@ export default {
     this.ready = true;
   },
   computed: {
-    ...mapState('memberList', ['list', 'error']),
+    ...mapState('memberIntroduction/memberList', ['list', 'error']),
   },
   methods: {
-    ...mapActions('memberList', ['getList']),
+    ...mapActions('memberIntroduction/memberList', ['getList']),
   },
   filters: {
     leftUserFilter(list, includeLeftUser) {
