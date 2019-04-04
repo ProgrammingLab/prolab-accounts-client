@@ -1,33 +1,61 @@
 <template>
   <div>
-    <ErrorMessage :error="error"/>
     <dl>
       <dt>Name</dt> <!-- Display Name -->
-      <dd></dd>
+      <dd>{{ memberProfile.display_name || memberProfile.name }}</dd>
 
       <dt>Icon</dt>
-      <dd></dd>
+      <dd><img :src="memberProfile.icon_url" alt="user avater"></dd>
 
       <dt>Department</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.department }}</dd>
 
       <dt>Grade</dt> <!-- Left -->
-      <dd></dd>
+      <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade }}</dd>
 
       <dt>Description</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.description }}</dd>
 
       <dt>Role</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.role }}</dd>
 
       <dt>Twitter</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.twitter_screen_name }}</dd>
 
       <dt>GitHub</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.github_user_name }}</dd>
 
       <dt>AtCoder</dt>
-      <dd></dd>
+      <dd>{{ memberProfile.atcoder_user_name }}</dd>
     </dl>
   </div>
 </template>
+
+<script>
+import { mapMutations, mapActions, mapState } from 'vuex';
+
+export default {
+  name: 'profile',
+  computed: {
+    ...mapState('memberIntroduction/memberProfile', [
+      'memberProfileError',
+      'memberProfile',
+    ]),
+  },
+  async created() {
+    const memberId = this.$route.params.memberId.toString();
+    await this.getMemberProfile(memberId);
+    if (this.memberProfileError) {
+      this.createError(this.memberProfileError);
+    }
+  },
+  methods: {
+    ...mapMutations('criticalError', [
+      'createError',
+    ]),
+    ...mapActions('memberIntroduction/memberProfile', [
+      'getMemberProfile',
+    ]),
+  },
+};
+</script>
