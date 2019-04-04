@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="container">
     <ErrorMessage :error="error"/>
-    <ul>
+    <ul class="memberList">
       <li v-for="member in filteredList" :key="member.user_id">
         <dl>
-          <img class="icon" :src="member.icon_url" alt="icon">
+          <dd class="iconWrapper" ><img class="icon" :src="member.icon_url" alt="icon"></dd>
           <dt>
             <router-link :to="{ name: 'memberProfile', params: { memberId: member.user_id }}">
               {{member.displayname || member.name}}
@@ -21,8 +21,16 @@
 </template>
 
 <style scoped>
+.memberList{
+  list-style-type: none;
+}
+.iconWrapper{
+  float: left;
+  padding-right: 10px;
+}
 .icon {
   width: 96px;
+  height: 96px;
 }
 </style>
 
