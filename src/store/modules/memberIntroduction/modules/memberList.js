@@ -15,8 +15,8 @@ export default {
     clearError(state) {
       state.error = null;
     },
-    setList(state, list) {
-      state.list = list;
+    addList(state, list) {
+      state.list.push(...list);
     },
     setToken(state, token) {
       state.token = token;
@@ -27,17 +27,23 @@ export default {
     async getList({ state, commit }) {
       commit('clearError');
       try {
-        // 初回ロード
-        if (state.token === null) {
+        if (state.token !== 0) {
           // eslint-disable-next-line camelcase
-          const { users, next_page_token } = await memberListClient.getUserList();
-          commit('setList', users);
+          const { users, next_page_token } = await memberListClient.getUserList(state.token);
+          commit('addList', users);
           commit('setToken', next_page_token);
         }
-        // else if(state.token !== 0) でリストの付け足し処理をするつもり
       } catch (e) {
         commit('setError', e);
       }
+    },
+  },
+  getters: {
+    isLast(state) {
+      return state.token === 0;
+    },
+    isEmpty(state) {
+      return state.list.length === 0;
     },
   },
 };

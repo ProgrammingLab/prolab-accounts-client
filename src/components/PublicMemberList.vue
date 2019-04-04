@@ -36,7 +36,7 @@
 
 <script>
 import ErrorMessage from '@/components/ErrorMessage.vue';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'publicMemberList',
@@ -51,22 +51,29 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
     };
   },
-  async created() {
-    await this.getList();
-    this.loading = false;
+  mounted() {
+    if (this.isEmpty) this.getList();
   },
   computed: {
     ...mapState('memberIntroduction/memberList', ['list', 'error']),
+    ...mapGetters('memberIntroduction/memberList', ['isEmpty', 'isLast']),
     filteredList() {
       if (this.includeLeftUser) return this.list;
       return this.list.filter(user => !user.left);
     },
   },
   methods: {
-    ...mapActions('memberIntroduction/memberList', ['getList']),
+    ...mapActions('memberIntroduction/memberList', { getListAction: 'getList' }),
+    async getList() {
+      if (!this.loading) {
+        this.loading = true;
+        await this.getListAction();
+        this.loading = false;
+      }
+    },
   },
 };
 </script>
