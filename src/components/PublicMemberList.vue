@@ -16,7 +16,7 @@
         </dl>
       </li>
     </ul>
-    <!-- この辺？にローディングのクルクルとかがあるといいと思う(readyで表示非表示を切り替える) -->
+    <!-- この辺？にローディングの時のスピナーとかを置く(loadingで表示非表示を切り替える) -->
   </div>
 </template>
 
@@ -43,12 +43,12 @@ export default {
   },
   data() {
     return {
-      ready: false,
+      loading: true,
     };
   },
   async created() {
     await this.getList();
-    this.ready = true;
+    this.loading = false;
   },
   computed: {
     ...mapState('memberIntroduction/memberList', ['list', 'error']),
