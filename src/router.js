@@ -54,7 +54,7 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
     },
     {
-      path: '/member/:memberId',
+      path: '/member/:name',
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },

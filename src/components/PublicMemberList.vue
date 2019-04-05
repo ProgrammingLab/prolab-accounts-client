@@ -6,7 +6,7 @@
         <dl>
           <dd class="iconWrapper" ><img class="icon" :src="member.icon_url" alt="icon"></dd>
           <dt>
-            <router-link :to="{ name: 'memberProfile', params: { memberId: member.user_id }}">
+            <router-link :to="{ name: 'profile', params: { name: member.name }}">
               {{member.displayname || member.name}}
             </router-link>
           </dt>

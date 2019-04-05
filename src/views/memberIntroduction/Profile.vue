@@ -43,8 +43,8 @@ export default {
     ]),
   },
   async created() {
-    const memberId = this.$route.params.memberId.toString();
-    await this.getMemberProfile(memberId);
+    const name = this.$route.params.name.toString();
+    await this.getMemberProfile(name);
     if (this.memberProfileError) {
       this.createError(this.memberProfileError);
     }

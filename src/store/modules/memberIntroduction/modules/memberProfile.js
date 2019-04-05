@@ -23,10 +23,10 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   actions: {
-    async getMemberProfile({ commit }, memberId) {
+    async getMemberProfile({ commit }, name) {
       commit('clearMemberProfileError');
       try {
-        commit('setMemberProfile', await memberProfileClient.getMemberProfile(memberId));
+        commit('setMemberProfile', await memberProfileClient.getMemberProfile(name));
       } catch (e) {
         commit('setMemberProfileError', e);
       }
