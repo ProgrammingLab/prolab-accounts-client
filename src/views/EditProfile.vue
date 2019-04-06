@@ -82,7 +82,7 @@ export default {
     ...mapState('editUser', ['res']),
   },
   created() {
-    this.profile_scope = this.userData.profile_scope === 1 ? 1 : 0;
+    this.profile_scope = (this.userData.profile_scope === 'PUBLIC' ? 1 : 0);
     this.left = this.userData.left;
     this.display_name = this.userData.display_name;
     this.real_name = this.userData.full_name;
