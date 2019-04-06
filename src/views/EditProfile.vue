@@ -8,12 +8,12 @@
     >
     <!-- <img alt="Prolab Logo" src="../assets/logo.png"> -->
     <h1>プロフィール編集ページ</h1>
-    <p id="uname" class="profileItem">user: {{user_name}}</p>
-    <form v-on:submit.prevent="sendProfile">
+    <p id="uname" class="profileItem">user: {{userData.name}}</p>
+    <form v-on:submit.prevent="packProfile">
       <label for="checkbox" class="profileItem">プロフィールについて</label>
       <select id="checkbox" class="inputZone" v-model="profile_scope">
-        <option value="PUBLIC">公開する</option>
-        <option value="MEMBERS_ONLY">部員にのみ公開する</option>
+        <option value="1">公開する</option>
+        <option value="0">部員にのみ公開する</option>
       </select>
       <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
       <label for="left" class="profileItem" id="left">卒部済み</label>
@@ -38,13 +38,12 @@
       <label for="department" class="profileItem">学科</label>
       <select class="inputZone" v-model="department">
         <option disabled value="null">Please Select</option>
-        <option value="1">A</option>
-        <option value="2">E</option>
-        <option value="3">S</option>
+        <option value="1">S</option>
+        <option value="2">A</option>
+        <option value="3">E</option>
         <option value="4">C</option>
         <option value="5">M</option>
-        <option value="6">専門A</option>
-        <option value="7">専門B</option>
+        <option value="6">その他</option>
       </select>
       <label for="display_name" class="profileItem">Twitter Name</label>
       <input type="text" name="Twitter" class="inputZone" v-model="Twitter">
@@ -59,7 +58,7 @@
 
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   data() {
@@ -79,20 +78,41 @@ export default {
   },
   computed: {
     ...mapState('user', ['userData']),
+    ...mapState('session', ['sessionID']),
+    ...mapState('editUser', ['res']),
   },
   created() {
-    this.user_name = this.userData.name;
-    this.profile_scope = this.userData.profile_scope;
+    this.profile_scope = this.userData.profile_scope === 1 ? 1 : 0;
+    this.left = this.userData.left;
     this.display_name = this.userData.display_name;
     this.real_name = this.userData.full_name;
+    this.description = this.userData.description;
     this.grade = this.userData.grade;
     this.department = this.userData.department;
     this.Twitter = this.userData.twitter_screen_name;
     this.Github = this.userData.github_user_name;
+    this.Atcoder = this.userData.atcoder_user_name;
   },
   methods: {
-    async sendProfile() {
-      // send profile
+    ...mapActions('editUser', ['sendProfile']),
+    async packProfile() {
+      const payload = {
+        full_name: this.real_name,
+        description: this.description,
+        grade: Number(this.grade),
+        left: this.left,
+        role_id: Number(this.userData.role),
+        twitter_screen_name: this.Twitter,
+        github_user_name: this.Github,
+        // atcoder_user_name: this.Atcoder,
+        department_id: Number(this.department),
+        profile_scope: Number(this.profile_scope),
+        display_name: this.display_name,
+      };
+      await this.sendProfile({
+        userProfile: payload,
+        sessionID: this.sessionID,
+      });
     },
   },
 };
