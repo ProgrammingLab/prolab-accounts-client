@@ -52,6 +52,7 @@
       <label for="Atcoder" class="profileItem">Atcoder Name</label>
       <input type="text" name="Atcoder" class="inputZone" v-model="Atcoder">
       <input type="submit" value="保存する">
+      <ErrorMessage :error="sessionError"/>
     </form>
   </div>
 </template>
@@ -59,8 +60,13 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
+  name: 'editProfile',
+  components: {
+    ErrorMessage,
+  },
   data() {
     return {
       user_name: '',
@@ -79,7 +85,7 @@ export default {
   computed: {
     ...mapState('user', ['userData']),
     ...mapState('session', ['sessionID']),
-    ...mapState('editUser', ['res']),
+    ...mapState('editUser', ['res', 'sessionError']),
   },
   created() {
     this.profile_scope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
