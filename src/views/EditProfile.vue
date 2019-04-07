@@ -19,9 +19,6 @@
       <label for="left" class="profileItem" id="left">卒部済み</label>
       <label for="display_name" class="profileItem">表示名</label>
       <input type="text" class="inputZone" v-model="display_name">
-      <!-- <br>
-      <label class="profileitem">アイコン画像</label>
-      <input type="file" accept="image/*">-->
       <label for="real_name" class="profileItem">本名</label>
       <input type="text" value="Real User" class="inputZone" v-model="real_name">
       <label for="description" class="profileItem">Description</label>
