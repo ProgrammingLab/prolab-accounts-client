@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="item in achievements">
+    <li v-for="item in achievements" :key="item.id">
       <dl>
         <dt>{{ item.title }}</dt>
         <dd class="award">{{ item.award }}</dd>
@@ -13,22 +13,22 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
-  export default {
-    name: 'AchievementsList',
-    computed: mapState(
-      'achievement', ['achievements']
+export default {
+  name: 'AchievementsList',
+  computed: mapState(
+    'achievement', ['achievements'],
+  ),
+  methods: {
+    ...mapActions(
+      'achievement', ['getAchievements'],
     ),
-    methods: {
-      ...mapActions(
-        'achievement', ['getAchievements']
-      ),
-    },
-    async created () {
-      this.getAchievements();
-    },
-  };
+  },
+  async created () {
+    this.getAchievements();
+  },
+};
 </script>
 
 <style scoped>
