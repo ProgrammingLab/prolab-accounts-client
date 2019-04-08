@@ -52,13 +52,25 @@ const router = new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "oauthConsent" */ './views/oauth/Consent.vue'),
     },
+    {
+      path: '/registration/:token',
+      name: 'registration',
+      component: () => import(/* webpackChunkName: "registration" */ './views/Registration.vue'),
+    },
   ],
 });
 
 router.beforeEach(async (to, from, next) => {
   store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
-    store.commit('criticalError/createError', { number: 404, message: 'Page not found' });
+    store.commit('criticalError/createError', {
+      response: {
+        status: 404,
+        data: {
+          message: 'Page not Found',
+        },
+      },
+    });
   }
   try {
     await store.dispatch('user/getUser', store.state.session.sessionID);
