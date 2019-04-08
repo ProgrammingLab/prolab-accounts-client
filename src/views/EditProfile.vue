@@ -42,11 +42,11 @@
         <option value="5">M</option>
       </select>
       <label for="display_name" class="profileItem">Twitter Name</label>
-      <input type="text" name="Twitter" class="inputZone" v-model="Twitter">
+      <input type="text" name="twitter" class="inputZone" v-model="twitter">
       <label for="display_name" class="profileItem">Github Name</label>
-      <input type="text" name="Github" class="inputZone" v-model="Github">
-      <label for="Atcoder" class="profileItem">Atcoder Name</label>
-      <input type="text" name="Atcoder" class="inputZone" v-model="Atcoder">
+      <input type="text" name="github" class="inputZone" v-model="github">
+      <label for="atcoder" class="profileItem">Atcoder Name</label>
+      <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
       <input type="submit" value="保存する">
       <ErrorMessage :error="sessionError"/>
     </form>
@@ -73,9 +73,9 @@ export default {
       description: '',
       grade: '',
       department: '',
-      Twitter: '',
-      Github: '',
-      Atcoder: '',
+      twitter: '',
+      github: '',
+      atcoder: '',
     };
   },
   computed: {
@@ -91,9 +91,9 @@ export default {
     this.description = this.userData.description;
     this.grade = this.userData.grade;
     this.department = this.userData.department;
-    this.Twitter = this.userData.twitter_screen_name;
-    this.Github = this.userData.github_user_name;
-    this.Atcoder = this.userData.atcoder_user_name;
+    this.twitter = this.userData.twitter_screen_name;
+    this.github = this.userData.github_user_name;
+    this.atcoder = this.userData.atcoder_user_name;
   },
   methods: {
     ...mapActions('editUser', ['sendProfile']),
@@ -104,9 +104,9 @@ export default {
         grade: Number(this.grade),
         left: this.left,
         role_id: Number(this.userData.role),
-        twitter_screen_name: this.Twitter,
-        github_user_name: this.Github,
-        atcoder_user_name: this.Atcoder,
+        twitter_screen_name: this.twitter,
+        github_user_name: this.github,
+        atcoder_user_name: this.atcoder,
         department_id: Number(this.department),
         profile_scope: Number(this.profile_scope),
         display_name: this.display_name,
