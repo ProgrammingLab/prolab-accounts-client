@@ -5,10 +5,9 @@ export default {
   // eslint-disable-next-line camelcase
   async CreateEmailConfirmation(session_id, new_email, password) {
     const ret = (await api.client.post('/user/emails/confirmations', {
-      ...getHeader(session_id),
       new_email,
       password,
-    })).data;
+    }, getHeader(session_id))).data;
     return ret;
   },
 
