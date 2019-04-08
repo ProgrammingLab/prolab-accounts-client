@@ -46,6 +46,9 @@ export default {
         new_email: this.new_email,
         password: this.password,
       });
+      if (!this.emailConfirmationError) {
+        this.$router.push({ name: 'home' });
+      }
     },
   },
 };
