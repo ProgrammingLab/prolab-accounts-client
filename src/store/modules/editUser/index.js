@@ -21,6 +21,7 @@ export default {
   /* eslint-enable no-param-reassign */
   actions: {
     async sendProfile({ commit }, { userProfile, sessionID }) {
+      commit('clearSessionError');
       try {
         commit('setResponse', await editClient.changeProfile(userProfile, sessionID));
       } catch (e) {
