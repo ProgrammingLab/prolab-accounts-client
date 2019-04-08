@@ -40,7 +40,6 @@
         <option value="3">E</option>
         <option value="4">C</option>
         <option value="5">M</option>
-        <option value="6">その他</option>
       </select>
       <label for="display_name" class="profileItem">Twitter Name</label>
       <input type="text" name="Twitter" class="inputZone" v-model="Twitter">
