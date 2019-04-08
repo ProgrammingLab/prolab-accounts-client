@@ -48,6 +48,11 @@ const router = new Router({
       name: 'registration',
       component: () => import(/* webpackChunkName: "registration" */ './views/Registration.vue'),
     },
+    {
+      path: '/user/email',
+      name: 'createEmailConfirmation',
+      component: () => import(/* webpackChunkName: "createEmailConfirmation" */ './views/CreateEmailConfirmation.vue')
+    },
   ],
 });
 
