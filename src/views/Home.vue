@@ -13,14 +13,6 @@
       <h2>戦歴</h2>
       <AchievementsList/>
     </section>
-
-    <section>
-      <h2>GitHub Activity Graph</h2>
-    </section>
-
-    <section>
-      <h2>AtCoder Activity Graph</h2>
-    </section>
   </div>
 </template>
 
