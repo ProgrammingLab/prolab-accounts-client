@@ -107,7 +107,7 @@ export default {
         role_id: Number(this.userData.role),
         twitter_screen_name: this.Twitter,
         github_user_name: this.Github,
-        // atcoder_user_name: this.Atcoder,
+        atcoder_user_name: this.Atcoder,
         department_id: Number(this.department),
         profile_scope: Number(this.profile_scope),
         display_name: this.display_name,
