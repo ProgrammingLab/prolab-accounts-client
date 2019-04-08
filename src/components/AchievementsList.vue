@@ -47,7 +47,6 @@ li {
   list-style: none;
   width: 24%;
   position: relative;
-  box-sizing: content-box;
 }
 li:hover {
   cursor: pointer;
