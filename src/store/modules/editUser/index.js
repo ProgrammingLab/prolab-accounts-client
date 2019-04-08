@@ -1,4 +1,4 @@
-import editClient from '@/api/editUser';
+import updateClient from '@/api/user';
 
 export default {
   namespaced: true,
@@ -23,7 +23,7 @@ export default {
     async sendProfile({ commit }, { userProfile, sessionID }) {
       commit('clearUpdateError');
       try {
-        commit('setResponse', await editClient.changeProfile(userProfile, sessionID));
+        commit('setResponse', await updateClient.changeProfile(userProfile, sessionID));
       } catch (e) {
         commit('setUpdateError', e);
       }
