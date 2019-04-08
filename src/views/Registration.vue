@@ -38,7 +38,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', [
+    ...mapState('registration', [
       'tokenVerificationError',
       'registrationError',
     ]),
@@ -57,7 +57,7 @@ export default {
     ...mapMutations('criticalError', [
       'createError',
     ]),
-    ...mapActions('user', [
+    ...mapActions('registration', [
       'verifyRegistrationToken',
       'register',
     ]),
