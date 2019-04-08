@@ -25,7 +25,7 @@ export default {
       'achievement', ['getAchievements'],
     ),
   },
-  async created () {
+  async created() {
     this.getAchievements();
   },
 };
