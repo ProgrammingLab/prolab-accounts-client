@@ -8,7 +8,7 @@
         <input required type="password" id="password" v-model="password">
         <button type="submit">Confirm</button>
       </form>
-      <ErrorMessage :error="emailConfirmationError">
+      <ErrorMessage :error="emailConfirmationError"/>
     </div>
   </div>
 </template>
