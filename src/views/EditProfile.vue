@@ -34,7 +34,7 @@
       </select>
       <label for="department" class="profileItem">学科</label>
       <select class="inputZone" v-model="department">
-        <option disabled value="null">Please Select</option>
+        <option disabled value="0">Please Select</option>
         <option value="1">S</option>
         <option value="2">A</option>
         <option value="3">E</option>
@@ -90,7 +90,11 @@ export default {
     this.real_name = this.userData.full_name;
     this.description = this.userData.description;
     this.grade = this.userData.grade;
-    this.department = this.userData.department;
+    if (this.userData.department != null) {
+      this.department = String(this.userData.department.department_id);
+    } else {
+      this.department = '0';
+    }
     this.twitter = this.userData.twitter_screen_name;
     this.github = this.userData.github_user_name;
     this.atcoder = this.userData.atcoder_user_name;
