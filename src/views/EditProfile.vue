@@ -48,7 +48,7 @@
       <label for="atcoder" class="profileItem">Atcoder Name</label>
       <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
       <input type="submit" value="保存する">
-      <ErrorMessage :error="sessionError"/>
+      <ErrorMessage :error="updateError"/>
     </form>
   </div>
 </template>
@@ -81,7 +81,7 @@ export default {
   computed: {
     ...mapState('user', ['userData']),
     ...mapState('session', ['sessionID']),
-    ...mapState('editUser', ['res', 'sessionError']),
+    ...mapState('editUser', ['res', 'updateError']),
   },
   created() {
     this.profile_scope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;

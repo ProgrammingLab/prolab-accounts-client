@@ -4,28 +4,28 @@ export default {
   namespaced: true,
   state: {
     res: null,
-    sessionError: null,
+    updateError: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
     setResponse(state, res) {
       state.res = res;
     },
-    clearSessionError(state) {
-      state.sessionError = null;
+    clearUpdateError(state) {
+      state.updateError = null;
     },
-    setSessionError(state, error) {
-      state.sessionError = error;
+    setUpdateError(state, error) {
+      state.updateError = error;
     },
   },
   /* eslint-enable no-param-reassign */
   actions: {
     async sendProfile({ commit }, { userProfile, sessionID }) {
-      commit('clearSessionError');
+      commit('clearUpdateError');
       try {
         commit('setResponse', await editClient.changeProfile(userProfile, sessionID));
       } catch (e) {
-        commit('setSessionError', e);
+        commit('setUpdateError', e);
       }
     },
   },
