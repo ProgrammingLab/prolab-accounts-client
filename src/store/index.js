@@ -6,6 +6,7 @@ import oauthConsent from './modules/oauth/consent';
 import session from './modules/session';
 import user from './modules/user';
 import criticalError from './modules/criticalError';
+import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
 
 Vue.use(Vuex);
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     session,
     user,
     criticalError,
+    memberIntroduction,
     editUser,
   },
   plugins: [
