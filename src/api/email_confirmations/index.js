@@ -11,8 +11,9 @@ export default {
     return ret;
   },
 
-  async ConfirmEmail(token) {
-    const ret = (await api.client.patch(`/user/emails/confirmations/${token}`)).data;
+  // eslint-disable-next-line camelcase
+  async ConfirmEmail(session_id, token) {
+    const ret = (await api.client.patch(`/user/emails/confirmations/${token}`, {}, getHeader(session_id))).data;
     return ret;
   },
 };
