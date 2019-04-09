@@ -96,6 +96,8 @@ export default {
     align-items: center;
     flex-direction: column;
     height: 100%;
+    width: 1024px;
+    margin: auto;
   }
 
   .box {

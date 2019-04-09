@@ -27,7 +27,7 @@ export default {
       commit('clearLoginError');
       try {
         const res = await sesssionClient.createSession(name, password);
-        commit('setSessionID', res.data.session_id);
+        commit('setSessionID', res.session_id);
       } catch (e) {
         commit('setLoginError', e);
       }

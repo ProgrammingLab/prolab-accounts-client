@@ -7,6 +7,7 @@ import session from './modules/session';
 import user from './modules/user';
 import criticalError from './modules/criticalError';
 import memberIntroduction from './modules/memberIntroduction';
+import editUser from './modules/editUser';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     user,
     criticalError,
     memberIntroduction,
+    editUser,
   },
   plugins: [
     createPersistedState({
