@@ -26,10 +26,10 @@ export default {
       }
     },
 
-    async ConfirmEmail({ commit }, token) {
+    async ConfirmEmail({ commit }, { session, token }) {
       commit('clearEmailConfirmationError');
       try {
-        await emailConfirmationClient.ConfirmEmail({ commit }, token);
+        await emailConfirmationClient.ConfirmEmail(session, token);
       } catch (e) {
         commit('setEmailConfirmationError', e);
       }
