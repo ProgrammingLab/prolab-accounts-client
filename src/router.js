@@ -54,6 +54,12 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "createEmailConfirmation" */ './views/CreateEmailConfirmation.vue'),
       meta: { requiresAuth: true },
     },
+    {
+      path: '/confirmation/:token',
+      name: 'confirmEmail',
+      component: () => import(/* webpackChunkName: "confirmEmail" */ './views/ConfirmEmail.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 });
 
