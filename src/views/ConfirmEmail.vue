@@ -22,10 +22,16 @@ export default {
     ...mapState('email_confirmations', [
       'emailConfirmationError',
     ]),
+    ...mapState('session', [
+      'sessionID',
+    ]),
   },
   async created() {
     this.token = this.$route.params.token;
-    await this.ConfirmEmail(this.token);
+    await this.ConfirmEmail({
+      session: this.sessionID,
+      token: this.token,
+    });
     if (this.emailConfirmationError) {
       this.createError(this.emailConfirmationError);
     } else {
