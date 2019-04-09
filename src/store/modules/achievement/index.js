@@ -14,7 +14,11 @@ export default {
   /* eslint-enable no-param-reassign */
   actions: {
     async getAchievements({ commit }, sessionID) {
-      commit('setAchievements', await achievementClient.getAchievements(sessionID));
+      try {
+        commit('setAchievements', await achievementClient.getAchievements(sessionID));
+      } catch (e) {
+        commit('criticalError/createError', e, { root: true });
+      }
     },
   },
 };
