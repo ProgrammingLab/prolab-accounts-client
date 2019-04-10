@@ -1,28 +1,11 @@
 <template>
   <div id="page">
-    <img
-      width="210"
-      height="70"
-      src="http://placehold.jp/65/ffffff/666666/210x70.png?text=ProLab"
-      alt="prolag"
-    >
-    <!-- <img alt="Prolab Logo" src="../assets/logo.png"> -->
-    <h1>プロフィール編集ページ</h1>
-    <p id="uname" class="profileItem">user: {{userData.name}}</p>
+    <h1>プロフィール編集</h1>
     <form v-on:submit.prevent="packProfile">
-      <label for="checkbox" class="profileItem">プロフィールについて</label>
-      <select id="checkbox" class="inputZone" v-model="profile_scope">
-        <option value="1">公開する</option>
-        <option value="0">部員にのみ公開する</option>
-      </select>
-      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
-      <label for="left" class="profileItem" id="left">卒部済み</label>
-      <label for="display_name" class="profileItem">表示名</label>
-      <input type="text" class="inputZone" v-model="display_name">
       <label for="real_name" class="profileItem">本名</label>
       <input type="text" value="Real User" class="inputZone" v-model="real_name">
-      <label for="description" class="profileItem">Description</label>
-      <textarea class="inputZone" v-model="description"></textarea>
+      <label for="display_name" class="profileItem">表示名</label>
+      <input type="text" class="inputZone" v-model="display_name">
       <label for="grade" class="profileItem">学年</label>
       <select class="inputZone" v-model="grade">
         <option disabled value="0">Please Select</option>
@@ -32,6 +15,8 @@
         <option>4</option>
         <option>5</option>
       </select>
+      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
+      <label for="left" class="profileItem" id="left">卒部済み</label>
       <label for="department" class="profileItem">学科</label>
       <select class="inputZone" v-model="department">
         <option disabled value="0">Please Select</option>
@@ -41,12 +26,19 @@
         <option value="4">C</option>
         <option value="5">M</option>
       </select>
+      <label for="description" class="profileItem">Description</label>
+      <textarea class="inputZone" v-model="description"></textarea>
       <label for="display_name" class="profileItem">Twitter Name</label>
       <input type="text" name="twitter" class="inputZone" v-model="twitter">
       <label for="display_name" class="profileItem">Github Name</label>
       <input type="text" name="github" class="inputZone" v-model="github">
       <label for="atcoder" class="profileItem">Atcoder Name</label>
       <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
+      <label for="checkbox" class="profileItem">公開範囲</label>
+      <select id="checkbox" class="inputZone" v-model="profile_scope">
+        <option value="1">外部にも公開</option>
+        <option value="0">部員にのみ公開</option>
+      </select>
       <input type="submit" value="保存する">
       <ErrorMessage :error="updateError"/>
     </form>
