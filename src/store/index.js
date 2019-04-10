@@ -6,6 +6,7 @@ import oauthConsent from './modules/oauth/consent';
 import session from './modules/session';
 import user from './modules/user';
 import criticalError from './modules/criticalError';
+import achievement from './modules/achievement';
 import emailConfirmations from './modules/emailConfirmations';
 import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     session,
     user,
     criticalError,
+    achievement,
     emailConfirmations,
     memberIntroduction,
     editUser,
