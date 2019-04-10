@@ -34,8 +34,8 @@ export default {
       try {
         const resp = await oauthClient.startOAuthLogin(challenge);
         commit('setLoginRequest', {
-          skip: resp.data.skip,
-          redirectURL: resp.data.redirect_url,
+          skip: resp.skip,
+          redirectURL: resp.redirect_url,
         });
       } catch (e) {
         commit('setLoginRequest', { challengeError: e });
@@ -45,7 +45,7 @@ export default {
     async login({ commit }, { challenge, name, password }) {
       try {
         const resp = await oauthClient.login(challenge, name, password);
-        commit('setRedirectURL', resp.data.redirect_url);
+        commit('setRedirectURL', resp.redirect_url);
       } catch (e) {
         commit('setLoginError', e);
       }
