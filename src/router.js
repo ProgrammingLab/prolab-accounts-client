@@ -23,6 +23,15 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
+      path: '/editprofile',
+      name: 'editprofile',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "editprofile" */ './views/EditProfile.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import(/* webpackChunkName: "login" */'./views/Login.vue'),
@@ -59,6 +68,16 @@ const router = new Router({
       name: 'confirmEmail',
       component: () => import(/* webpackChunkName: "confirmEmail" */ './views/ConfirmEmail.vue'),
       meta: { requiresAuth: true },
+    },
+    {
+      path: '/members',
+      name: 'memberList',
+      component: () => import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
+    },
+    {
+      path: '/members/:name',
+      name: 'profile',
+      component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },
   ],
 });

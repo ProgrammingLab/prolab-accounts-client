@@ -7,6 +7,8 @@ import session from './modules/session';
 import user from './modules/user';
 import criticalError from './modules/criticalError';
 import emailConfirmations from './modules/emailConfirmations';
+import memberIntroduction from './modules/memberIntroduction';
+import editUser from './modules/editUser';
 
 Vue.use(Vuex);
 
@@ -19,6 +21,8 @@ export default new Vuex.Store({
     user,
     criticalError,
     emailConfirmations,
+    memberIntroduction,
+    editUser,
   },
   plugins: [
     createPersistedState({
