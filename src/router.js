@@ -67,6 +67,12 @@ const router = new Router({
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },
+    {
+      path: '/admin/invitations',
+      name: 'invitation',
+      component: () => import(/* webpackChunkName: "invitation" */ './views/admin/Invitation.vue'),
+      meta: { requiresAdmin: true },
+    },
   ],
 });
 

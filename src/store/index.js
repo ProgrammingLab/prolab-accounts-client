@@ -8,6 +8,7 @@ import user from './modules/user';
 import criticalError from './modules/criticalError';
 import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
+import invitation from './modules/invitation';
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     criticalError,
     memberIntroduction,
     editUser,
+    invitation,
   },
   plugins: [
     createPersistedState({
