@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="box">
-      <h1>Change Email</h1>
+      <h1>メールアドレス変更</h1>
       <div>メールアドレスが変更されました</div>
       <router-link :to="{ name: 'home' }" exact>
         Go to home page

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="box">
-      <h1>Change Email</h1>
+      <h1>メールアドレス変更</h1>
       <form v-on:submit.prevent="onCreateEmailConfirmation">
-        <label for="new_email">New Email</label>
+        <label for="new_email">新しいメールアドレス</label>
         <input required type="email" id="new_email" v-model="new_email">
-        <label for="password">Password</label>
+        <label for="password">パスワード</label>
         <input required type="password" id="password" v-model="password">
         <button type="submit">Confirm</button>
       </form>
