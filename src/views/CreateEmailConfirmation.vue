@@ -70,7 +70,7 @@ export default {
   margin: 0 2em;
 }
 
-input[type="text"], input[type="password"] {
+input[type="email"], input[type="password"] {
   width: 100%;
   padding: 10px;
   border-width: 0 0 2px;
