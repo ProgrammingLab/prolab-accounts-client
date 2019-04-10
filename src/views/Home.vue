@@ -16,11 +16,11 @@
 
     <footer>
       <div v-if="loggedIn">
-        <router-link to="">プロフィール編集</router-link>
-        <router-link to="">ログアウト</router-link>
+        <router-link to="/editprofile">プロフィール編集</router-link>
+        <router-link to="">ログアウト</router-link> <!-- TODO: ログアウトできるようにする -->
       </div>
       <div v-else>
-        <router-link to="/Login">ログイン</router-link>
+        <router-link to="/login">ログイン</router-link>
       </div>
       <small>&copy; Programming Laboratory, 2019</small>
     </footer>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import AchievementsList from '@/components/AchievementsList.vue';
 
 export default {
@@ -74,7 +74,8 @@ footer small {
 }
 
 h1 img {
-  width: 400px;
+  max-width: 400px;
+  width: 80%;
 }
 
 section {
@@ -106,5 +107,16 @@ h2::after {
 
 p {
   margin-left: 60px;
+  margin-right: 20px;
+}
+
+small {
+  text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 2rem;
+  }
 }
 </style>
