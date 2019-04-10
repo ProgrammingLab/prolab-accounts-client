@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div>
+    <div class="box">
+      <h1>Change Email</h1>
       <form v-on:submit.prevent="onCreateEmailConfirmation">
         <label for="new_email">New Email</label>
         <input required type="email" id="new_email" v-model="new_email">
