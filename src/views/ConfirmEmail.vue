@@ -12,16 +12,6 @@ import { mapMutations, mapActions, mapState } from 'vuex';
 
 export default {
   name: 'confirmEmail',
-  data() {
-    return {
-      name: '',
-      full_name: '',
-      password: '',
-      password_confirm: '',
-      passwordConfirmationError: false,
-      registration_token: '',
-    };
-  },
   computed: {
     ...mapState('emailConfirmations', [
       'emailConfirmationError',
