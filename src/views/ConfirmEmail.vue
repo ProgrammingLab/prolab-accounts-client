@@ -23,7 +23,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('email_confirmations', [
+    ...mapState('emailConfirmations', [
       'emailConfirmationError',
     ]),
     ...mapState('session', [
@@ -46,7 +46,7 @@ export default {
     ...mapMutations('criticalError', [
       'createError',
     ]),
-    ...mapActions('email_confirmations', [
+    ...mapActions('emailConfirmations', [
       'ConfirmEmail',
     ]),
   },

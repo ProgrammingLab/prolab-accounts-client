@@ -6,8 +6,7 @@ import oauthConsent from './modules/oauth/consent';
 import session from './modules/session';
 import user from './modules/user';
 import criticalError from './modules/criticalError';
-// eslint-disable-next-line camelcase
-import email_confirmations from './modules/email_confirmations';
+import emailConfirmations from './modules/emailConfirmations';
 
 Vue.use(Vuex);
 
@@ -19,7 +18,7 @@ export default new Vuex.Store({
     session,
     user,
     criticalError,
-    email_confirmations,
+    emailConfirmations,
   },
   plugins: [
     createPersistedState({
