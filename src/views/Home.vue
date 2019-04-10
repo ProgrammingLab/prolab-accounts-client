@@ -13,8 +13,34 @@
       <h2>戦歴</h2>
       <AchievementsList/>
     </section>
+
+    <footer>
+      <div v-if="loggedIn">
+        <router-link to="">プロフィール編集</router-link>
+        <router-link to="">ログアウト</router-link>
+      </div>
+      <div v-else>
+        <router-link to="/Login">ログイン</router-link>
+      </div>
+      <small>&copy; Programming Laboratory, 2019</small>
+    </footer>
   </div>
 </template>
+
+<script>
+import { mapState, mapGetters } from 'vuex';
+import AchievementsList from '@/components/AchievementsList.vue';
+
+export default {
+  name: 'home',
+  components: {
+    AchievementsList,
+  },
+  computed: {
+    ...mapGetters('session', ['loggedIn']),
+  },
+};
+</script>
 
 <style scoped>
 @keyframes slide {
@@ -24,6 +50,22 @@
   to {
     width: 0;
   }
+}
+
+footer div {
+  text-align: center;
+}
+
+footer a {
+  display: inline-block;
+  padding: 12px;
+  border-bottom: 2px #333 solid;
+  color: black;
+  margin: 0 4px 24px;
+}
+
+footer small {
+  display: block;
 }
 
 .home {
@@ -66,15 +108,3 @@ p {
   margin-left: 60px;
 }
 </style>
-
-
-<script>
-import AchievementsList from '@/components/AchievementsList.vue';
-
-export default {
-  name: 'home',
-  components: {
-    AchievementsList,
-  },
-};
-</script>
