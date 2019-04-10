@@ -3,7 +3,7 @@
     <div>
       <form v-on:submit.prevent="onCreateEmailConfirmation">
         <label for="new_email">New Email</label>
-        <input required type="text" id="new_email" v-model="new_email">
+        <input required type="email" id="new_email" v-model="new_email">
         <label for="password">Password</label>
         <input required type="password" id="password" v-model="password">
         <button type="submit">Confirm</button>
