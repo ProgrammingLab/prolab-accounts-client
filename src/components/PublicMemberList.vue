@@ -1,18 +1,18 @@
 <template>
-  <div id="container">
+  <div>
     <ErrorMessage :error="error"/>
     <ul class="memberList">
       <li v-for="member in filteredList" :key="member.user_id">
+        <img :src="member.icon_url" alt="User Icon">
         <dl>
-          <dd class="iconWrapper" ><img class="icon" :src="member.icon_url" alt="icon"></dd>
-          <dt>
+          <dt class="name">
             <router-link :to="{ name: 'profile', params: { name: member.name }}">
               {{member.displayname || member.name}}
             </router-link>
           </dt>
-          <dd>{{member.role}}</dd>
-          <dd>{{member.left ? '卒業生' : `${member.grade}年生`}}</dd>
-          <dd>{{member.description}}</dd>
+          <dd class="role">{{member.role}}</dd>
+          <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
+          <dd class="description">{{member.description}}</dd>
         </dl>
       </li>
     </ul>
@@ -24,13 +24,26 @@
 .memberList{
   list-style-type: none;
 }
-.iconWrapper{
-  float: left;
-  padding-right: 10px;
-}
-.icon {
+img {
   width: 96px;
   height: 96px;
+  border: 1px solid #ccc;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+li {
+  display: flex;
+  border-right: 2px solid #888;
+  width: 400px;
+  padding: 12px;
+}
+dl {
+  margin-left: 5%;
+}
+.name {
+  font-size: 2rem;
 }
 </style>
 
