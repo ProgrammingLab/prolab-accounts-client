@@ -1,56 +1,94 @@
 <template>
-  <div id="page">
-    <img
-      width="210"
-      height="70"
-      src="http://placehold.jp/65/ffffff/666666/210x70.png?text=ProLab"
-      alt="prolag"
-    >
-    <!-- <img alt="Prolab Logo" src="../assets/logo.png"> -->
-    <h1>プロフィール編集ページ</h1>
-    <p id="uname" class="profileItem">user: {{userData.name}}</p>
-    <form v-on:submit.prevent="packProfile">
-      <label for="checkbox" class="profileItem">プロフィールについて</label>
-      <select id="checkbox" class="inputZone" v-model="profile_scope">
-        <option value="1">公開する</option>
-        <option value="0">部員にのみ公開する</option>
-      </select>
-      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
-      <label for="left" class="profileItem" id="left">卒部済み</label>
-      <label for="display_name" class="profileItem">表示名</label>
-      <input type="text" class="inputZone" v-model="display_name">
-      <label for="real_name" class="profileItem">本名</label>
-      <input type="text" value="Real User" class="inputZone" v-model="real_name">
-      <label for="description" class="profileItem">Description</label>
-      <textarea class="inputZone" v-model="description"></textarea>
-      <label for="grade" class="profileItem">学年</label>
-      <select class="inputZone" v-model="grade">
-        <option disabled value="0">Please Select</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-      <label for="department" class="profileItem">学科</label>
-      <select class="inputZone" v-model="department">
-        <option disabled value="0">Please Select</option>
-        <option value="1">S</option>
-        <option value="2">A</option>
-        <option value="3">E</option>
-        <option value="4">C</option>
-        <option value="5">M</option>
-      </select>
-      <label for="display_name" class="profileItem">Twitter Name</label>
-      <input type="text" name="twitter" class="inputZone" v-model="twitter">
-      <label for="display_name" class="profileItem">Github Name</label>
-      <input type="text" name="github" class="inputZone" v-model="github">
-      <label for="atcoder" class="profileItem">Atcoder Name</label>
-      <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
-      <input type="submit" value="保存する">
-      <ErrorMessage :error="updateError"/>
-    </form>
-  </div>
+<div class="container">
+  <section class="section">
+    <h1 class="title">プロフィール編集</h1>
+
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>
+      <p class="help is-success">This username is available</p>
+    </div>
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span>
+      </div>
+      <p class="help is-danger">This email is invalid</p>
+    </div>
+
+    <div class="field">
+      <label class="label">Subject</label>
+      <div class="control">
+        <div class="select">
+          <select>
+            <option>Select dropdown</option>
+            <option>With options</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Message</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="Textarea"></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox">
+          I agree to the <a href="#">terms and conditions</a>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="question">
+          Yes
+        </label>
+        <label class="radio">
+          <input type="radio" name="question">
+          No
+        </label>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-text">Cancel</button>
+      </div>
+    </div>
+  </section>
+</div>
 </template>
 
 
