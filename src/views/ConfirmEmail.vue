@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <div class="box">
+      <h1>Change Email</h1>
+      <div>メールアドレスが変更されました</div>
+    </div>
   </div>
 </template>
 
@@ -50,13 +54,17 @@ export default {
 </script>
 
 <style scoped>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 1024px;
-    margin: auto;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 1024px;
+  margin: auto;
+}
+
+.box {
+  margin: 0 2em;
+}
 </style>
