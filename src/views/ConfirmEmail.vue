@@ -3,6 +3,9 @@
     <div class="box">
       <h1>Change Email</h1>
       <div>メールアドレスが変更されました</div>
+      <router-link :to="{ name: 'home' }" exact>
+        Go to home page
+      </router-link>
     </div>
   </div>
 </template>
@@ -28,8 +31,6 @@ export default {
     });
     if (this.emailConfirmationError) {
       this.createError(this.emailConfirmationError);
-    } else {
-      this.$router.push({ name: 'home' });
     }
   },
   methods: {
