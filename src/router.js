@@ -79,6 +79,12 @@ const router = new Router({
       name: 'profile',
       component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },
+    {
+      path: '/admin/invitations',
+      name: 'invitation',
+      component: () => import(/* webpackChunkName: "invitation" */ './views/admin/Invitation.vue'),
+      meta: { requiresAdmin: true },
+    },
   ],
 });
 
@@ -101,11 +107,24 @@ router.beforeEach(async (to, from, next) => {
     console.error(e);
     store.commit('session/clearSessionID');
   }
+
+  if (to.matched.some(record => record.meta.requiresAdmin) && !store.getters['user/isAdmin']) {
+    store.commit('criticalError/createError', {
+      response: {
+        status: 404,
+        data: {
+          message: 'Page not Found',
+        },
+      },
+    });
+    return;
+  }
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
-  } else {
-    next();
+    return;
   }
+
+  next();
 });
 
 export default router;
