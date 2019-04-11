@@ -47,6 +47,7 @@ import { mapState, mapActions } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
+  name: 'invitation',
   components: {
     ErrorMessage,
   },
