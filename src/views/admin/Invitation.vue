@@ -17,6 +17,7 @@
           <div class="control">
             <button type="submit" class="button">招待</button>
           </div>
+          <ErrorMessage :error="invitationError"/>
         </form>
       </div>
     </section>
@@ -43,8 +44,12 @@
 <script>
 import 'bulma/css/bulma.css';
 import { mapState, mapActions } from 'vuex';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
+  components: {
+    ErrorMessage,
+  },
   data() {
     return {
       emails: null,
@@ -54,7 +59,7 @@ export default {
     this.listInvitations(this.sessionID);
   },
   computed: {
-    ...mapState('invitation', ['invitations']),
+    ...mapState('invitation', ['invitations', 'invitationError']),
     ...mapState('session', ['sessionID']),
   },
   methods: {
