@@ -6,4 +6,8 @@ export default {
     const res = (await api.client.get('/admin/invitations', getHeader(sessionID))).data.invitations;
     return res;
   },
+  async createInvitation(sessionID, email) {
+    const res = (await api.client.post('/admin/invitations', { email }, getHeader(sessionID))).data.invitations;
+    return res;
+  },
 };
