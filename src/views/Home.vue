@@ -16,7 +16,7 @@
 
     <section>
       <h2>部員一覧</h2>
-      <p><router-link to="/members">このボタン</router-link>をクリックしていただくだけで、我が部に所属する優秀なメンバー達の情報を一覧形式でご覧いただくことができます。</p>
+      <p><router-link to="/members">部員一覧</router-link></p>
     </section>
 
     <footer>
