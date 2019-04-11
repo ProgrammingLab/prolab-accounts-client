@@ -105,9 +105,11 @@ router.beforeEach(async (to, from, next) => {
         },
       },
     });
+    return;
   }
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
+    return;
   }
 
   next();
