@@ -10,6 +10,7 @@ import achievement from './modules/achievement';
 import emailConfirmations from './modules/emailConfirmations';
 import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
+import invitation from './modules/invitation';
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     emailConfirmations,
     memberIntroduction,
     editUser,
+    invitation,
   },
   plugins: [
     createPersistedState({

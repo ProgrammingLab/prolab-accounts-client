@@ -50,4 +50,9 @@ export default {
       }
     },
   },
+  getters: {
+    isAdmin(state) {
+      return state.userData && state.userData.authority === 'ADMIN';
+    },
+  },
 };
