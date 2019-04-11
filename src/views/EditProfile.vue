@@ -1,53 +1,115 @@
 <template>
-  <div id="page">
-    <h1>プロフィール編集</h1>
-    <form v-on:submit.prevent="packProfile">
-      <label for="real_name" class="profileItem">本名</label>
-      <input type="text" value="Real User" class="inputZone" v-model="real_name">
-      <label for="display_name" class="profileItem">表示名</label>
-      <input type="text" class="inputZone" v-model="display_name">
-      <label for="grade" class="profileItem">学年</label>
-      <select class="inputZone" v-model="grade">
-        <option disabled value="0">Please Select</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
-      <label for="left" class="profileItem" id="left">卒部済み</label>
-      <label for="department" class="profileItem">学科</label>
-      <select class="inputZone" v-model="department">
-        <option disabled value="0">Please Select</option>
-        <option value="1">S</option>
-        <option value="2">A</option>
-        <option value="3">E</option>
-        <option value="4">C</option>
-        <option value="5">M</option>
-      </select>
-      <label for="description" class="profileItem">Description</label>
-      <textarea class="inputZone" v-model="description"></textarea>
-      <label for="display_name" class="profileItem">Twitter Name</label>
-      <input type="text" name="twitter" class="inputZone" v-model="twitter">
-      <label for="display_name" class="profileItem">Github Name</label>
-      <input type="text" name="github" class="inputZone" v-model="github">
-      <label for="atcoder" class="profileItem">Atcoder Name</label>
-      <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
-      <label for="checkbox" class="profileItem">公開範囲</label>
-      <select id="checkbox" class="inputZone" v-model="profile_scope">
-        <option value="1">外部にも公開</option>
-        <option value="0">部員にのみ公開</option>
-      </select>
-      <input type="submit" value="保存する">
-      <ErrorMessage :error="updateError"/>
-    </form>
+  <div class="container">
+    <section class="section">
+      <h1 class="title">プロフィール編集</h1>
+      <form v-on:submit.prevent="packProfile">
+        <label class="label">本名</label>
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="山村 大介" v-model="real_name" />
+          </div>
+          <p class="help">※この項目は公開範囲設定に関わらず外部に公開されません</p>
+        </div>
+        <label class="label">表示名</label>
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="mucho613" v-model="display_name" />
+          </div>
+        </div>
+        <label class="label">学年</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="grade" :disabled="left">
+                <option disabled value="0">Please Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox" v-model="left">
+              卒部済み
+            </label>
+          </div>
+        </div>
+        <label class="label">学科</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="department">
+                <option disabled value="0">Please Select</option>
+                <option value="1">S</option>
+                <option value="2">A</option>
+                <option value="3">E</option>
+                <option value="4">C</option>
+                <option value="5">M</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <label class="label">Description</label>
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" v-model="description"></textarea>
+          </div>
+        </div>
+        <label class="label">Twitter Screen Name</label>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              @
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input class="input" type="text" v-model="twitter">
+          </p>
+        </div>
+        <label class="label">GitHub User Name</label>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              https://github.com/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input class="input" type="text" v-model="github">
+          </p>
+        </div>
+        <label class="label">AtCoder User Name</label>
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" v-model="atcoder" />
+          </div>
+        </div>
+        <label class="label">公開範囲</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="profile_scope">
+                <option value="0">部員にのみ公開</option>
+                <option value="1">外部にも公開</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" type="submit">送信</button>
+        </div>
+        <ErrorMessage :error="updateError"/>
+      </form>
+    </section>
   </div>
 </template>
 
-
-
 <script>
+import 'bulma/css/bulma.min.css';
 import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
@@ -116,28 +178,3 @@ export default {
   },
 };
 </script>
-
-
-<style scoped>
-#page {
-  margin-left: 10vw;
-  margin-right: 10vw;
-  color: #666666;
-}
-#uname {
-  font-size: 25px;
-}
-.profileItem {
-  font-weight: bold;
-  display: block;
-}
-.profileItem#left {
-  display: inline;
-}
-.inputZone {
-  display: block;
-}
-.inputZone#leftIn {
-  display: inline;
-}
-</style>
