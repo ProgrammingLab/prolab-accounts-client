@@ -28,6 +28,7 @@ export default {
       }
     },
     async invite({ commit, dispatch }, { sessionID, rawEmails }) {
+      commit('clearInvitationError');
       const emails = rawEmails.split(/\r\n|\n/).map(email => email.trim()).filter(email => email);
       try {
         await Promise.all(emails.map(email => invitationClient.createInvitation(sessionID, email)));
