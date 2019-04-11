@@ -1,19 +1,17 @@
 <template>
   <div>
     <ErrorMessage :error="error"/>
-    <ul class="memberList">
+    <ul class="member-list">
       <li v-for="member in filteredList" :key="member.user_id">
-        <img :src="member.icon_url" alt="User Icon">
-        <dl>
-          <dt class="name">
-            <router-link :to="{ name: 'profile', params: { name: member.name }}">
-              {{member.displayname || member.name}}
-            </router-link>
-          </dt>
-          <dd class="role">{{member.role}}</dd>
-          <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
-          <dd class="description">{{member.description}}</dd>
-        </dl>
+        <router-link :to="{ name: 'profile', params: { name: member.name }}">
+          <img :src="member.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="User Icon">
+          <dl>
+            <dt class="name">{{member.displayname || member.name}}</dt>
+            <dd class="role">{{member.role}}</dd>
+            <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
+            <dd class="description">{{member.description}}</dd>
+          </dl>
+        </router-link>
       </li>
     </ul>
     <!-- この辺？にローディングの時のスピナーとかを置く(loadingで表示非表示を切り替える) -->
@@ -21,8 +19,13 @@
 </template>
 
 <style scoped>
-.memberList{
+.member-list {
   list-style-type: none;
+}
+.member-list a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
 }
 img {
   width: 96px;
@@ -34,16 +37,23 @@ ul {
   flex-wrap: wrap;
 }
 li {
-  display: flex;
-  border-right: 2px solid #888;
   width: 400px;
   padding: 12px;
+  margin: 0 20px 20px 0;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+li:hover {
+  background-color: black;
+  color: white;
 }
 dl {
-  margin-left: 5%;
+  margin: 0 0 0 5%;
+  line-height: 1.2;
 }
 .name {
   font-size: 2rem;
+  color: inherit;
 }
 </style>
 
