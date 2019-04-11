@@ -1,35 +1,75 @@
 <template>
   <div>
+    <img :src="memberProfile.icon_url" alt="User Avatar">
     <dl>
-      <dt>Name</dt> <!-- Display Name -->
+      <dt>名前</dt>
       <dd>{{ memberProfile.display_name || memberProfile.name }}</dd>
 
-      <dt>Icon</dt>
-      <dd><img :src="memberProfile.icon_url" alt="user avater"></dd>
+      <dt>学年</dt>
+      <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade + "年" }}</dd>
 
-      <dt>Department</dt>
-      <dd>{{ memberProfile.department }}</dd>
+      <dt>学科</dt>
+      <dd>{{ memberProfile.department.name }}</dd>
 
-      <dt>Grade</dt> <!-- Left -->
-      <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade }}</dd>
+      <dt>自己紹介</dt>
+      <dd class="small">{{ memberProfile.description }}</dd>
 
-      <dt>Description</dt>
-      <dd>{{ memberProfile.description }}</dd>
-
-      <dt>Role</dt>
+      <dt v-if="memberProfile.role">役職</dt>
       <dd>{{ memberProfile.role }}</dd>
 
       <dt>Twitter</dt>
-      <dd>{{ memberProfile.twitter_screen_name }}</dd>
+      <dd class="english">{{ memberProfile.twitter_screen_name }}</dd>
 
       <dt>GitHub</dt>
-      <dd>{{ memberProfile.github_user_name }}</dd>
+      <dd class="english">{{ memberProfile.github_user_name }}</dd>
 
       <dt>AtCoder</dt>
-      <dd>{{ memberProfile.atcoder_user_name }}</dd>
+      <dd class="english">{{ memberProfile.atcoder_user_name }}</dd>
     </dl>
   </div>
 </template>
+
+<style scoped>
+div {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+div img {
+  width: 30%;
+  height: auto;
+  margin-right: 10%;
+}
+
+div dl {
+  width: 60%;
+}
+
+dd {
+  font-size: 3rem;
+}
+
+dd.small {
+  font-size: 1.5rem;
+}
+
+.english {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+  div img, div dl {
+    width: 100%;
+  }
+  dd {
+    font-size: 1.5rem;
+  }
+}
+</style>
 
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex';

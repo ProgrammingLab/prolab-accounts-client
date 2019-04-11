@@ -23,7 +23,7 @@ export default {
 <style>
   html { height: 100%; }
   body {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     height: 100%;
   }
 
