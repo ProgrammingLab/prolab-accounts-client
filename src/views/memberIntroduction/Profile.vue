@@ -79,7 +79,9 @@ dd.small {
 
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex';
-import IdToURLHelper from '@/utils';
+import utils from '@/utils';
+
+const { IdToURLHelper } = utils;
 
 export default {
   name: 'profile',
