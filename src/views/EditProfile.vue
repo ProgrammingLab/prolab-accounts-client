@@ -83,10 +83,15 @@
           </p>
         </div>
         <label class="label">AtCoder User Name</label>
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" v-model="atcoder" />
-          </div>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              https://atcoder.jp/users/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input class="input" type="text" v-model="atcoder">
+          </p>
         </div>
         <label class="label">公開範囲</label>
         <div class="field">
