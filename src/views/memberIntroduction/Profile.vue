@@ -18,13 +18,19 @@
       <dd>{{ memberProfile.role }}</dd>
 
       <dt>Twitter</dt>
-      <dd class="english">{{ memberProfile.twitter_screen_name }}</dd>
+      <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.twitter_screen_name }}
+      </a></dd>
 
       <dt>GitHub</dt>
-      <dd class="english">{{ memberProfile.github_user_name }}</dd>
+      <dd class="english"><a :href="github_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.github_user_name }}
+      </a></dd>
 
       <dt>AtCoder</dt>
-      <dd class="english">{{ memberProfile.atcoder_user_name }}</dd>
+      <dd class="english"><a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.atcoder_user_name }}
+      </a></dd>
     </dl>
   </div>
 </template>
@@ -73,9 +79,17 @@ dd.small {
 
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex';
+import IdToURLHelper from '@/utils';
 
 export default {
   name: 'profile',
+  data() {
+    return {
+      atcoder_url: '',
+      github_url: '',
+      twitter_url: '',
+    };
+  },
   computed: {
     ...mapState('memberIntroduction/memberProfile', [
       'memberProfileError',
@@ -87,6 +101,10 @@ export default {
     await this.getMemberProfile(name);
     if (this.memberProfileError) {
       this.createError(this.memberProfileError);
+    } else {
+      this.atcoder_url = IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name);
+      this.github_url = IdToURLHelper.GitHub(this.memberProfile.github_user_name);
+      this.twitter_url = IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name);
     }
   },
   methods: {
