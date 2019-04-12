@@ -9,7 +9,7 @@
       <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade + "年" }}</dd>
 
       <dt>学科</dt>
-      <dd>{{ memberProfile.department.name }}</dd>
+      <dd>{{ memberProfile.department ? memberProfile.department.name : undefined }}</dd>
 
       <dt>自己紹介</dt>
       <dd class="small">{{ memberProfile.description }}</dd>
