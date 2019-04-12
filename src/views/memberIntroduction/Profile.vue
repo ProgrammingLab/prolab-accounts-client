@@ -85,28 +85,20 @@ const { IdToURLHelper } = utils;
 
 export default {
   name: 'profile',
-  data() {
-    return {
-      atcoder_url: '',
-      github_url: '',
-      twitter_url: '',
-    };
-  },
   computed: {
     ...mapState('memberIntroduction/memberProfile', [
       'memberProfileError',
       'memberProfile',
     ]),
+    atcoder_url() { return IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name); },
+    github_url() { return IdToURLHelper.GitHub(this.memberProfile.github_user_name); },
+    twitter_url() { return IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name); },
   },
   async created() {
     const name = this.$route.params.name.toString();
     await this.getMemberProfile(name);
     if (this.memberProfileError) {
       this.createError(this.memberProfileError);
-    } else {
-      this.atcoder_url = IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name);
-      this.github_url = IdToURLHelper.GitHub(this.memberProfile.github_user_name);
-      this.twitter_url = IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name);
     }
   },
   methods: {
