@@ -108,6 +108,7 @@
           <button class="button is-primary" type="submit">送信</button>
         </div>
         <ErrorMessage :error="updateError"/>
+        <p v-if="isSuccess">保存しました</p>
       </form>
     </section>
   </div>
@@ -136,6 +137,7 @@ export default {
       twitter: '',
       github: '',
       atcoder: '',
+      isSuccess: false,
     };
   },
   computed: {
@@ -162,6 +164,7 @@ export default {
   methods: {
     ...mapActions('editUser', ['sendProfile']),
     async packProfile() {
+      this.isSuccess = false;
       const payload = {
         full_name: this.real_name,
         description: this.description,
@@ -179,6 +182,7 @@ export default {
         userProfile: payload,
         sessionID: this.sessionID,
       });
+      if (!this.updateError) this.isSuccess = true;
     },
   },
 };
