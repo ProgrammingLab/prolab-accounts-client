@@ -1,11 +1,11 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-const ifprod = (...plugins) => process.env.NODE_ENV === 'production' ? plugins : [] ;
+const ifProd = (...plugins) => process.env.NODE_ENV === 'production' ? plugins : [] ;
 
 module.exports = {
   configureWebpack: {
     plugins: [
-      ...ifprod(
+      ...ifProd(
         new CompressionWebpackPlugin({
           asset: '[path].br[query]',
           algorithm: 'brotliCompress',
