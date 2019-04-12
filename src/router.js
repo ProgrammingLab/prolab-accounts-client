@@ -57,6 +57,34 @@ const router = new Router({
       name: 'registration',
       component: () => import(/* webpackChunkName: "registration" */ './views/Registration.vue'),
     },
+    {
+      path: '/user/email',
+      name: 'createEmailConfirmation',
+      component: () => import(/* webpackChunkName: "createEmailConfirmation" */ './views/CreateEmailConfirmation.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/confirmation/:token',
+      name: 'confirmEmail',
+      component: () => import(/* webpackChunkName: "confirmEmail" */ './views/ConfirmEmail.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/members',
+      name: 'memberList',
+      component: () => import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
+    },
+    {
+      path: '/members/:name',
+      name: 'profile',
+      component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
+    },
+    {
+      path: '/admin/invitations',
+      name: 'invitation',
+      component: () => import(/* webpackChunkName: "invitation" */ './views/admin/Invitation.vue'),
+      meta: { requiresAdmin: true },
+    },
   ],
 });
 
@@ -79,11 +107,24 @@ router.beforeEach(async (to, from, next) => {
     console.error(e);
     store.commit('session/clearSessionID');
   }
+
+  if (to.matched.some(record => record.meta.requiresAdmin) && !store.getters['user/isAdmin']) {
+    store.commit('criticalError/createError', {
+      response: {
+        status: 404,
+        data: {
+          message: 'Page not Found',
+        },
+      },
+    });
+    return;
+  }
   if (to.matched.some(record => record.meta.requiresAuth) && !store.getters['session/loggedIn']) {
     next({ path: '/login', query: { redirect: to.fullPath } });
-  } else {
-    next();
+    return;
   }
+
+  next();
 });
 
 export default router;
