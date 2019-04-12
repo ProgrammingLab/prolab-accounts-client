@@ -189,7 +189,7 @@ export default {
     ...mapState('session', ['sessionID']),
     ...mapState('editUser', ['res', 'updateError']),
   },
-  created() {
+  mounted() {
     this.profileScope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
     this.left = this.userData.left;
     this.displayName = this.userData.display_name;
@@ -251,9 +251,9 @@ export default {
         grade: Number(this.grade),
         left: this.left,
         role_id: Number(this.userData.role),
-        twitter_screen_name: this.twitter,
-        github_user_name: this.github,
-        atcoder_user_name: this.atcoder,
+        twitter_screen_name: this.twitterScreenName,
+        github_user_name: this.githubUserName,
+        atcoder_user_name: this.atcoderUserName,
         department_id: Number(this.department),
         profile_scope: Number(this.profileScope),
         display_name: this.displayName,
