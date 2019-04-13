@@ -18,6 +18,24 @@ export default {
 </script>
 
 <style scoped>
+div.achievement {
+  border: 1px solid #666;
+}
+div.achievement:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  transition-duration: 0.2s;
+}
+div.achievement:hover dd.year {
+  color: inherit;
+}
+p {
+  text-overflow: ellipsis;
+}
+img {
+  width: 100%;
+}
 dl {
   margin: 20px;
 }
@@ -44,25 +62,5 @@ dd.year {
   transform-origin: right top;
   line-height: 1;
   font-family: "Barlow";
-}
-div.achievement:hover dd.year {
-  color: white;
-}
-p {
-  text-overflow: ellipsis;
-}
-img {
-  width: 100%;
-}
-div.achievement {
-  border: 1px solid #666;
-}
-div.achievement:hover {
-  cursor: pointer;
-}
-div.achievement:hover {
-  background-color: black;
-  color: white;
-  transition-duration: 0.2s;
 }
 </style>
