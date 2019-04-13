@@ -1,0 +1,51 @@
+<template>
+<div>
+  <img class="preview" :src="localSrc" accept="image/*">
+  <div class="file">
+    <label class="file-label">
+      <input class="file-input" type="file" @change="onChange">
+      <span class="file-cta">
+        <span class="file-label">
+          画像ファイルを選択
+        </span>
+      </span>
+    </label>
+  </div>
+</div>
+</template>
+
+<script>
+import 'bulma/css/bulma.min.css';
+
+export default {
+  props: ['src'],
+  data() {
+    return { localSrc: '' };
+  },
+  methods: {
+    onChange(ev) {
+      const file = ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener('load', () => {
+        this.localSrc = reader.result;
+        this.$emit('onChange', { file, base64: reader.result });
+      });
+    },
+  },
+  watch: {
+    src(src) {
+      this.localSrc = src;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.preview{
+  width: 256px;
+  transition-property: height;
+  transition-duration:1s;
+}
+</style>
