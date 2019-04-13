@@ -147,6 +147,7 @@
         <ErrorMessage :error="updateError"/>
         <p v-if="isSuccess">保存しました</p>
       </form>
+      <router-link :to="{ name: 'home' }" exact>トップページに戻る</router-link>
     </section>
   </div>
 </template>
