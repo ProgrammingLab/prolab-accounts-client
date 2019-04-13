@@ -20,10 +20,10 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   actions: {
-    async sendProfile({ commit }, { userProfile, sessionID }) {
+    async patchProfile({ commit }, { userProfile, sessionID }) {
       commit('clearUpdateError');
       try {
-        commit('setResponse', await updateClient.changeProfile(userProfile, sessionID));
+        commit('setResponse', await updateClient.patchProfile(userProfile, sessionID));
       } catch (e) {
         commit('setUpdateError', e);
       }

@@ -217,7 +217,7 @@ export default {
     this.atcoderUserName = this.userData.atcoder_user_name;
   },
   methods: {
-    ...mapActions('editUser', ['sendProfile']),
+    ...mapActions('editUser', ['patchProfile']),
     validation() {
       this.hasValidationError = false;
       this.realNameIsInvalid = false;
@@ -274,7 +274,7 @@ export default {
         profile_scope: Number(this.profileScope),
         display_name: this.displayName,
       };
-      await this.sendProfile({
+      await this.patchProfile({
         userProfile: payload,
         sessionID: this.sessionID,
       });

@@ -6,7 +6,7 @@ export default {
     const userData = (await api.client.get('/user', getHeader(sessionID))).data;
     return userData;
   },
-  async changeProfile(profile, sessionID) {
+  async patchProfile(profile, sessionID) {
     const res = await api.client.patch('/user/profile', profile, getHeader(sessionID));
     return res.data;
   },
