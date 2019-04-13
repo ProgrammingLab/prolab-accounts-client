@@ -169,7 +169,7 @@ export default {
   },
   data() {
     return {
-      iconURL: '',
+      newIcon: '',
       iconSize: 0,
       userName: '',
       profileScope: '',
@@ -197,10 +197,12 @@ export default {
     ...mapState('user', ['userData']),
     ...mapState('session', ['sessionID']),
     ...mapState('editUser', ['res', 'updateError']),
+    iconURL() {
+      return this.userData.icon_url
+        || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
+    },
   },
   mounted() {
-    this.iconURL = this.userData.icon_url
-      || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
     this.profileScope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
     this.left = this.userData.left;
     this.displayName = this.userData.display_name;
@@ -255,7 +257,7 @@ export default {
     },
     onImageChange({ file, base64Body }) {
       this.iconSize = file.size;
-      this.iconURL = base64Body;
+      this.newIcon = base64Body;
     },
     async updateProfile() {
       this.isSuccess = false;

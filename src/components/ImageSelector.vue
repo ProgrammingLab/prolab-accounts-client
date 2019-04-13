@@ -20,7 +20,7 @@ import 'bulma/css/bulma.min.css';
 export default {
   props: ['src'],
   data() {
-    return { localSrc: '' };
+    return { localSrc: this.src };
   },
   methods: {
     onChange(ev) {
