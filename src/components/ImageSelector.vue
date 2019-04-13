@@ -47,6 +47,7 @@ export default {
 .preview{
   width: 256px;
   transition-property: height;
+  border: 1px solid #ccc;
   transition-duration:1s;
 }
 </style>
