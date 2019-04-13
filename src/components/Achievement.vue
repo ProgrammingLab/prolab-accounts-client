@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <div>
     <dl>
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
@@ -7,12 +7,12 @@
       <dd>{{ achievement.description }}</dd>
     </dl>
     <img v-bind:src="achievement.image_url">
-  </li>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'achievementItem',
+  name: 'achievement',
   props: ['achievement'],
 };
 </script>
@@ -24,7 +24,8 @@ dl {
 dt {
   font-size: 1.4rem;
 }
-dd, dt {
+dd,
+dt {
   width: 85%;
 }
 dd.award {
@@ -42,9 +43,9 @@ dd.year {
   transform: rotate(-90deg) translateY(-100%);
   transform-origin: right top;
   line-height: 1;
-  font-family: 'Barlow';
+  font-family: "Barlow";
 }
-li:hover dd.year {
+div:hover dd.year {
   color: white;
 }
 p {
@@ -53,18 +54,17 @@ p {
 img {
   width: 100%;
 }
-li {
-  margin-bottom: 40px;
-  margin-right: 1%;
+div {
   border: 1px solid #666;
-  list-style: none;
   width: 24%;
   position: relative;
+  margin-bottom: 40px;
+  margin-right: 1%;
 }
-li:hover {
+div:hover {
   cursor: pointer;
 }
-li:hover {
+div:hover {
   background-color: black;
   color: white;
   transition-duration: 0.2s;
