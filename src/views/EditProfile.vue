@@ -145,6 +145,7 @@
           <button class="button is-primary" type="submit">送信</button>
         </div>
         <ErrorMessage :error="updateError"/>
+        <p class="has-text-danger" v-if="hasValidationError">入力値に誤りがあります</p>
         <p v-if="isSuccess">保存しました</p>
       </form>
       <router-link :to="{ name: 'home' }" exact>トップページに戻る</router-link>
@@ -176,6 +177,7 @@ export default {
       githubUserName: '',
       atcoderUserName: '',
       isSuccess: false,
+      hasValidationError: false,
       realNameIsInvalid: false,
       displayNameIsInvalid: false,
       descriptionIsInvalid: false,
@@ -209,7 +211,7 @@ export default {
   methods: {
     ...mapActions('editUser', ['sendProfile']),
     validation() {
-      let hasInvalidValue = false;
+      this.hasValidationError = false;
       this.realNameIsInvalid = false;
       this.displayNameIsInvalid = false;
       this.descriptionIsInvalid = false;
@@ -219,33 +221,34 @@ export default {
 
       if (this.realName.length >= 128) {
         this.realNameIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
       if (this.displayName.length >= 51) {
         this.displayNameIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
       if (this.description.length >= 1024) {
         this.descriptionIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
       if (this.twitterScreenName.length >= 128) {
         this.twitterScreenNameIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
       if (this.githubUserName.length >= 128) {
         this.githubUserNameIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
       if (this.atcoderUserName.length >= 128) {
         this.atcoderUserNameIsInvalid = true;
-        hasInvalidValue = true;
+        this.hasValidationError = true;
       }
-      return hasInvalidValue;
+      // 画像の大きさ判定
     },
     async packProfile() {
       this.isSuccess = false;
-      if (this.validation()) return;
+      this.validation();
+      if (this.hasValidationError) return;
       const payload = {
         full_name: this.realName,
         description: this.description,
