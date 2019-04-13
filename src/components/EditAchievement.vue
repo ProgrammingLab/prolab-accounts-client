@@ -26,8 +26,8 @@
     </div>
     <div>
       <input type="submit" value="保存">
-      <button v-on:click="$emit('close')">キャンセル</button>
-      <button v-on:click="onDelete">削除</button>
+      <button v-on:click.prevent="$emit('close')">キャンセル</button>
+      <button v-on:click.prevent="onDelete">削除</button>
     </div>
   </form>
 </template>
@@ -66,11 +66,9 @@ export default {
   methods: {
     ...mapActions('achievement', ['saveAchievement', 'deleteAchievement']),
     onSubmit() {
-      console.log('onSubmit');
       this.saveAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
     onDelete() {
-      console.log('onDelete');
       this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
   },
