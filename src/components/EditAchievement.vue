@@ -2,22 +2,40 @@
   <form v-on:submit.prevent="onSubmit">
     <div>
       <label for="title">タイトル</label>
-      <input id="title" type="text" placeholder="プロラボアカウント" maxlength=127 v-model="achievement.title">
+      <input
+        id="title"
+        type="text"
+        placeholder="プロラボアカウント"
+        maxlength="127"
+        v-model="achievement.title"
+      >
     </div>
     <div>
       <label for="title">賞</label>
-      <input id="award" type="text" placeholder="第n回ほげコンテスト優秀賞" maxlength=127 v-model="achievement.award">
+      <input
+        id="award"
+        type="text"
+        placeholder="第n回ほげコンテスト優秀賞"
+        maxlength="127"
+        v-model="achievement.award"
+      >
     </div>
     <div>
       <label for="url">URL</label>
-      <input id="url" type="text" placeholder="https://example.com" maxlength=1023 v-model="achievement.url">
+      <input
+        id="url"
+        type="text"
+        placeholder="https://example.com"
+        maxlength="1023"
+        v-model="achievement.url"
+      >
     </div>
     <div>
       <label for="description">詳細</label>
       <textarea
         id="description"
         placeholder="プログラミングラボ部の認証基盤です。"
-        maxlength=1023
+        maxlength="1023"
         v-model="achievement.description"
       />
     </div>
