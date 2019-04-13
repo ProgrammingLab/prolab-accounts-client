@@ -17,6 +17,11 @@ export default {
     setAchievementError(state, error) {
       state.saveAchievementError = error;
     },
+    createNewAchievement(state) {
+      state.achievements.unshift({
+        achievement_id: null,
+      });
+    },
   },
   /* eslint-enable no-param-reassign */
   actions: {

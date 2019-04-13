@@ -3,7 +3,7 @@
     <dl>
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
-      <dd class="year">{{ achievement.happened_at.split('-')[0] }}</dd>
+      <dd class="year">{{ achievement.happened_at ? achievement.happened_at.split('-')[0] : null }}</dd>
       <dd>{{ achievement.description }}</dd>
     </dl>
     <img v-bind:src="achievement.image_url">

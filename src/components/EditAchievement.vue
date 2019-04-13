@@ -47,7 +47,7 @@ export default {
         url: this.defaultAhievement.url,
         description: this.defaultAhievement.description,
         happened_at: this.defaultAhievement.happened_at,
-        members: this.defaultAhievement.members.slice(),
+        members: this.defaultAhievement.members ? this.defaultAhievement.members.slice() : [],
       },
     };
   },
@@ -55,6 +55,9 @@ export default {
     ...mapState('session', ['sessionID']),
     happenedAt: {
       get() {
+        if (!this.achievement.happened_at) {
+          return null;
+        }
         const date = this.achievement.happened_at.substring(0, '2019-01-01'.length);
         return date;
       },

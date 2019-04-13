@@ -2,6 +2,7 @@
   <div class="container">
     <section class="section">
       <h1 class="title">戦歴の編集</h1>
+      <button v-on:click="createNewAchievement">追加</button>
       <ul>
         <li v-for="item in achievements" :key="item.achievement_id">
           <EditableAchievement :defaultAhievement="item"/>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import EditableAchievement from '@/components/EditableAchievement.vue';
 
 export default {
@@ -26,6 +27,9 @@ export default {
   methods: {
     ...mapActions(
       'achievement', ['getAchievements'],
+    ),
+    ...mapMutations(
+      'achievement', ['createNewAchievement'],
     ),
   },
   async created() {

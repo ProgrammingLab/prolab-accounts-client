@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      editting: false,
+      editting: !this.defaultAhievement.achievement_id,
     };
   },
   props: ['defaultAhievement'],
