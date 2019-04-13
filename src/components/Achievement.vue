@@ -56,6 +56,7 @@ img {
 }
 div.achievement {
   border: 1px solid #666;
+  position: relative;
 }
 div.achievement:hover {
   cursor: pointer;
