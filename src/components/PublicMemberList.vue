@@ -26,10 +26,10 @@
   color: inherit;
   text-decoration: none;
   display: flex;
+  align-items: flex-start;
 }
 img {
   width: 96px;
-  height: 96px;
   border: 1px solid #ccc;
 }
 ul {
