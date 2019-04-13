@@ -26,6 +26,7 @@
       <dt>AtCoder</dt>
       <dd class="english">{{ memberProfile.atcoder_user_name }}</dd>
     </dl>
+    <button v-on:click="onBack">もどる</button>
   </div>
 </template>
 
@@ -96,6 +97,9 @@ export default {
     ...mapActions('memberIntroduction/memberProfile', [
       'getMemberProfile',
     ]),
+    onBack() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>
