@@ -7,15 +7,15 @@ export default {
     return achievementData;
   },
   async createAchievement(sessionID, achievement) {
-    const resp = (await api.client.post('/achievements'), achievement, getHeader(sessionID)).data;
+    const resp = (await api.client.post('/achievements', achievement, getHeader(sessionID))).data;
     return resp;
   },
   async updateAchievement(sessionID, achievement) {
-    const resp = (await api.client.post(`/achievements/${achievement.achievement_id}`), achievement, getHeader(sessionID)).data;
+    const resp = (await api.client.patch(`/achievements/${achievement.achievement_id}`, achievement, getHeader(sessionID))).data;
     return resp;
   },
   async deleteAchievement(sessionID, achievementID) {
-    const resp = (await api.client.delete(`/achievements/${achievementID}`), getHeader(sessionID)).data;
+    const resp = (await api.client.delete(`/achievements/${achievementID}`, getHeader(sessionID))).data;
     return resp;
   },
 };

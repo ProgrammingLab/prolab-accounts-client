@@ -4,11 +4,18 @@ export default {
   namespaced: true,
   state: {
     achievements: null,
+    saveAchievementError: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
     setAchievements(state, achievements) {
       state.achievements = achievements.achievements;
+    },
+    clearAchievementError(state) {
+      state.saveAchievementError = null;
+    },
+    setAchievementError(state, error) {
+      state.saveAchievementError = error;
     },
   },
   /* eslint-enable no-param-reassign */
@@ -19,6 +26,20 @@ export default {
       } catch (e) {
         commit('criticalError/createError', e, { root: true });
       }
+    },
+    async saveAchievement({ commit, dispatch }, { sessionID, achievement }) {
+      commit('clearAchievementError');
+      try {
+        if (achievement.achievement_id) {
+          await achievementClient.updateAchievement(sessionID, achievement);
+        } else {
+          await achievementClient.createAchievement(sessionID, achievement);
+        }
+      } catch (e) {
+        commit('setAchievementError', e);
+      }
+
+      dispatch('getAchievements', sessionID);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="edit" v-on:click="editting = true">編集</button>
+    <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
     <EditAchievement v-if="editting" :defaultAhievement="defaultAhievement"/>
     <Achievement v-else :achievement="defaultAhievement"/>
   </div>
