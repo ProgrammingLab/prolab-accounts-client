@@ -41,6 +41,10 @@ ul {
 }
 li {
   list-style: none;
+  width: 24%;
+  position: relative;
+  margin-bottom: 40px;
+  margin-right: 1%;
 }
 
 @media screen and (max-width: 1024px) {

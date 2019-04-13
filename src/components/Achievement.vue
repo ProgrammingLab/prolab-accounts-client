@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="achievement">
     <dl>
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
@@ -45,7 +45,7 @@ dd.year {
   line-height: 1;
   font-family: "Barlow";
 }
-div:hover dd.year {
+div.achievement:hover dd.year {
   color: white;
 }
 p {
@@ -54,17 +54,13 @@ p {
 img {
   width: 100%;
 }
-div {
+div.achievement {
   border: 1px solid #666;
-  width: 24%;
-  position: relative;
-  margin-bottom: 40px;
-  margin-right: 1%;
 }
-div:hover {
+div.achievement:hover {
   cursor: pointer;
 }
-div:hover {
+div.achievement:hover {
   background-color: black;
   color: white;
   transition-duration: 0.2s;
