@@ -14,6 +14,11 @@
       <AchievementsList/>
     </section>
 
+    <section>
+      <h2>部員一覧</h2>
+      <p><router-link to="/members">部員一覧</router-link></p>
+    </section>
+
     <footer>
       <div v-if="loggedIn">
         <router-link to="/editprofile">プロフィール編集</router-link>
