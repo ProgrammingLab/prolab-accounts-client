@@ -2,7 +2,7 @@
   <div class="container">
     <section class="section">
       <h1 class="title">プロフィール編集</h1>
-      <form v-on:submit.prevent="packProfile">
+      <form v-on:submit.prevent="updateProfile">
         <label class="label">アイコン</label>
         <ImageSelector :src="iconURL" @onChange="onImageChange"/>
         <label class="label">本名</label>
@@ -257,7 +257,7 @@ export default {
       this.iconSize = file.size;
       this.iconURL = base64Body;
     },
-    async packProfile() {
+    async updateProfile() {
       this.isSuccess = false;
       this.validation();
       if (this.hasValidationError) return;
