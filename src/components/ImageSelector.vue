@@ -30,13 +30,14 @@ export default {
       reader.readAsDataURL(file);
       reader.addEventListener('load', () => {
         this.localSrc = reader.result;
-        this.$emit('onChange', { file, base64: reader.result });
+        const base64Body = /^data:image\/.+;base64,([a-zA-Z0-9\+\/=]+)$/.exec(reader.result)[1];
+        this.$emit('onChange', { file, base64Body });
       });
     },
   },
   watch: {
     src(src) {
-      this.localSrc = src;
+      if (!this.localSrc) this.localSrc = src;
     }
   }
 };
