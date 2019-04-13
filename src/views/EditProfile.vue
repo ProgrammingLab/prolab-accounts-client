@@ -3,6 +3,8 @@
     <section class="section">
       <h1 class="title">プロフィール編集</h1>
       <form v-on:submit.prevent="packProfile">
+        <label class="label">アイコン</label>
+        <ImageSelector :src="iconURL" @onChange="onImageChange"/>
         <label class="label">本名</label>
         <div class="field">
           <div class="control">
@@ -157,14 +159,18 @@
 import 'bulma/css/bulma.min.css';
 import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
+import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
   name: 'editProfile',
   components: {
     ErrorMessage,
+    ImageSelector,
   },
   data() {
     return {
+      iconURL: '',
+      iconSize: 0,
       userName: '',
       profileScope: '',
       left: false,
@@ -193,6 +199,8 @@ export default {
     ...mapState('editUser', ['res', 'updateError']),
   },
   mounted() {
+    this.iconURL = this.userData.icon_url
+      || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
     this.profileScope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
     this.left = this.userData.left;
     this.displayName = this.userData.display_name;
@@ -244,6 +252,10 @@ export default {
         this.hasValidationError = true;
       }
       // 画像の大きさ判定
+    },
+    onImageChange({ file, base64Body }) {
+      this.iconSize = file.size;
+      this.iconURL = base64Body;
     },
     async packProfile() {
       this.isSuccess = false;
