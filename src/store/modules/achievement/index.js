@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     achievements: null,
-    saveAchievementError: null,
+    achievementError: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
@@ -12,10 +12,10 @@ export default {
       state.achievements = achievements.achievements;
     },
     clearAchievementError(state) {
-      state.saveAchievementError = null;
+      state.achievementError = null;
     },
     setAchievementError(state, error) {
-      state.saveAchievementError = error;
+      state.achievementError = error;
     },
     createNewAchievement(state) {
       state.achievements.unshift({

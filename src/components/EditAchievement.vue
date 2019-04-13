@@ -29,11 +29,15 @@
       <button v-on:click.prevent="$emit('close')">キャンセル</button>
       <button v-on:click.prevent="onDelete">削除</button>
     </div>
+    <div>
+      <ErrorMessage :error="achievementError"/>
+    </div>
   </form>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'editAchievement',
@@ -51,8 +55,12 @@ export default {
       },
     };
   },
+  components: {
+    ErrorMessage,
+  },
   computed: {
     ...mapState('session', ['sessionID']),
+    ...mapState('achievement', ['achievementError']),
     happenedAt: {
       get() {
         if (!this.achievement.happened_at) {
