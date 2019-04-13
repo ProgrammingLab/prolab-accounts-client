@@ -18,13 +18,19 @@
       <dd>{{ memberProfile.role }}</dd>
 
       <dt>Twitter</dt>
-      <dd class="english">{{ memberProfile.twitter_screen_name }}</dd>
+      <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.twitter_screen_name }}
+      </a></dd>
 
       <dt>GitHub</dt>
-      <dd class="english">{{ memberProfile.github_user_name }}</dd>
+      <dd class="english"><a :href="github_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.github_user_name }}
+      </a></dd>
 
       <dt>AtCoder</dt>
-      <dd class="english">{{ memberProfile.atcoder_user_name }}</dd>
+      <dd class="english"><a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
+        {{ memberProfile.atcoder_user_name }}
+      </a></dd>
     </dl>
   </div>
 </template>
@@ -73,6 +79,9 @@ dd.small {
 
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex';
+import utils from '@/utils';
+
+const { IdToURLHelper } = utils;
 
 export default {
   name: 'profile',
@@ -81,6 +90,9 @@ export default {
       'memberProfileError',
       'memberProfile',
     ]),
+    atcoder_url() { return IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name); },
+    github_url() { return IdToURLHelper.GitHub(this.memberProfile.github_user_name); },
+    twitter_url() { return IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name); },
   },
   async created() {
     const name = this.$route.params.name.toString();
