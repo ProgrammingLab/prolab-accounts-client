@@ -3,7 +3,7 @@
     <dl>
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
-      <dd class="year">{{ achievement.happened_at ? achievement.happened_at.split('-')[0] : null }}</dd>
+      <dd class="year">{{ year }}</dd>
       <dd>{{ achievement.description }}</dd>
     </dl>
     <img v-bind:src="achievement.image_url">
@@ -14,6 +14,11 @@
 export default {
   name: 'achievement',
   props: ['achievement'],
+  computed: {
+    year() {
+      return this.achievement.happened_at ? this.achievement.happened_at.split('-')[0] : null;
+    },
+  },
 };
 </script>
 
