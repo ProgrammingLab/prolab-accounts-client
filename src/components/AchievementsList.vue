@@ -1,22 +1,20 @@
 <template>
   <ul>
     <li v-for="item in achievements" :key="item.id">
-      <dl>
-        <dt>{{ item.title }}</dt>
-        <dd class="award">{{ item.award }}</dd>
-        <dd class="year">{{ item.happened_at.split('-')[0] }}</dd>
-        <dd>{{ item.description }}</dd>
-      </dl>
-      <img v-bind:src="item.image_url">
+      <Achievement :achievement="item"/>
     </li>
   </ul>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Achievement from '@/components/Achievement.vue';
 
 export default {
   name: 'AchievementsList',
+  components: {
+    Achievement,
+  },
   computed: mapState(
     'achievement', ['achievements'],
   ),
