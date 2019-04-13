@@ -35,6 +35,7 @@ img {
 ul {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 li {
   width: 400px;
