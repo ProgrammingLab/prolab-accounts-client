@@ -1,19 +1,17 @@
 <template>
   <ul>
-    <li v-for="item in achievements" :key="item.id">
-      <Achievement :achievement="item"/>
-    </li>
+    <AchievementItem v-for="item in achievements" :key="item.achievement_id" :achievement="item"/>
   </ul>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import Achievement from '@/components/Achievement.vue';
+import AchievementItem from '@/components/AchievementItem.vue';
 
 export default {
   name: 'AchievementsList',
   components: {
-    Achievement,
+    AchievementItem,
   },
   computed: mapState(
     'achievement', ['achievements'],
@@ -38,22 +36,6 @@ ul {
   margin-right: 20px;
   padding: 0;
   align-items: flex-start;
-}
-li {
-  margin-bottom: 40px;
-  margin-right: 1%;
-  border: 1px solid #666;
-  list-style: none;
-  width: 24%;
-  position: relative;
-}
-li:hover {
-  cursor: pointer;
-}
-li:hover {
-  background-color: black;
-  color: white;
-  transition-duration: 0.2s;
 }
 
 @media screen and (max-width: 1024px) {
