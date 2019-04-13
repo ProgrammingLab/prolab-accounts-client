@@ -1,7 +1,11 @@
 <template>
   <div>
     <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
-    <EditAchievement v-if="editting" :defaultAhievement="defaultAhievement"/>
+    <EditAchievement
+      v-if="editting"
+      :defaultAhievement="defaultAhievement"
+      v-on:close="editting = false"
+    />
     <Achievement v-else :achievement="defaultAhievement"/>
   </div>
 </template>
@@ -39,8 +43,8 @@ button {
   background: #668ad8;
   color: #fff;
   border-radius: 3px;
-  margin-bottom: .25rem;
-  margin-right: .25rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
 }
 button.edit {
   background: #668ad8;

@@ -41,5 +41,15 @@ export default {
 
       dispatch('getAchievements', sessionID);
     },
+    async deleteAchievement({ commit, dispatch }, { sessionID, achievement }) {
+      commit('clearAchievementError');
+      try {
+        await achievementClient.deleteAchievement(sessionID, achievement.achievement_id);
+      } catch (e) {
+        commit('setAchievementError', e);
+      }
+
+      dispatch('getAchievements', sessionID);
+    },
   },
 };
