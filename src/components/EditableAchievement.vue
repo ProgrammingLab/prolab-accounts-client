@@ -1,0 +1,53 @@
+<template>
+  <div>
+    <button class="edit" v-on:click="editting = true">編集</button>
+    <EditAchievement v-if="editting" :defaultAhievement="defaultAhievement"/>
+    <Achievement v-else :achievement="defaultAhievement"/>
+  </div>
+</template>
+
+<script>
+import Achievement from '@/components/Achievement.vue';
+import EditAchievement from '@/components/EditAchievement.vue';
+
+export default {
+  name: 'editableAchievement',
+  components: {
+    Achievement,
+    EditAchievement,
+  },
+  data() {
+    return {
+      editting: false,
+    };
+  },
+  props: ['defaultAhievement'],
+};
+</script>
+
+<style scoped>
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #fff;
+  border-radius: 3px;
+  margin-bottom: .25rem;
+  margin-right: .25rem;
+}
+button.edit {
+  background: #668ad8;
+  color: #fff;
+}
+button.delete {
+  background: #ff3860;
+  color: #fff;
+}
+</style>
