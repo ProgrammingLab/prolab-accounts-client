@@ -15,6 +15,9 @@ import { mapMutations, mapActions, mapState } from 'vuex';
 
 export default {
   name: 'confirmEmail',
+  metaInfo: {
+    title: 'Confirm Email',
+  },
   computed: {
     ...mapState('emailConfirmations', [
       'emailConfirmationError',

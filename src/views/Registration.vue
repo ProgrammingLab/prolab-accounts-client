@@ -24,6 +24,9 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'registration',
+  metaInfo: {
+    title: 'Registration',
+  },
   components: {
     ErrorMessage,
   },

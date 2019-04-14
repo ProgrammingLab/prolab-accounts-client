@@ -65,6 +65,9 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'oauthLogin',
+  metaInfo: {
+    title: 'OAuth Login',
+  },
   components: {
     ErrorMessage,
   },

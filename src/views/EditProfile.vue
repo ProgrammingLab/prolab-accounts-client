@@ -165,6 +165,9 @@ import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
   name: 'editProfile',
+  metaInfo: {
+    title: 'Edit Profile',
+  },
   components: {
     ErrorMessage,
     ImageSelector,

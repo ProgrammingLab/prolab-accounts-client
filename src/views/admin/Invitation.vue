@@ -48,6 +48,9 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'invitation',
+  metaInfo: {
+    title: 'Invite Member',
+  },
   components: {
     ErrorMessage,
   },

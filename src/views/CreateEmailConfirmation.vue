@@ -20,6 +20,9 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'createEmailConfirmation',
+  metaInfo: {
+    title: 'Change Email',
+  },
   components: {
     ErrorMessage,
   },
