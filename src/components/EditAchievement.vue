@@ -46,12 +46,17 @@
     <div>
       <label for="members">参加メンバー</label>
       <multiselect
+        id="members"
         v-model="achievement.members"
         :options="members"
         :multiple="true"
+        :searchable="true"
+        :loading="searching || debouncing"
+        :internal-search="false"
         :close-on-select="false"
         :clear-on-select="false"
         :preserve-search="true"
+        @search-change="searchChange($event)"
         placeholder="ユーザー名で検索"
         label="name"
         track-by="user_id"
@@ -89,14 +94,20 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import { debounceTime } from 'rxjs/operators';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import Multiselect from 'vue-multiselect';
 
 export default {
   name: 'editAchievement',
   props: ['defaultAhievement'],
+  components: {
+    ErrorMessage,
+    Multiselect,
+  },
   data() {
     return {
+      debouncing: false,
       achievement: {
         achievement_id: this.defaultAhievement.achievement_id,
         title: this.defaultAhievement.title,
@@ -108,14 +119,13 @@ export default {
       },
     };
   },
-  components: {
-    ErrorMessage,
-    Multiselect,
+  observableMethods: {
+    searchChange: 'searchChange$',
   },
   computed: {
     ...mapState('session', ['sessionID']),
     ...mapState('achievement', ['achievementError']),
-    ...mapState('memberIntroduction/searchPrivateMembers', ['members', 'searchError']),
+    ...mapState('memberIntroduction/searchPrivateMembers', ['members', 'searchError', 'searching']),
     happenedAt: {
       get() {
         if (!this.achievement.happened_at) {
@@ -138,9 +148,23 @@ export default {
     onDelete() {
       this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
+    onSearchChanged(query) {
+      this.searchMembers({ sessionID: this.sessionID, query });
+    },
   },
   created() {
     this.searchMembers({ sessionID: this.sessionID });
+    this.searchChange$.subscribe({
+      next: () => {
+        this.debouncing = true;
+      },
+    });
+    this.searchChange$.pipe(debounceTime(100)).subscribe({
+      next: (query) => {
+        this.debouncing = false;
+        this.onSearchChanged(query);
+      },
+    });
   },
 };
 </script>

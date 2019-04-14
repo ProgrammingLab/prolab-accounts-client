@@ -5,6 +5,7 @@ export default {
   state: {
     members: [],
     searchError: null,
+    searching: false,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
@@ -17,17 +18,22 @@ export default {
     setMembers(state, members) {
       state.members = members;
     },
+    setSearching(state, searching) {
+      state.searching = searching;
+    },
   },
   /* eslint-enable no-param-reassign */
   actions: {
     async searchMembers({ commit }, { sessionID, query }) {
       commit('clearError');
+      commit('setSearching', true);
       try {
         const { users } = await memberListClient.getPrivateUserList(sessionID, null, query);
         commit('setMembers', users);
       } catch (e) {
         commit('setError', e);
       }
+      commit('setSearching', false);
     },
   },
 };
