@@ -16,9 +16,12 @@ export default {
   computed: {
     ...mapGetters('criticalError', ['isError']),
   },
+  metaInfo: {
+    title: 'Prolab Accounts Client',
+    titleTemplate: '%s - Prolab Accounts'
+  },
 };
 </script>
-
 
 <style>
   html { height: 100%; }
