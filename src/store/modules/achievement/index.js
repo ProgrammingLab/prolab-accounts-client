@@ -34,11 +34,13 @@ export default {
     },
     async saveAchievement({ commit, dispatch }, { sessionID, achievement }) {
       commit('clearAchievementError');
+      const request = Object.assign({}, achievement);
+      request.members = request.members.map(member => ({ user_id: member.user_id }));
       try {
         if (achievement.achievement_id) {
-          await achievementClient.updateAchievement(sessionID, achievement);
+          await achievementClient.updateAchievement(sessionID, request);
         } else {
-          await achievementClient.createAchievement(sessionID, achievement);
+          await achievementClient.createAchievement(sessionID, request);
         }
         dispatch('getAchievements', sessionID);
       } catch (e) {

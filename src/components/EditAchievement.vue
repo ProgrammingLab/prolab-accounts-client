@@ -44,6 +44,51 @@
       <input id="happened_at" type="date" v-model="happenedAt">
     </div>
     <div>
+      <label for="members">参加メンバー</label>
+      <multiselect
+        id="members"
+        v-model="achievement.members"
+        :options="members"
+        :multiple="true"
+        :searchable="true"
+        :loading="searching || debouncing"
+        :internal-search="false"
+        :close-on-select="false"
+        :clear-on-select="true"
+        :preserve-search="true"
+        @search-change="searchChange($event)"
+        placeholder="ユーザー名で検索"
+        selectLabel="エンターキーで選択"
+        selectedLabel="メンバー"
+        deselectLabel="エンターキーで削除"
+        label="name"
+        track-by="user_id"
+        :preselect-first="true"
+      >
+        <template slot="selection" slot-scope="{ values, search, isOpen }">
+          <div v-if="values.length && !isOpen">
+            <span
+              class="custom__tag tag"
+              v-for="user in values"
+              :key="user.user_id"
+            >@{{ user.name }}</span>
+          </div>
+        </template>
+        <template slot="tag" slot-scope="{ option }">
+          <span class="custom__tag tag">
+            <span>@{{ option.name }}</span>
+          </span>
+        </template>
+        <template slot="option" slot-scope="{ option }">
+          <div class="option__desc">
+            <img class="option-image" :src="option.icon_url" alt="No icon">
+            <span class="option__title">@{{ option.name }}</span>
+          </div>
+        </template>
+        <span slot="noResult">ユーザーが見つかりません</span>
+      </multiselect>
+    </div>
+    <div>
       <input type="submit" value="保存">
       <button v-on:click.prevent="$emit('close')">キャンセル</button>
       <button v-on:click.prevent="onDelete">削除</button>
@@ -56,13 +101,20 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import { debounceTime } from 'rxjs/operators';
 import ErrorMessage from '@/components/ErrorMessage.vue';
+import Multiselect from 'vue-multiselect';
 
 export default {
   name: 'editAchievement',
   props: ['defaultAhievement'],
+  components: {
+    ErrorMessage,
+    Multiselect,
+  },
   data() {
     return {
+      debouncing: false,
       achievement: {
         achievement_id: this.defaultAhievement.achievement_id,
         title: this.defaultAhievement.title,
@@ -74,12 +126,13 @@ export default {
       },
     };
   },
-  components: {
-    ErrorMessage,
+  observableMethods: {
+    searchChange: 'searchChange$',
   },
   computed: {
     ...mapState('session', ['sessionID']),
     ...mapState('achievement', ['achievementError']),
+    ...mapState('memberIntroduction/searchPrivateMembers', ['members', 'searchError', 'searching']),
     happenedAt: {
       get() {
         if (!this.achievement.happened_at) {
@@ -95,15 +148,43 @@ export default {
   },
   methods: {
     ...mapActions('achievement', ['saveAchievement', 'deleteAchievement']),
+    ...mapActions('memberIntroduction/searchPrivateMembers', ['searchMembers']),
     onSubmit() {
       this.saveAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
     onDelete() {
       this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
+    onSearchChanged(query) {
+      this.searchMembers({ sessionID: this.sessionID, query });
+    },
+  },
+  created() {
+    this.searchMembers({ sessionID: this.sessionID });
+    this.searchChange$.subscribe({
+      next: () => {
+        this.debouncing = true;
+      },
+    });
+    this.searchChange$.pipe(debounceTime(100)).subscribe({
+      next: (query) => {
+        this.debouncing = false;
+        this.onSearchChanged(query);
+      },
+    });
   },
 };
 </script>
 
-<style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style scoped>
+img.option-image {
+  width: 1.4em;
+  height: auto;
+  margin-right: 0.1em;
+}
+.tag {
+  margin-right: 0.1em;
+}
 </style>

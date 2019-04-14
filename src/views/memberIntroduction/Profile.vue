@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="memberProfile.icon_url" alt="User Avatar">
+    <img :src="memberProfile.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="User Avatar">
     <dl>
       <dt>名前</dt>
       <dd>{{ memberProfile.display_name || memberProfile.name }}</dd>
@@ -9,13 +9,15 @@
       <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade + "年" }}</dd>
 
       <dt>学科</dt>
-      <dd>{{ memberProfile.department.name }}</dd>
+      <dd>{{ memberProfile.department ? memberProfile.department.name : undefined }}</dd>
 
       <dt>自己紹介</dt>
       <dd class="small">{{ memberProfile.description }}</dd>
 
-      <dt v-if="memberProfile.role">役職</dt>
-      <dd>{{ memberProfile.role }}</dd>
+      <template v-if="memberProfile.role">
+        <dt>役職</dt>
+        <dd>{{ memberProfile.role.name }}</dd>
+      </template>
 
       <dt>Twitter</dt>
       <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
@@ -32,6 +34,7 @@
         {{ memberProfile.atcoder_user_name }}
       </a></dd>
     </dl>
+    <button v-on:click="onBack">もどる</button>
   </div>
 </template>
 
@@ -113,6 +116,9 @@ export default {
     ...mapActions('memberIntroduction/memberProfile', [
       'getMemberProfile',
     ]),
+    onBack() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>

@@ -24,9 +24,10 @@ export default {
   components: {
     EditableAchievement,
   },
-  computed: mapState(
-    'achievement', ['achievements'],
-  ),
+  computed: {
+    ...mapState('achievement', ['achievements']),
+    ...mapState('session', ['sessionID']),
+  },
   methods: {
     ...mapActions(
       'achievement', ['getAchievements'],
@@ -36,7 +37,7 @@ export default {
     ),
   },
   async created() {
-    this.getAchievements();
+    this.getAchievements(this.sessionID);
   },
 };
 </script>
