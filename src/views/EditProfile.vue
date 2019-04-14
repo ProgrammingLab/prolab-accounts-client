@@ -146,7 +146,8 @@
         <div class="control">
           <button class="button is-primary" type="submit">送信</button>
         </div>
-        <ErrorMessage :error="updateError"/>
+        <ErrorMessage :error="patchProfileError"/>
+        <ErrorMessage :error="postIconError"/>
         <p class="has-text-danger" v-if="hasValidationError">入力値に誤りがあります</p>
         <p v-if="isSuccess">保存しました</p>
       </form>
@@ -157,7 +158,7 @@
 
 <script>
 import 'bulma/css/bulma.min.css';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapGetters } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import ImageSelector from '@/components/ImageSelector.vue';
 
@@ -196,7 +197,8 @@ export default {
   computed: {
     ...mapState('user', ['userData']),
     ...mapState('session', ['sessionID']),
-    ...mapState('editUser', ['res', 'updateError']),
+    ...mapGetters('editUser', ['hasError']),
+    ...mapState('editUser', ['patchProfileError', 'postIconError']),
     iconURL() {
       return this.userData.icon_url
         || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
@@ -224,13 +226,13 @@ export default {
       postIconAction: 'postIcon',
     }),
     async postIcon() {
-      if (this.newIcon === '') return ;
+      if (this.newIcon === '') return;
       await this.postIconAction({
         image: this.newIcon,
         sessionID: this.sessionID,
       });
     },
-    async pathcProfile(payload) {
+    async patchProfile(payload) {
       await this.patchProfileAction({
         userProfile: payload,
         sessionID: this.sessionID,
@@ -292,8 +294,11 @@ export default {
         profile_scope: Number(this.profileScope),
         display_name: this.displayName,
       };
-      await Promise.all([this.patchProfile(payload), this.postIcon()]);
-      if (!this.updateError) this.isSuccess = true;
+      await Promise.all([
+        this.patchProfile(payload),
+        this.postIcon(),
+      ]);
+      if (!this.hasError) this.isSuccess = true;
     },
   },
 };
