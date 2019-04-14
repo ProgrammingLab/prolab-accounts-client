@@ -67,7 +67,11 @@
       >
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <div v-if="values.length && !isOpen">
-            <span class="custom__tag tag" v-for="user in values" :key="user.user_id">@{{ user.name }}</span>
+            <span
+              class="custom__tag tag"
+              v-for="user in values"
+              :key="user.user_id"
+            >@{{ user.name }}</span>
           </div>
         </template>
         <template slot="tag" slot-scope="{ option }">
