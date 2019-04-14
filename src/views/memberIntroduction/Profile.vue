@@ -87,7 +87,7 @@ export default {
   name: 'profile',
   metaInfo() {
     return {
-      title: `${this.memberProfile.display_name || this.memberProfile.name}${this.memberProfile.display_name ? `(${this.memberProfile.name})` : ''}`,
+      title: `${this.memberProfile.display_name || this.memberProfile.name}${this.memberProfile.display_name ? ` (${this.memberProfile.name})` : ''}`,
     };
   },
   computed: {
