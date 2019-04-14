@@ -54,21 +54,24 @@
         :loading="searching || debouncing"
         :internal-search="false"
         :close-on-select="false"
-        :clear-on-select="false"
+        :clear-on-select="true"
         :preserve-search="true"
         @search-change="searchChange($event)"
         placeholder="ユーザー名で検索"
+        selectLabel="エンターキーで選択"
+        selectedLabel="メンバー"
+        deselectLabel="エンターキーで削除"
         label="name"
         track-by="user_id"
         :preselect-first="true"
       >
         <template slot="selection" slot-scope="{ values, search, isOpen }">
           <div v-if="values.length && !isOpen">
-            <span class="custom__tag" v-for="user in values" :key="user.user_id">@{{ user.name }}</span>
+            <span class="custom__tag tag" v-for="user in values" :key="user.user_id">@{{ user.name }}</span>
           </div>
         </template>
         <template slot="tag" slot-scope="{ option }">
-          <span class="custom__tag">
+          <span class="custom__tag tag">
             <span>@{{ option.name }}</span>
           </span>
         </template>
@@ -173,8 +176,11 @@ export default {
 
 <style scoped>
 img.option-image {
-  width: 24px;
+  width: 1.4em;
   height: auto;
-  margin-right: 5px;
+  margin-right: 0.1em;
+}
+.tag {
+  margin-right: 0.1em;
 }
 </style>
