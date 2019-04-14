@@ -18,7 +18,7 @@ export default {
   },
   metaInfo: {
     title: 'Prolab Accounts Client',
-    titleTemplate: '%s - Prolab Accounts'
+    titleTemplate: '%s - Prolab Accounts',
   },
 };
 </script>
