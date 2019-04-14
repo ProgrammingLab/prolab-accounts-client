@@ -5,6 +5,7 @@
       <form v-on:submit.prevent="updateProfile">
         <label class="label">アイコン</label>
         <ImageSelector :src="iconURL" @onChange="onImageChange"/>
+        <p class="help is-danger" v-if="iconSizeIsTooLarge">アイコンサイズを1MG未満にしてください</p>
         <label class="label">本名</label>
         <div class="field">
           <div class="control">
@@ -191,6 +192,7 @@ export default {
       twitterScreenNameIsInvalid: false,
       githubUserNameIsInvalid: false,
       atcoderUserNameIsInvalid: false,
+      iconSizeIsTooLarge: false,
 
     };
   },
@@ -246,6 +248,7 @@ export default {
       this.twitterScreenNameIsInvalid = false;
       this.githubUserNameIsInvalid = false;
       this.atcoderUserNameIsInvalid = false;
+      this.iconSizeIsTooLarge = false;
 
       if (this.realName.length >= 128) {
         this.realNameIsInvalid = true;
@@ -271,7 +274,10 @@ export default {
         this.atcoderUserNameIsInvalid = true;
         this.hasValidationError = true;
       }
-      // 画像の大きさ判定
+      if (this.iconSize >= 1024 ** 2) {
+        this.iconSizeIsTooLarge = true;
+        this.hasValidationError = true;
+      }
     },
     onImageChange({ file, base64Body }) {
       this.iconSize = file.size;
