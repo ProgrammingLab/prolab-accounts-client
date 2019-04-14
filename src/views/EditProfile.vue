@@ -294,10 +294,9 @@ export default {
         profile_scope: Number(this.profileScope),
         display_name: this.displayName,
       };
-      await Promise.all([
-        this.patchProfile(payload),
-        this.postIcon(),
-      ]);
+      // 妥協(本当は promise all したい)
+      await this.patchProfile(payload);
+      await this.postIcon();
       if (!this.hasError) this.isSuccess = true;
     },
   },
