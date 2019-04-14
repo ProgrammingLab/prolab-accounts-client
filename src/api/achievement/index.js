@@ -2,8 +2,12 @@ import api from '@/api';
 import getHeader from '@/api/utils/get-header';
 
 export default {
-  async getAchievements() {
-    const achievementData = (await api.client.get('/achievements')).data;
+  async getAchievements(sessionID) {
+    let option = null;
+    if (sessionID) {
+      option = getHeader(sessionID);
+    }
+    const achievementData = (await api.client.get('/achievements', option)).data;
     return achievementData;
   },
   async createAchievement(sessionID, achievement) {
