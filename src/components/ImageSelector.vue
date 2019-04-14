@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import 'bulma/css/bulma.min.css';
+import '@/assets/bulma.css';
 
 export default {
   props: ['src'],

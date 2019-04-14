@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import 'bulma/css/bulma.min.css';
+import '@/assets/bulma.css';
 import { mapActions, mapState, mapGetters } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import ImageSelector from '@/components/ImageSelector.vue';
