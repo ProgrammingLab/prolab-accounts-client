@@ -23,6 +23,9 @@ import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
   name: 'memberList',
+  metaInfo: {
+    title: 'Members',
+  },
   components: {
     publicMemberList,
   },
