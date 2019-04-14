@@ -1,93 +1,216 @@
 <template>
-  <div id="page">
-    <img
-      width="210"
-      height="70"
-      src="http://placehold.jp/65/ffffff/666666/210x70.png?text=ProLab"
-      alt="prolag"
-    >
-    <!-- <img alt="Prolab Logo" src="../assets/logo.png"> -->
-    <h1>プロフィール編集ページ</h1>
-    <p id="uname" class="profileItem">user: {{userData.name}}</p>
-    <form v-on:submit.prevent="packProfile">
-      <label for="checkbox" class="profileItem">プロフィールについて</label>
-      <select id="checkbox" class="inputZone" v-model="profile_scope">
-        <option value="1">公開する</option>
-        <option value="0">部員にのみ公開する</option>
-      </select>
-      <input type="checkbox" class="inputZone" id="leftIn" v-model="left">
-      <label for="left" class="profileItem" id="left">卒部済み</label>
-      <label for="display_name" class="profileItem">表示名</label>
-      <input type="text" class="inputZone" v-model="display_name">
-      <label for="real_name" class="profileItem">本名</label>
-      <input type="text" value="Real User" class="inputZone" v-model="real_name">
-      <label for="description" class="profileItem">Description</label>
-      <textarea class="inputZone" v-model="description"></textarea>
-      <label for="grade" class="profileItem">学年</label>
-      <select class="inputZone" v-model="grade">
-        <option disabled value="0">Please Select</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-      <label for="department" class="profileItem">学科</label>
-      <select class="inputZone" v-model="department">
-        <option disabled value="0">Please Select</option>
-        <option value="1">S</option>
-        <option value="2">A</option>
-        <option value="3">E</option>
-        <option value="4">C</option>
-        <option value="5">M</option>
-      </select>
-      <label for="display_name" class="profileItem">Twitter Name</label>
-      <input type="text" name="twitter" class="inputZone" v-model="twitter">
-      <label for="display_name" class="profileItem">Github Name</label>
-      <input type="text" name="github" class="inputZone" v-model="github">
-      <label for="atcoder" class="profileItem">Atcoder Name</label>
-      <input type="text" name="atcoder" class="inputZone" v-model="atcoder">
-      <input type="submit" value="保存する">
-      <ErrorMessage :error="updateError"/>
-    </form>
+  <div class="container">
+    <section class="section">
+      <h1 class="title">プロフィール編集</h1>
+      <form v-on:submit.prevent="updateProfile">
+        <label class="label">アイコン</label>
+        <ImageSelector :src="iconURL" @onChange="onImageChange"/>
+        <p class="help is-danger" v-if="iconSizeIsTooLarge">アイコンサイズを1MG未満にしてください</p>
+        <label class="label">本名</label>
+        <div class="field">
+          <div class="control">
+            <input
+              class="input"
+              :class="{'is-danger': realNameIsInvalid}"
+              type="text"
+              placeholder="山村 大介"
+              v-model="realName"
+            />
+          </div>
+          <p class="help">※この項目は公開範囲設定に関わらず外部に公開されません</p>
+          <p class="help is-danger" v-if="realNameIsInvalid">127文字以下にしてください</p>
+        </div>
+        <label class="label">表示名</label>
+        <div class="field">
+          <div class="control">
+            <input
+              class="input"
+              :class="{'is-danger': displayNameIsInvalid}"
+              type="text"
+              placeholder="mucho613"
+              v-model="displayName"
+            />
+          </div>
+          <p class="help is-danger" v-if="displayNameIsInvalid">50文字以下にしてください</p>
+        </div>
+        <label class="label">学年</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="grade" :disabled="left">
+                <option disabled value="0">Please Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox" v-model="left">
+              卒部済み
+            </label>
+          </div>
+        </div>
+        <label class="label">学科</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="department">
+                <option disabled value="0">Please Select</option>
+                <option value="1">制御情報工学科</option>
+                <option value="2">機械工学科</option>
+                <option value="3">電気電子工学科</option>
+                <option value="4">生物応用科学科</option>
+                <option value="5">材料システム工学科</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <label class="label">Description</label>
+        <div class="field">
+          <div class="control">
+            <textarea
+              class="textarea"
+              :class="{ 'is-danger': descriptionIsInvalid }"
+              v-model="description"
+            ></textarea>
+          </div>
+          <p class="help is-danger" v-if="descriptionIsInvalid">1023文字以下にしてください</p>
+        </div>
+        <label class="label">Twitter Screen Name</label>
+        <div class="field has-addons flex-wrap">
+          <p class="control">
+            <a class="button is-static">
+              https://twitter.com/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input
+              class="input right-radios-4"
+              :class="{'is-danger': twitterScreenNameIsInvalid}"
+              type="text"
+              v-model="twitterScreenName"
+            >
+          </p>
+          <p class="help is-danger w-100" v-if="twitterScreenNameIsInvalid">127文字以下にしてください</p>
+        </div>
+        <label class="label">GitHub User Name</label>
+        <div class="field has-addons flex-wrap">
+          <p class="control">
+            <a class="button is-static">
+              https://github.com/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input
+              class="input right-radios-4"
+              :class="{'is-danger': githubUserNameIsInvalid}"
+              type="text"
+              v-model="githubUserName"
+            >
+          </p>
+          <p class="help is-danger w-100" v-if="githubUserNameIsInvalid">127文字以下にしてください</p>
+        </div>
+        <label class="label">AtCoder User Name</label>
+        <div class="field has-addons flex-wrap">
+          <p class="control">
+            <a class="button is-static">
+              https://atcoder.jp/users/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input
+              class="input right-radios-4"
+              :class="{'is-danger': atcoderUserNameIsInvalid}"
+              type="text"
+              v-model="atcoderUserName"
+            >
+          </p>
+          <p class="help is-danger w-100" v-if="atcoderUserNameIsInvalid">127文字以下にしてください</p>
+        </div>
+        <label class="label">公開範囲</label>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select v-model="profileScope">
+                <option value="0">部員にのみ公開</option>
+                <option value="1">外部にも公開</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" type="submit">送信</button>
+        </div>
+        <ErrorMessage :error="patchProfileError"/>
+        <ErrorMessage :error="postIconError"/>
+        <p class="has-text-danger" v-if="hasValidationError">入力値に誤りがあります</p>
+        <p v-if="isSuccess">保存しました</p>
+      </form>
+      <router-link :to="{ name: 'home' }" exact>トップページに戻る</router-link>
+    </section>
   </div>
 </template>
 
-
 <script>
-import { mapActions, mapState } from 'vuex';
+import '@/assets/bulma.css';
+import { mapActions, mapState, mapGetters } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
+import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
   name: 'editProfile',
   components: {
     ErrorMessage,
+    ImageSelector,
   },
   data() {
     return {
-      user_name: '',
-      profile_scope: '',
+      newIcon: '',
+      iconSize: 0,
+      userName: '',
+      profileScope: '',
       left: false,
-      display_name: '',
-      real_name: '',
+      displayName: '',
+      realName: '',
       description: '',
       grade: '',
       department: '',
-      twitter: '',
-      github: '',
-      atcoder: '',
+      twitterScreenName: '',
+      githubUserName: '',
+      atcoderUserName: '',
+      isSuccess: false,
+      hasValidationError: false,
+      realNameIsInvalid: false,
+      displayNameIsInvalid: false,
+      descriptionIsInvalid: false,
+      twitterScreenNameIsInvalid: false,
+      githubUserNameIsInvalid: false,
+      atcoderUserNameIsInvalid: false,
+      iconSizeIsTooLarge: false,
+
     };
   },
   computed: {
     ...mapState('user', ['userData']),
     ...mapState('session', ['sessionID']),
-    ...mapState('editUser', ['res', 'updateError']),
+    ...mapGetters('editUser', ['hasError']),
+    ...mapState('editUser', ['patchProfileError', 'postIconError']),
+    iconURL() {
+      return this.userData.icon_url
+        || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
+    },
   },
-  created() {
-    this.profile_scope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
+  mounted() {
+    this.profileScope = this.userData.profile_scope === 'PUBLIC' ? 1 : 0;
     this.left = this.userData.left;
-    this.display_name = this.userData.display_name;
-    this.real_name = this.userData.full_name;
+    this.displayName = this.userData.display_name;
+    this.realName = this.userData.full_name;
     this.description = this.userData.description;
     this.grade = this.userData.grade;
     if (this.userData.department != null) {
@@ -95,56 +218,106 @@ export default {
     } else {
       this.department = '0';
     }
-    this.twitter = this.userData.twitter_screen_name;
-    this.github = this.userData.github_user_name;
-    this.atcoder = this.userData.atcoder_user_name;
+    this.twitterScreenName = this.userData.twitter_screen_name;
+    this.githubUserName = this.userData.github_user_name;
+    this.atcoderUserName = this.userData.atcoder_user_name;
   },
   methods: {
-    ...mapActions('editUser', ['sendProfile']),
-    async packProfile() {
+    ...mapActions('editUser', {
+      patchProfileAction: 'patchProfile',
+      postIconAction: 'postIcon',
+    }),
+    async postIcon() {
+      if (this.newIcon === '') return;
+      await this.postIconAction({
+        image: this.newIcon,
+        sessionID: this.sessionID,
+      });
+    },
+    async patchProfile(payload) {
+      await this.patchProfileAction({
+        userProfile: payload,
+        sessionID: this.sessionID,
+      });
+    },
+    validation() {
+      this.hasValidationError = false;
+      this.realNameIsInvalid = false;
+      this.displayNameIsInvalid = false;
+      this.descriptionIsInvalid = false;
+      this.twitterScreenNameIsInvalid = false;
+      this.githubUserNameIsInvalid = false;
+      this.atcoderUserNameIsInvalid = false;
+      this.iconSizeIsTooLarge = false;
+
+      if (this.realName.length >= 128) {
+        this.realNameIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.displayName.length >= 51) {
+        this.displayNameIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.description.length >= 1024) {
+        this.descriptionIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.twitterScreenName.length >= 128) {
+        this.twitterScreenNameIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.githubUserName.length >= 128) {
+        this.githubUserNameIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.atcoderUserName.length >= 128) {
+        this.atcoderUserNameIsInvalid = true;
+        this.hasValidationError = true;
+      }
+      if (this.iconSize >= 1024 ** 2) {
+        this.iconSizeIsTooLarge = true;
+        this.hasValidationError = true;
+      }
+    },
+    onImageChange({ file, base64Body }) {
+      this.iconSize = file.size;
+      this.newIcon = base64Body;
+    },
+    async updateProfile() {
+      this.isSuccess = false;
+      this.validation();
+      if (this.hasValidationError) return;
       const payload = {
-        full_name: this.real_name,
+        full_name: this.realName,
         description: this.description,
         grade: Number(this.grade),
         left: this.left,
         role_id: Number(this.userData.role),
-        twitter_screen_name: this.twitter,
-        github_user_name: this.github,
-        atcoder_user_name: this.atcoder,
+        twitter_screen_name: this.twitterScreenName,
+        github_user_name: this.githubUserName,
+        atcoder_user_name: this.atcoderUserName,
         department_id: Number(this.department),
-        profile_scope: Number(this.profile_scope),
-        display_name: this.display_name,
+        profile_scope: Number(this.profileScope),
+        display_name: this.displayName,
       };
-      await this.sendProfile({
-        userProfile: payload,
-        sessionID: this.sessionID,
-      });
+      // 妥協(本当は promise all したい)
+      await this.patchProfile(payload);
+      await this.postIcon();
+      if (!this.hasError) this.isSuccess = true;
     },
   },
 };
 </script>
 
-
 <style scoped>
-#page {
-  margin-left: 10vw;
-  margin-right: 10vw;
-  color: #666666;
+.flex-wrap {
+  flex-wrap: wrap;
 }
-#uname {
-  font-size: 25px;
+.w-100 {
+  width: 100%;
 }
-.profileItem {
-  font-weight: bold;
-  display: block;
-}
-.profileItem#left {
-  display: inline;
-}
-.inputZone {
-  display: block;
-}
-.inputZone#leftIn {
-  display: inline;
+.right-radios-4{
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
 }
 </style>

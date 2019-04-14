@@ -10,7 +10,6 @@
   "dependencies": {
     "ajv": "^5.5.2",
     "axios": "^0.18.0",
-    "bulma": "^0.7.4",
     "rxjs": "^6.4.0",
     "vue": "^2.6.10",
     "vue-multiselect": "^2.1.4",
