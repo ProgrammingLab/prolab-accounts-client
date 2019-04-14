@@ -3,7 +3,7 @@
     <div id="error">
         <h1 id="title">{{ number }}</h1>
         <p id="message">{{ message }}</p>
-        <router-link to="/" exact>
+        <router-link :to="{ name: 'home' }">
             Go to home page
         </router-link>
     </div>
