@@ -7,7 +7,7 @@
           <img :src="member.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="User Icon">
           <dl>
             <dt class="name">{{member.displayname || member.name}}</dt>
-            <dd class="role">{{member.role}}</dd>
+            <dd class="role" v-if="member.role">{{member.role.name}}</dd>
             <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
             <dd class="description">{{member.description}}</dd>
           </dl>
