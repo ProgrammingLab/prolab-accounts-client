@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import 'bulma/css/bulma.css';
+import '@/assets/bulma.css';
 import { mapState, mapActions } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
