@@ -14,8 +14,10 @@
       <dt>自己紹介</dt>
       <dd class="small">{{ memberProfile.description }}</dd>
 
-      <dt v-if="memberProfile.role">役職</dt>
-      <dd>{{ memberProfile.role }}</dd>
+      <template v-if="memberProfile.role">
+        <dt>役職</dt>
+        <dd>{{ memberProfile.role.name }}</dd>
+      </template>
 
       <dt>Twitter</dt>
       <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
