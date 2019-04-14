@@ -9,7 +9,9 @@
         <ul>
           <p>参加メンバー</p>
           <li v-for="member in achievement.members" :key="member.member_id">
-            <router-link :to="{ path: `members/${member.name}` }">{{ member.display_name || member.name }}</router-link>
+            <router-link :to="{ path: `members/${member.name}` }">
+              {{ member.display_name || member.name }}
+            </router-link>
           </li>
         </ul>
       </dd>
