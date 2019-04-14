@@ -86,7 +86,7 @@
         <div class="field has-addons flex-wrap">
           <p class="control">
             <a class="button is-static">
-              @
+              https://twitter.com/
             </a>
           </p>
           <p class="control is-expanded">
