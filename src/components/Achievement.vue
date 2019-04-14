@@ -1,10 +1,18 @@
 <template>
-  <div class="achievement">
+  <div class="achievement" ontouchstart="">
     <dl>
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
       <dd class="year">{{ achievement.happened_at.split('-')[0] }}</dd>
       <dd>{{ achievement.description }}</dd>
+      <dd class="members" v-if="achievement.members.length">
+        <ul>
+          <p>参加メンバー</p>
+          <li v-for="member in achievement.members" :key="member.member_id">
+            <router-link :to="{ path: `members/${member.name}` }">{{ member.display_name || member.name }}</router-link>
+          </li>
+        </ul>
+      </dd>
     </dl>
     <img v-bind:src="achievement.image_url">
   </div>
@@ -63,5 +71,45 @@ dd.year {
   transform-origin: right top;
   line-height: 1;
   font-family: "Barlow";
+}
+.members {
+  display: hidden;
+  position: absolute;
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: ease-in-out 0.2s;
+}
+div.achievement:hover .members {
+  position: absolute;
+  padding: 20px;
+  border-radius: 8px;
+  opacity: 0.95;
+}
+.members ul {
+  list-style: none;
+  padding: 0;
+}
+.members ul li {
+  display: inline-block;
+  background-color: #eee;
+  color: #666;
+  margin: 0 8px 8px 0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: ease-in-out 0.2s;
+}
+.members ul li:hover {
+  background-color: black;
+  color: white;
+}
+.members ul li a {
+  color: inherit;
+}
+.members ul li a:hover {
+  text-decoration: none;
 }
 </style>
