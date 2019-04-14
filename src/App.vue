@@ -17,8 +17,8 @@ export default {
     ...mapGetters('criticalError', ['isError']),
   },
   metaInfo: {
-    title: 'Prolab Accounts Client',
-    titleTemplate: '%s - Prolab Accounts',
+    title: 'Untitled',
+    titleTemplate: '%s - Programming Lab',
   },
 };
 </script>
