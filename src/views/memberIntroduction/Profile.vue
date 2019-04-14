@@ -85,6 +85,11 @@ const { IdToURLHelper } = utils;
 
 export default {
   name: 'profile',
+  metaInfo() {
+    return {
+      title: `${this.memberProfile.display_name || this.memberProfile.name}${this.memberProfile.display_name ? `(${this.memberProfile.name})` : ''}`,
+    };
+  },
   computed: {
     ...mapState('memberIntroduction/memberProfile', [
       'memberProfileError',
