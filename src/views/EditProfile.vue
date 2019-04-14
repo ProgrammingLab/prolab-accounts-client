@@ -27,7 +27,7 @@
               class="input"
               :class="{'is-danger': displayNameIsInvalid}"
               type="text"
-              placeholder="mucho613"
+              placeholder="むーちょ"
               v-model="displayName"
             />
           </div>
