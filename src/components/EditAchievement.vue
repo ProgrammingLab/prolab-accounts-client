@@ -63,9 +63,9 @@
         :preselect-first="true"
       >
         <template slot="selection" slot-scope="{ values, search, isOpen }">
-          <span class="custom__tag" v-if="values.length && !isOpen">
-            <div v-for="user in values" :key="user.user_id">@{{ user.name }}</div>
-          </span>
+          <div v-if="values.length && !isOpen">
+            <span class="custom__tag" v-for="user in values" :key="user.user_id">@{{ user.name }}</span>
+          </div>
         </template>
         <template slot="tag" slot-scope="{ option }">
           <span class="custom__tag">
