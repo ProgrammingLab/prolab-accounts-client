@@ -3,14 +3,10 @@ import updateClient from '@/api/user';
 export default {
   namespaced: true,
   state: {
-    res: null,
     updateError: null,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
-    setResponse(state, res) {
-      state.res = res;
-    },
     clearUpdateError(state) {
       state.updateError = null;
     },
@@ -23,7 +19,7 @@ export default {
     async patchProfile({ commit }, { userProfile, sessionID }) {
       commit('clearUpdateError');
       try {
-        commit('setResponse', await updateClient.patchProfile(userProfile, sessionID));
+        await updateClient.patchProfile(userProfile, sessionID);
       } catch (e) {
         commit('setUpdateError', e);
       }
