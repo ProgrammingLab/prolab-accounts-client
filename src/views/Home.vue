@@ -16,7 +16,7 @@
 
     <section>
       <h2>部員一覧</h2>
-      <p><router-link to="/members">部員一覧</router-link></p>
+      <publicMemberList includeLeftUser/>
     </section>
 
     <footer>
@@ -35,11 +35,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import AchievementsList from '@/components/AchievementsList.vue';
+import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
   name: 'home',
   components: {
     AchievementsList,
+    publicMemberList,
   },
   computed: {
     ...mapGetters('session', ['loggedIn']),
