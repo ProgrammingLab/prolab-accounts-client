@@ -80,6 +80,12 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },
     {
+      path: '/achievements/edit',
+      name: 'editAchievements',
+      component: () => import(/* webpackChunkName: "editAchievements" */ './views/achievement/EditAchievements.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/admin/invitations',
       name: 'invitation',
       component: () => import(/* webpackChunkName: "invitation" */ './views/admin/Invitation.vue'),
