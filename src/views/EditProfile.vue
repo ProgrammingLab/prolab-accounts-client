@@ -219,7 +219,23 @@ export default {
     this.atcoderUserName = this.userData.atcoder_user_name;
   },
   methods: {
-    ...mapActions('editUser', ['patchProfile']),
+    ...mapActions('editUser', {
+      patchProfileAction: 'patchProfile',
+      postIconAction: 'postIcon',
+    }),
+    async postIcon() {
+      if (this.newIcon === '') return ;
+      await this.postIconAction({
+        image: this.newIcon,
+        sessionID: this.sessionID,
+      });
+    },
+    async pathcProfile(payload) {
+      await this.patchProfileAction({
+        userProfile: payload,
+        sessionID: this.sessionID,
+      });
+    },
     validation() {
       this.hasValidationError = false;
       this.realNameIsInvalid = false;
@@ -276,10 +292,7 @@ export default {
         profile_scope: Number(this.profileScope),
         display_name: this.displayName,
       };
-      await this.patchProfile({
-        userProfile: payload,
-        sessionID: this.sessionID,
-      });
+      await Promise.all([this.patchProfile(payload), this.postIcon()]);
       if (!this.updateError) this.isSuccess = true;
     },
   },
