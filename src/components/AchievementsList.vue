@@ -1,7 +1,9 @@
 <template>
   <ul>
     <li v-for="item in achievements" :key="item.id">
-      <Achievement :achievement="item"/>
+      <a v-bind:href="item.url">
+        <Achievement :achievement="item"/>
+      </a>
     </li>
   </ul>
 </template>
@@ -45,6 +47,12 @@ li {
   position: relative;
   margin-bottom: 40px;
   margin-right: 1%;
+}
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1024px) {
