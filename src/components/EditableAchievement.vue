@@ -26,6 +26,11 @@ export default {
     };
   },
   props: ['defaultAhievement'],
+  watch: {
+    defaultAhievement() {
+      this.editting = false;
+    },
+  },
 };
 </script>
 
