@@ -40,21 +40,19 @@ export default {
         } else {
           await achievementClient.createAchievement(sessionID, achievement);
         }
+        dispatch('getAchievements', sessionID);
       } catch (e) {
         commit('setAchievementError', e);
       }
-
-      dispatch('getAchievements', sessionID);
     },
     async deleteAchievement({ commit, dispatch }, { sessionID, achievement }) {
       commit('clearAchievementError');
       try {
         await achievementClient.deleteAchievement(sessionID, achievement.achievement_id);
+        dispatch('getAchievements', sessionID);
       } catch (e) {
         commit('setAchievementError', e);
       }
-
-      dispatch('getAchievements', sessionID);
     },
   },
 };
