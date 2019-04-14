@@ -80,6 +80,9 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
   name: 'oauthConsent',
+  metaInfo: {
+    title: 'OAuth Consent',
+  },
   components: {
     ErrorMessage,
   },

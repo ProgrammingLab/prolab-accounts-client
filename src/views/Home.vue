@@ -38,6 +38,10 @@ import AchievementsList from '@/components/AchievementsList.vue';
 
 export default {
   name: 'home',
+  metaInfo: {
+    title: 'Programming Lab',
+    titleTemplate: null,
+  },
   components: {
     AchievementsList,
   },

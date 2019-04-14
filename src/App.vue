@@ -16,9 +16,12 @@ export default {
   computed: {
     ...mapGetters('criticalError', ['isError']),
   },
+  metaInfo: {
+    title: 'Untitled',
+    titleTemplate: '%s - Programming Lab',
+  },
 };
 </script>
-
 
 <style>
   html { height: 100%; }
