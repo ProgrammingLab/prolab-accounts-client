@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <error-page v-if="isError"/>
-    <router-view v-else/>
+    <router-view v-show="!isError"/>
   </div>
 </template>
 
