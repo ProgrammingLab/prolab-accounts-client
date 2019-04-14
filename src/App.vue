@@ -7,7 +7,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import ErrorPage from './views/errors/ErrorPage.vue';
+import ErrorPage from './components/ErrorPage.vue';
 
 export default {
   components: {
