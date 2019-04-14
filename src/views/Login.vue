@@ -21,7 +21,7 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 export default {
   name: 'login',
   metaInfo: {
-    title: 'Login',
+    title: 'ログイン',
   },
   components: {
     ErrorMessage,

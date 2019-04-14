@@ -19,7 +19,7 @@ import EditableAchievement from '@/components/EditableAchievement.vue';
 export default {
   name: 'editAchievements',
   metaInfo: {
-    title: 'Edit Achievements',
+    title: '実績編集',
   },
   components: {
     EditableAchievement,

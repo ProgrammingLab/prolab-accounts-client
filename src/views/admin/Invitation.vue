@@ -49,7 +49,7 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 export default {
   name: 'invitation',
   metaInfo: {
-    title: 'Invite Member',
+    title: '部員招待',
   },
   components: {
     ErrorMessage,
