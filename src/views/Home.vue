@@ -9,14 +9,18 @@
       </p>
     </section>
 
-    <section>
+    <section class="achievements-list">
       <h2>戦歴</h2>
-      <AchievementsList/>
+      <div>
+        <AchievementsList/>
+      </div>
     </section>
 
-    <section>
+    <section class="member-list">
       <h2>部員一覧</h2>
-      <p><router-link to="/members">部員一覧</router-link></p>
+      <div>
+        <publicMemberList includeLeftUser/>
+      </div>
     </section>
 
     <footer>
@@ -36,6 +40,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import AchievementsList from '@/components/AchievementsList.vue';
+import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
   name: 'home',
@@ -45,6 +50,7 @@ export default {
   },
   components: {
     AchievementsList,
+    publicMemberList,
   },
   computed: {
     ...mapGetters('session', ['loggedIn']),
@@ -81,6 +87,15 @@ footer small {
 .home {
   max-width: 1500px;
   margin: 40px auto;
+}
+
+.achievements-list > div, .member-list > div {
+  margin-left: 60px;
+  margin-right: 30px;
+}
+
+h1 {
+  margin-left: 5px;
 }
 
 h1 img {
@@ -125,8 +140,18 @@ small {
 }
 
 @media screen and (max-width: 480px) {
+  h1 {
+    margin-left: 30px;
+  }
   h2 {
+    padding-left: 30px;
     font-size: 2rem;
+  }
+  p {
+    margin-left: 30px;
+  }
+  .achievements-list > div, .member-list > div {
+    margin-left: 30px;
   }
 }
 </style>
