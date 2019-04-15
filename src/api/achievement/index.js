@@ -18,6 +18,10 @@ export default {
     const resp = (await api.client.patch(`/achievements/${achievement.achievement_id}`, achievement, getHeader(sessionID))).data;
     return resp;
   },
+  async updateAchievementImage(sessionID, achievementID, image) {
+    const resp = (await api.client.post(`/achievements/${achievementID}/image`, { image }, getHeader(sessionID))).data;
+    return resp;
+  },
   async deleteAchievement(sessionID, achievementID) {
     const resp = (await api.client.delete(`/achievements/${achievementID}`, getHeader(sessionID))).data;
     return resp;

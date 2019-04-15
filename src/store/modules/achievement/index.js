@@ -32,16 +32,22 @@ export default {
         commit('criticalError/createError', e, { root: true });
       }
     },
-    async saveAchievement({ commit, dispatch }, { sessionID, achievement }) {
+    async saveAchievement({ commit, dispatch }, { sessionID, achievement, image }) {
       commit('clearAchievementError');
       const request = Object.assign({}, achievement);
       request.members = request.members.map(member => ({ user_id: member.user_id }));
       try {
+        let newAchievement = null;
         if (achievement.achievement_id) {
-          await achievementClient.updateAchievement(sessionID, request);
+          newAchievement = await achievementClient.updateAchievement(sessionID, request);
         } else {
-          await achievementClient.createAchievement(sessionID, request);
+          newAchievement = await achievementClient.createAchievement(sessionID, request);
         }
+        await achievementClient.updateAchievementImage(
+          sessionID,
+          newAchievement.achievement_id,
+          image,
+        );
         dispatch('getAchievements', sessionID);
       } catch (e) {
         commit('setAchievementError', e);

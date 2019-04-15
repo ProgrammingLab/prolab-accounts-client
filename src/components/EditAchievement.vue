@@ -1,6 +1,11 @@
 <template>
   <form v-on:submit.prevent="onSubmit">
     <div>
+      <label for="image-select">画像</label>
+      <ImageSelector id="image-select" :src="achievement.image_url" @onChange="onImageChange"/>
+      <p v-if="isImageTooLarge">画像サイズは1MiB以下にしてください。</p>
+    </div>
+    <div>
       <label for="title">タイトル</label>
       <input
         id="title"
@@ -89,7 +94,7 @@
       </multiselect>
     </div>
     <div>
-      <input type="submit" value="保存">
+      <input type="submit" value="保存" :disabled="!isValid">
       <button v-on:click.prevent="$emit('close')">キャンセル</button>
       <button v-on:click.prevent="onDelete">削除</button>
     </div>
@@ -104,6 +109,7 @@ import { mapState, mapActions } from 'vuex';
 import { debounceTime } from 'rxjs/operators';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import Multiselect from 'vue-multiselect';
+import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
   name: 'editAchievement',
@@ -111,10 +117,13 @@ export default {
   components: {
     ErrorMessage,
     Multiselect,
+    ImageSelector,
   },
   data() {
     return {
       debouncing: false,
+      imageSize: 0,
+      image: '',
       achievement: {
         achievement_id: this.defaultAhievement.achievement_id,
         title: this.defaultAhievement.title,
@@ -145,18 +154,33 @@ export default {
         this.achievement.happened_at = `${newValue}T00:00:00Z`;
       },
     },
+    isImageTooLarge() {
+      // 1MiB
+      return 1024 * 1024 < this.imageSize;
+    },
+    isValid() {
+      return !this.isImageTooLarge;
+    },
   },
   methods: {
     ...mapActions('achievement', ['saveAchievement', 'deleteAchievement']),
     ...mapActions('memberIntroduction/searchPrivateMembers', ['searchMembers']),
     onSubmit() {
-      this.saveAchievement({ sessionID: this.sessionID, achievement: this.achievement });
+      this.saveAchievement({
+        sessionID: this.sessionID,
+        achievement: this.achievement,
+        image: this.image,
+      });
     },
     onDelete() {
       this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
     onSearchChanged(query) {
       this.searchMembers({ sessionID: this.sessionID, query });
+    },
+    onImageChange({ file, base64Body }) {
+      this.imageSize = file.size;
+      this.image = base64Body;
     },
   },
   created() {
