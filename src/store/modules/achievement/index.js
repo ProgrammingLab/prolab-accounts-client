@@ -5,6 +5,7 @@ export default {
   state: {
     achievements: null,
     achievementError: null,
+    sending: false,
   },
   /* eslint-disable no-param-reassign */
   mutations: {
@@ -22,6 +23,9 @@ export default {
         achievement_id: null,
       });
     },
+    setSending(state, sending) {
+      state.sending = sending;
+    },
   },
   /* eslint-enable no-param-reassign */
   actions: {
@@ -34,6 +38,7 @@ export default {
     },
     async saveAchievement({ commit, dispatch }, { sessionID, achievement, image }) {
       commit('clearAchievementError');
+      commit('setSending', true);
       const request = Object.assign({}, achievement);
       request.members = request.members.map(member => ({ user_id: member.user_id }));
       try {
@@ -54,6 +59,8 @@ export default {
       } catch (e) {
         commit('setAchievementError', e);
       }
+
+      commit('setSending', false);
     },
     async deleteAchievement({ commit, dispatch }, { sessionID, achievement }) {
       commit('clearAchievementError');

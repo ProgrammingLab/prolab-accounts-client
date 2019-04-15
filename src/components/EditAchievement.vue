@@ -98,9 +98,9 @@
       </multiselect>
     </div>
     <div>
-      <input type="submit" value="保存" :disabled="!isValid">
-      <button v-on:click.prevent="$emit('close')">キャンセル</button>
-      <button v-on:click.prevent="onDelete">削除</button>
+      <input type="submit" value="保存" :disabled="!isValid || sending">
+      <button v-on:click.prevent="$emit('close')" :disabled="sending">キャンセル</button>
+      <button v-on:click.prevent="onDelete" :disabled="sending">削除</button>
     </div>
     <div>
       <ErrorMessage :error="achievementError"/>
@@ -144,7 +144,7 @@ export default {
   },
   computed: {
     ...mapState('session', ['sessionID']),
-    ...mapState('achievement', ['achievementError']),
+    ...mapState('achievement', ['achievementError', 'sending']),
     ...mapState('memberIntroduction/searchPrivateMembers', ['members', 'searchError', 'searching']),
     happenedAt: {
       get() {
