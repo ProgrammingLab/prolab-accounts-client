@@ -39,7 +39,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import AchievementsList from '@/components/AchievementsList.vue';
-import publicMemberList from '@/components/PublicMemberList.vue'; 
+import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
   name: 'home',
