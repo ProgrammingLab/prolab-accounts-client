@@ -2,7 +2,11 @@
   <form v-on:submit.prevent="onSubmit">
     <div>
       <label for="image-select">画像</label>
-      <ImageSelector id="image-select" :src="achievement.image_url" @onChange="onImageChange"/>
+      <ImageSelector
+        id="image-select"
+        :src="defaultAhievement.image_url"
+        @onChange="onImageChange"
+      />
       <p v-if="isImageTooLarge">画像サイズは1MiB以下にしてください。</p>
     </div>
     <div>
