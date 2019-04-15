@@ -23,7 +23,7 @@
       <div v-if="loggedIn">
         <router-link to="/editprofile">プロフィール編集</router-link>
         <router-link :to="{ name: 'editAchievements' }" exact>実績編集</router-link>
-        <router-link :to="{ name: 'logout' }">ログアウト</router-link> <!-- TODO: ログアウトできるようにする -->
+        <router-link :to="{ name: 'logout' }" exact>ログアウト</router-link>
       </div>
       <div v-else>
         <router-link to="/login">ログイン</router-link>
