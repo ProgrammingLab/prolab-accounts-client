@@ -32,6 +32,15 @@ export default {
         commit('setLoginError', e);
       }
     },
+
+    async logout({ commit }, sessionID) {
+      try {
+        await sessionClient.deleteSession(sessionID);
+        commit('clearSessionID');
+      } catch (e) {
+        commit('criticalError/createError', e);
+      }
+    },
   },
   getters: {
     loggedIn({ sessionID, loginError }) {
