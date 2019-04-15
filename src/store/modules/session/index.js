@@ -1,4 +1,4 @@
-import sesssionClient from '@/api/session';
+import sessionClient from '@/api/session';
 
 export default {
   namespaced: true,
@@ -26,7 +26,7 @@ export default {
     async login({ commit }, { name, password }) {
       commit('clearLoginError');
       try {
-        const res = await sesssionClient.createSession(name, password);
+        const res = await sessionClient.createSession(name, password);
         commit('setSessionID', res.session_id);
       } catch (e) {
         commit('setLoginError', e);
