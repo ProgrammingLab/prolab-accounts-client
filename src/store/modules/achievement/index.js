@@ -43,11 +43,13 @@ export default {
         } else {
           newAchievement = await achievementClient.createAchievement(sessionID, request);
         }
-        await achievementClient.updateAchievementImage(
-          sessionID,
-          newAchievement.achievement_id,
-          image,
-        );
+        if (image && image.length) {
+          await achievementClient.updateAchievementImage(
+            sessionID,
+            newAchievement.achievement_id,
+            image,
+          );
+        }
         dispatch('getAchievements', sessionID);
       } catch (e) {
         commit('setAchievementError', e);
