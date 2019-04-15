@@ -36,8 +36,6 @@ ul {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  margin-left: 60px;
-  margin-right: 20px;
   padding: 0;
   align-items: flex-start;
 }
