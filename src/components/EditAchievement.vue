@@ -1,15 +1,6 @@
 <template>
   <form v-on:submit.prevent="onSubmit">
     <div>
-      <label for="image-select">画像</label>
-      <ImageSelector
-        id="image-select"
-        :src="defaultAhievement.image_url"
-        @onChange="onImageChange"
-      />
-      <p v-if="isImageTooLarge">画像サイズは1MiB以下にしてください。</p>
-    </div>
-    <div>
       <label for="title">タイトル</label>
       <input
         id="title"
@@ -98,9 +89,18 @@
       </multiselect>
     </div>
     <div>
-      <input type="submit" value="保存" :disabled="!isValid || sending">
-      <button v-on:click.prevent="$emit('close')" :disabled="sending">キャンセル</button>
-      <button v-on:click.prevent="onDelete" :disabled="sending">削除</button>
+      <label for="image-select">画像</label>
+      <ImageSelector
+        id="image-select"
+        :src="defaultAchievement.image_url"
+        @onChange="onImageChange"
+      />
+      <p v-if="isImageTooLarge">画像サイズは1MiB以下にしてください。</p>
+    </div>
+    <div>
+      <input class="save" type="submit" value="保存" :disabled="!isValid || sending">
+      <button class="cancel" v-on:click.prevent="$emit('close')" :disabled="sending">キャンセル</button>
+      <button class="erase" v-on:click.prevent="onDelete" :disabled="sending">削除</button>
     </div>
     <div>
       <ErrorMessage :error="achievementError"/>
@@ -117,7 +117,7 @@ import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
   name: 'editAchievement',
-  props: ['defaultAhievement'],
+  props: ['defaultAchievement'],
   components: {
     ErrorMessage,
     Multiselect,
@@ -129,13 +129,13 @@ export default {
       imageSize: 0,
       image: '',
       achievement: {
-        achievement_id: this.defaultAhievement.achievement_id,
-        title: this.defaultAhievement.title,
-        award: this.defaultAhievement.award,
-        url: this.defaultAhievement.url,
-        description: this.defaultAhievement.description,
-        happened_at: this.defaultAhievement.happened_at,
-        members: this.defaultAhievement.members ? this.defaultAhievement.members.slice() : [],
+        achievement_id: this.defaultAchievement.achievement_id,
+        title: this.defaultAchievement.title,
+        award: this.defaultAchievement.award,
+        url: this.defaultAchievement.url,
+        description: this.defaultAchievement.description,
+        happened_at: this.defaultAchievement.happened_at,
+        members: this.defaultAchievement.members ? this.defaultAchievement.members.slice() : [],
       },
     };
   },
@@ -207,6 +207,14 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style scoped>
+form {
+  border: #333 solid 1px;
+  border-radius: 4px;
+  padding: 15px;
+}
+input, textarea {
+  width: 100%;
+}
 img.option-image {
   width: 1.4em;
   height: auto;
@@ -214,5 +222,35 @@ img.option-image {
 }
 .tag {
   margin-right: 0.1em;
+}
+button, input.save {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #fff;
+  border-radius: 3px;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
+button.edit {
+    background: white;
+    color: #666;
+    width: 100%;
+    border: solid black;
+    border-width: 1px 1px 0;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+button.erase {
+  background: #b50000;
+  color: #fff;
 }
 </style>
