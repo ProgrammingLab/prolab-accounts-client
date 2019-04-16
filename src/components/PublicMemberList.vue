@@ -30,6 +30,8 @@
 }
 img {
   width: 48px;
+  height: 48px;
+  object-fit: cover;
   border: 1px solid #ccc;
 }
 ul {
