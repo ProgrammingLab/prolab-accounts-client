@@ -2,10 +2,10 @@
   <div class="container">
     <section class="section">
       <h1 class="title">戦歴の編集</h1>
-      <button v-on:click="createNewAchievement">追加</button>
+      <button v-on:click="createNewAchievement">戦歴を新しく追加する</button>
       <ul>
         <li v-for="item in achievements" :key="item.achievement_id">
-          <EditableAchievement :defaultAhievement="item"/>
+          <EditableAchievement :defaultAchievement="item"/>
         </li>
       </ul>
     </section>
@@ -43,11 +43,43 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #fff;
+  border-radius: 3px;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
 li {
   list-style: none;
   width: 24%;
   position: relative;
   margin-bottom: 40px;
   margin-right: 1%;
+}
+@media screen and (max-width: 1024px) {
+  li {
+    width: 48%;
+    margin-right: 2%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  li {
+    width: 100%;
+  }
 }
 </style>

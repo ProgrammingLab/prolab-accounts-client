@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'profile', params: { name: member.name }}">
           <img :src="member.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="User Icon">
           <dl>
-            <dt class="name">{{member.displayname || member.name}}</dt>
+            <dt class="name">{{member.display_name || member.name}}</dt>
             <dd class="role" v-if="member.role">{{member.role.name}}</dd>
             <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
             <dd class="description">{{member.description}}</dd>
@@ -29,18 +29,20 @@
   align-items: flex-start;
 }
 img {
-  width: 96px;
+  width: 48px;
   border: 1px solid #ccc;
 }
 ul {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 0;
 }
 li {
-  width: 400px;
-  padding: 12px;
-  margin: 0 20px 20px 0;
+  width: 25%;
+  padding: 8px;
   transition-duration: 0.5s;
   cursor: pointer;
 }
@@ -49,12 +51,28 @@ li:hover {
   color: white;
 }
 dl {
-  margin: 0 0 0 5%;
+  margin: 0 0 0 15px;
   line-height: 1.2;
+  width: calc(100% - 64px);
 }
 .name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: inherit;
+}
+.description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 1200px) {
+  li {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 640px) {
+  li {
+    width: 100%;
+  }
 }
 </style>
 
