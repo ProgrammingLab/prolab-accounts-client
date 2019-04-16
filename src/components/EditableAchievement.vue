@@ -1,8 +1,8 @@
 <template>
   <div>
     <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
-    <EditAchievement v-if="editting" :defaultAhievement="defaultAhievement" v-on:close="onClose"/>
-    <Achievement v-else :achievement="defaultAhievement"/>
+    <EditAchievement v-if="editting" :defaultAchievement="defaultAchievement" v-on:close="onClose"/>
+    <Achievement v-else :achievement="defaultAchievement"/>
   </div>
 </template>
 
@@ -19,15 +19,15 @@ export default {
   },
   data() {
     return {
-      editting: !this.defaultAhievement.achievement_id,
+      editting: !this.defaultAchievement.achievement_id,
     };
   },
   computed: {
     ...mapState('session', ['sessionID']),
   },
-  props: ['defaultAhievement'],
+  props: ['defaultAchievement'],
   watch: {
-    defaultAhievement() {
+    defaultAchievement() {
       this.editting = false;
     },
   },
@@ -59,8 +59,13 @@ button {
   margin-right: 0.25rem;
 }
 button.edit {
-  background: #668ad8;
-  color: #fff;
+    background: white;
+    color: #666;
+    width: 100%;
+    border: solid black;
+    border-width: 1px 1px 0;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
 }
 button.delete {
   background: #ff3860;
