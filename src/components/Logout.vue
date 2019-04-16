@@ -1,6 +1,5 @@
 <template>
-  <div>
-  </div>
+  <a href="" v-on:click.prevent="onLogout">ログアウト</a>
 </template>
 
 <script>
@@ -16,14 +15,14 @@ export default {
       'sessionID',
     ]),
   },
-  async created() {
-    await this.logout(this.sessionID);
-    this.$router.push({ name: 'home' });
-  },
   methods: {
     ...mapActions('session', [
       'logout',
     ]),
+    async onLogout() {
+      await this.logout(this.sessionID);
+      this.$router.push({ name: 'home' });
+    },
   },
 };
 </script>
