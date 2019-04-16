@@ -1,17 +1,31 @@
 <template>
   <div class="container">
     <div class="box">
+      <h1>新規登録</h1>
       <form v-on:submit.prevent='onRegister'>
-        <label for="username">User Name</label>
+        <label for="username">ユーザーネーム</label>
         <input required type="text" id="username" v-model="name">
-        <label for="full_name">Full Name</label>
+        <div class="errorMessage" v-if="isUserNameViolated && name.length !== 0">
+          ユーザーネームは英数字と_のみを使用し20文字以下にしてください
+        </div>
+        <label for="full_name">フルネーム</label>
         <input required type="text" id="full_name" v-model="full_name">
-        <label for="password">Password</label>
+        <label for="password">パスワード</label>
         <input required type="password" id="password" v-model="password">
-        <label for="password_confirm">Confirm Password</label>
+        <div class="errorMessage" v-if="isUserPasswordViolated && password.length !== 0">
+          パスワードの長さは6文字以上72文字以下にしてください
+        </div>
+        <label for="password_confirm">パスワード(確認)</label>
         <input required type="password" id="password_confirm" v-model="password_confirm">
-        <div class="errorMessage" v-if="passwordConfirmationError">パスワードが一致しません</div>
-        <button type="submit">Register</button>
+        <div class="errorMessage" v-if="passwordConfirmationError && password_confirm.length !== 0">
+          パスワードが一致しません
+        </div>
+        <button
+          type="submit"
+          :disabled="isUserNameViolated || passwordConfirmationError || isUserPasswordViolated"
+        >
+          Register
+        </button>
         <ErrorMessage :error="registrationError"/>
       </form>
     </div>
@@ -36,7 +50,6 @@ export default {
       full_name: '',
       password: '',
       password_confirm: '',
-      passwordConfirmationError: false,
       registration_token: '',
     };
   },
@@ -48,6 +61,17 @@ export default {
     ...mapState('session', [
       'loginError',
     ]),
+    isUserNameViolated() {
+      return !/^[A-Za-z0-9_]{1,20}$/.test(this.name);
+    },
+    passwordConfirmationError() {
+      if (this.password_confirm.length === 0) return true;
+      return this.password !== this.password_confirm;
+    },
+    isUserPasswordViolated() {
+      const passwordLength = this.password.length;
+      return passwordLength < 6 || passwordLength > 72;
+    },
   },
   async created() {
     this.registration_token = this.$route.params.token;
@@ -68,11 +92,6 @@ export default {
       'login',
     ]),
     async onRegister() {
-      this.passwordConfirmationError = false;
-      if (this.password !== this.password_confirm) {
-        this.passwordConfirmationError = true;
-        return;
-      }
       await this.register({
         name: this.name,
         full_name: this.full_name,
@@ -127,6 +146,9 @@ export default {
     background: #668ad8;
     color: #FFF;
     border-radius: 3px;
+  }
+  button[type="submit"]:disabled {
+    background: #a9b8d1;
   }
 
   .errorMessage {
