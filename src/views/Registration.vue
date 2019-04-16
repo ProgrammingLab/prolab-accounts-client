@@ -71,7 +71,7 @@ export default {
     isUserPasswordViolated() {
       const passwordLength = this.password.length;
       return passwordLength < 6 || passwordLength > 72;
-    }
+    },
   },
   async created() {
     this.registration_token = this.$route.params.token;
