@@ -83,12 +83,6 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "invitation" */ './views/admin/Invitation.vue'),
       meta: { requiresAdmin: true },
     },
-    {
-      path: '/logout',
-      name: 'logout',
-      component: () => import(/* webpackChunkName: "logout" */ './components/Logout.vue'),
-      meta: { requiresAuth: true },
-    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
