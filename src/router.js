@@ -86,7 +86,7 @@ const router = new Router({
     {
       path: '/logout',
       name: 'logout',
-      component: () => import(/* webpackChunkName: "logout" */ './views/Logout.vue'),
+      component: () => import(/* webpackChunkName: "logout" */ './components/Logout.vue'),
       meta: { requiresAuth: true },
     },
   ],
