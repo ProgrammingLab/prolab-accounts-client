@@ -7,9 +7,6 @@ import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'logout',
-  metaInfo: {
-    title: 'ログアウト',
-  },
   computed: {
     ...mapState('session', [
       'sessionID',
