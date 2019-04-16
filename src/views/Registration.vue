@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="box">
+      <h1>新規登録</h1>
       <form v-on:submit.prevent='onRegister'>
         <label for="username">User Name</label>
         <input required type="text" id="username" v-model="name">
