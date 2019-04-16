@@ -1,16 +1,13 @@
 <template>
   <div>
     <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
-    <EditAchievement
-      v-if="editting"
-      :defaultAhievement="defaultAhievement"
-      v-on:close="editting = false"
-    />
+    <EditAchievement v-if="editting" :defaultAhievement="defaultAhievement" v-on:close="onClose"/>
     <Achievement v-else :achievement="defaultAhievement"/>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import Achievement from '@/components/Achievement.vue';
 import EditAchievement from '@/components/EditAchievement.vue';
 
@@ -25,10 +22,20 @@ export default {
       editting: !this.defaultAhievement.achievement_id,
     };
   },
+  computed: {
+    ...mapState('session', ['sessionID']),
+  },
   props: ['defaultAhievement'],
   watch: {
     defaultAhievement() {
       this.editting = false;
+    },
+  },
+  methods: {
+    ...mapActions('achievement', ['getAchievements']),
+    onClose() {
+      this.editting = false;
+      this.getAchievements(this.sessionID);
     },
   },
 };
