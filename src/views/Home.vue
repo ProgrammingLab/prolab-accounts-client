@@ -27,7 +27,7 @@
       <div v-if="loggedIn">
         <router-link to="/editprofile">プロフィール編集</router-link>
         <router-link :to="{ name: 'editAchievements' }" exact>実績編集</router-link>
-        <router-link to="">ログアウト</router-link> <!-- TODO: ログアウトできるようにする -->
+        <Logout/>
       </div>
       <div v-else>
         <router-link to="/login">ログイン</router-link>
@@ -40,6 +40,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import AchievementsList from '@/components/AchievementsList.vue';
+import Logout from '@/components/Logout.vue';
 import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
@@ -50,6 +51,7 @@ export default {
   },
   components: {
     AchievementsList,
+    Logout,
     publicMemberList,
   },
   computed: {
