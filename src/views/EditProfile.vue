@@ -205,8 +205,8 @@ export default {
     ...mapGetters('editUser', ['hasError']),
     ...mapState('editUser', ['patchProfileError', 'postIconError']),
     iconURL() {
-      return this.userData.icon_url
-        || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image';
+      // eslint-disable-next-line global-require
+      return this.userData.icon_url || require('@/assets/no_image.png');
     },
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="memberProfile.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="User Avatar">
+    <img :src="memberProfile.icon_url || require('@/assets/no_image.png')" alt="User Avatar">
     <dl>
       <dt>名前</dt>
       <dd>{{ memberProfile.display_name || memberProfile.name }}</dd>
