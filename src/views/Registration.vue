@@ -3,13 +3,13 @@
     <div class="box">
       <h1>新規登録</h1>
       <form v-on:submit.prevent='onRegister'>
-        <label for="username">User Name</label>
+        <label for="username">ユーザーネーム</label>
         <input required type="text" id="username" v-model="name">
-        <label for="full_name">Full Name</label>
+        <label for="full_name">フルネーム</label>
         <input required type="text" id="full_name" v-model="full_name">
-        <label for="password">Password</label>
+        <label for="password">パスワード</label>
         <input required type="password" id="password" v-model="password">
-        <label for="password_confirm">Confirm Password</label>
+        <label for="password_confirm">パスワード(確認)</label>
         <input required type="password" id="password_confirm" v-model="password_confirm">
         <div class="errorMessage" v-if="passwordConfirmationError">パスワードが一致しません</div>
         <button type="submit">Register</button>
