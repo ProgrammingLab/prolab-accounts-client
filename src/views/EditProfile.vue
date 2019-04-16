@@ -5,7 +5,7 @@
       <form v-on:submit.prevent="updateProfile">
         <label class="label">アイコン</label>
         <ImageSelector :src="iconURL" @onChange="onImageChange"/>
-        <p class="help is-danger" v-if="iconSizeIsTooLarge">アイコンサイズを1MG未満にしてください</p>
+        <p class="help is-danger" v-if="iconSizeIsTooLarge">アイコンサイズを1MB未満にしてください</p>
         <label class="label">本名</label>
         <div class="field">
           <div class="control">
