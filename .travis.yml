@@ -2,11 +2,10 @@ language: node_js
 node_js:
   - 'stable'
 
-before_install:
-  - echo $GOOGLE_ANALYTICS_ID > .env.production.local
-
 script:
-  - npm run build && npm run lint
+  - echo VUE_APP_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID > .env.production.local
+  - npm run build
+  - npm run lint
 
 after_success:
   - |
