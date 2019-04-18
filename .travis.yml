@@ -6,7 +6,6 @@ script:
   - echo VUE_APP_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID > .env.production.local
   - npm run build
   - npm run lint
-  - cat ./dist/js/app.4ddb6ab3.js
 
 after_success:
   - |
