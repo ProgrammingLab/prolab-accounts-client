@@ -2,11 +2,11 @@ language: node_js
 node_js:
   - 'stable'
 
-before_install:
-  - echo $GOOGLE_ANALYTICS_ID > .env.production.local
-
 script:
-  - npm run build && npm run lint
+  - echo $GOOGLE_ANALYTICS_ID > .env.production.local
+  - npm run build
+  - npm run lint
+  - cat ./dist/js/app.61ff118b.js
 
 after_success:
   - |
