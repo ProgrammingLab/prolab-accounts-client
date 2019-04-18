@@ -33,12 +33,12 @@ export default {
       }
     },
 
-    async logout({ commit }, sessionID) {
+    async logout({ commit, dispatch }, sessionID) {
       try {
         await sessionClient.deleteSession(sessionID);
         commit('clearSessionID');
       } catch (e) {
-        commit('criticalError/createError', e);
+        dispatch('criticalError/createError', e);
       }
     },
   },

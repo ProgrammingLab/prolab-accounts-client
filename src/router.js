@@ -98,7 +98,7 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
-    store.commit('criticalError/createError', {
+    store.dispatch('criticalError/createError', {
       response: {
         status: 404,
         data: {
@@ -116,7 +116,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.matched.some(record => record.meta.requiresAdmin) && !store.getters['user/isAdmin']) {
-    store.commit('criticalError/createError', {
+    store.dispatch('criticalError/createError', {
       response: {
         status: 404,
         data: {
