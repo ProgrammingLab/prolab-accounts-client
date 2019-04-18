@@ -18,7 +18,7 @@ export default {
   },
   metaInfo: {
     title: 'Untitled',
-    titleTemplate: '%s - Programming Lab',
+    titleTemplate: '%s - 久留米高専プログラミングラボ部',
   },
 };
 </script>
