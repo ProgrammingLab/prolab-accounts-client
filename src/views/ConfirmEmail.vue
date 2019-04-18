@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'confirmEmail',
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('criticalError', [
+    ...mapActions('criticalError', [
       'createError',
     ]),
     ...mapActions('emailConfirmations', [

@@ -20,11 +20,11 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   actions: {
-    async listInvitations({ commit }, sessionID) {
+    async listInvitations({ commit, dispatch }, sessionID) {
       try {
         commit('setInvitations', await invitationClient.listInvitations(sessionID));
       } catch (e) {
-        commit('criticalError/createError', e, { root: true });
+        dispatch('criticalError/createError', e, { root: true });
       }
     },
     async invite({ commit, dispatch }, { sessionID, rawEmails }) {

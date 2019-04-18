@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
@@ -81,7 +81,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('criticalError', [
+    ...mapActions('criticalError', [
       'createError',
     ]),
     ...mapActions('user', [
