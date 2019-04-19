@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <error-page v-if="isError"/>
+    <div v-if="isLoading">LOADING</div>
     <router-view v-show="!isError"/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import ErrorPage from './components/ErrorPage.vue';
 
 export default {
@@ -15,6 +16,7 @@ export default {
   },
   computed: {
     ...mapGetters('criticalError', ['isError']),
+    ...mapState('ui', ['isLoading']),
   },
   metaInfo: {
     title: 'Untitled',
