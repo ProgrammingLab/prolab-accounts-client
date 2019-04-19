@@ -18,7 +18,7 @@ export default {
   },
   metaInfo: {
     title: 'Untitled',
-    titleTemplate: '%s - Programming Lab',
+    titleTemplate: `%s - ${process.env.VUE_APP_TITLE}`,
   },
 };
 </script>

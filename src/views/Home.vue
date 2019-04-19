@@ -46,7 +46,7 @@ import publicMemberList from '@/components/PublicMemberList.vue';
 export default {
   name: 'home',
   metaInfo: {
-    title: 'Programming Lab',
+    title: process.env.VUE_APP_TITLE,
     titleTemplate: null,
   },
   components: {
