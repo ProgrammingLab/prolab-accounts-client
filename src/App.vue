@@ -18,7 +18,7 @@ export default {
   },
   metaInfo: {
     title: 'Untitled',
-    titleTemplate: '%s - 久留米高専プログラミングラボ部',
+    titleTemplate: `%s - ${process.env.VUE_APP_TITLE}`,
   },
 };
 </script>

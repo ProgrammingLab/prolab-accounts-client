@@ -46,7 +46,7 @@ import publicMemberList from '@/components/PublicMemberList.vue';
 export default {
   name: 'home',
   metaInfo: {
-    title: '久留米高専プログラミングラボ部',
+    title: process.env.VUE_APP_TITLE,
     titleTemplate: null,
   },
   components: {
