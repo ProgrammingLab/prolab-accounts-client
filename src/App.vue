@@ -1,22 +1,23 @@
 <template>
   <div id="app">
     <error-page v-if="isError"/>
-    <div v-if="isLoading">LOADING</div>
+    <loading-indicator/>
     <router-view v-show="!isError"/>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import ErrorPage from './components/ErrorPage.vue';
+import LoadingIndicator from './components/LoadingIndicator.vue';
 
 export default {
   components: {
     ErrorPage,
+    LoadingIndicator,
   },
   computed: {
     ...mapGetters('criticalError', ['isError']),
-    ...mapState('ui', ['isLoading']),
   },
   metaInfo: {
     title: 'Untitled',
