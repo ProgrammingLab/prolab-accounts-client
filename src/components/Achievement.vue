@@ -4,7 +4,7 @@
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
       <dd class="year">{{ year }}</dd>
-      <dd>{{ achievement.description }}</dd>
+      <dd class="desc">{{ achievement.description }}</dd>
       <dd class="members" v-if="achievement.members.length">
         <ul>
           <p>参加メンバー</p>
@@ -84,6 +84,16 @@ dd.year {
   transform-origin: right top;
   line-height: 1;
   font-family: "Barlow";
+}
+dd.desc:after{
+  display: block;
+  content: "";
+  height: 30px;
+  width: calc(100% + 40px);
+  margin: 0 -20px;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
 }
 .members {
   display: hidden;
