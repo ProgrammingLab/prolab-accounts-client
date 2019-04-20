@@ -51,9 +51,15 @@ p {
 }
 img {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
 }
 dl {
-  margin: 20px;
+  margin: 20px 20px 0;
+  height: 130px;
+  position: relative;
 }
 dt {
   font-size: 1.4rem;
@@ -91,9 +97,6 @@ dd.year {
   transition: ease-in-out 0.2s;
 }
 div.achievement:hover .members {
-  position: absolute;
-  padding: 20px;
-  border-radius: 8px;
   opacity: 0.95;
 }
 .members ul {
