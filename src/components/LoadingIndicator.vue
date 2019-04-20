@@ -1,6 +1,6 @@
 <template>
   <div class="loading-indicator-container">
-    <div v-show="isLoading" class="loading-indicator"></div>
+    <div v-if="isLoading" class="loading-indicator"></div>
   </div>
 </template>
 
