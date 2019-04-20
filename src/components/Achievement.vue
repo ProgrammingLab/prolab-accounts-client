@@ -98,6 +98,9 @@ dd.desc:after{
 .members {
   display: hidden;
   position: absolute;
+  bottom: -240px;
+  z-index: 3;
+  width: 100%;
   background-color: #222;
   color: white;
   padding: 20px;
