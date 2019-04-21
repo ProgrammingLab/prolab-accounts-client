@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" @click="$emit('cancel')">
+    <div class="modal-mask" @click="$emit('cancel')" v-if="isOpened">
       <div class="modal-wrapper">
         <div class="modal-container" @click.stop>
 
@@ -12,7 +12,7 @@
             </h1>
           </div>
 
-          <div class="modal-body">
+          <div class="modal-body" v-scroll-lock="isOpened">
             <p>
               <slot name="body">
                 ! Body is not set !
@@ -30,6 +30,14 @@
     </div>
   </transition>
 </template>
+
+<script>
+export default {
+  props: {
+    isOpened: Boolean,
+  },
+};
+</script>
 
 <style scoped>
 .modal-mask {
@@ -60,6 +68,10 @@
   transition: all .1s ease;
 }
 
+.modal-header  {
+  margin: 0;
+}
+
 .modal-header h1 {
   font-size: x-large;
   margin: 0;
@@ -68,6 +80,8 @@
 
 .modal-body {
   margin: 20px 0;
+  overflow: auto;
+  max-height: 50vh;
 }
 
 .modal-body p {
