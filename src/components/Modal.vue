@@ -7,7 +7,7 @@
           <div class="modal-header">
             <h1>
               <slot name="header">
-                ! Header is not seted !
+                ! Header is not set !
               </slot>
             </h1>
           </div>
@@ -15,14 +15,14 @@
           <div class="modal-body">
             <p>
               <slot name="body">
-                ! Body is not seted !
+                ! Body is not set !
               </slot>
             </p>
           </div>
 
           <div class="modal-footer">
             <slot name="footer" :onClick="(val)=>$emit('click', val)">
-              ! Footer is not seted !
+              ! Footer is not set !
             </slot>
           </div>
         </div>
