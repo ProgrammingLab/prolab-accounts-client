@@ -28,20 +28,18 @@ export default {
 
 @keyframes loading {
   0% {
-    margin-left: 0%;
     width: 0;
-  }
-  10% {
     margin-left: 0;
-    width: 10%;
   }
-  90% {
-    margin-left: 90%;
-    width: 10%;
+
+  50% {
+    margin-left: 0;
+    width: 50%;
   }
+
   100% {
     margin-left: 100%;
-    width: 0;
+    width: 0%;
   }
 }
 </style>
