@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab"></h1>
     <section>
       <h2>部員募集中!</h2>
       <p>
@@ -94,15 +93,6 @@ footer small {
 .achievements-list > div, .member-list > div {
   margin-left: 60px;
   margin-right: 30px;
-}
-
-h1 {
-  margin-left: 5px;
-}
-
-h1 img {
-  max-width: 400px;
-  width: 80%;
 }
 
 section {
