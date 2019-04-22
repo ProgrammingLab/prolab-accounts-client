@@ -48,6 +48,7 @@ body {
   width: 100%;
   z-index: 127;
   background-color: white;
+  box-shadow: 0 3px 2px black;
   margin-left: 5px;
 }
 
