@@ -31,14 +31,13 @@ export default {
 <style>
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  margin-top: 120px;
 }
 
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  width: 100%;
   z-index: 127;
+  width: 100%;
   background-color: white;
   box-shadow: 0 3px 2px black;
 }
