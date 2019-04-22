@@ -40,7 +40,7 @@ body {
 
 #app {
   height: 100%;
-  }
+}
 
 #header {
   position: fixed;
