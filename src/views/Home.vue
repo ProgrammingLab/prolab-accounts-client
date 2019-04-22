@@ -132,9 +132,6 @@ small {
 }
 
 @media screen and (max-width: 480px) {
-  h1 {
-    margin-left: 30px;
-  }
   h2 {
     padding-left: 30px;
     font-size: 2rem;
