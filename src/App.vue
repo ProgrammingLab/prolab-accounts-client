@@ -29,18 +29,9 @@ export default {
 </script>
 
 <style>
-html {
-  height: 100%;
-}
-
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  height: 100%;
   margin-top: 120px;
-}
-
-#app {
-  height: 100%;
 }
 
 header {
