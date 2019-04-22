@@ -2,7 +2,9 @@
   <div id="app">
     <error-page v-if="isError"/>
     <section id="header">
-      <img class="logo" src="@/assets/logo.svg" alt="ProLab">
+      <router-link :to="{ name: 'home' }">
+        <img class="logo" src="@/assets/logo.svg" alt="ProLab">
+      </router-link>
     </section>
     <router-view v-show="!isError"/>
   </div>
