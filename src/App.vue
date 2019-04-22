@@ -39,7 +39,8 @@ header {
   z-index: 127;
   width: 100%;
   background-color: white;
-  box-shadow: 0 3px 2px black;
+  box-shadow: 0 0 5px black;
+  padding: 3px;
 }
 
 header img {
