@@ -36,6 +36,7 @@ html {
 body {
   font-family: 'Noto Sans JP', sans-serif;
   height: 100%;
+  margin-top: 120px;
 }
 
 #app {
