@@ -50,17 +50,17 @@ body {
   z-index: 127;
   background-color: white;
   box-shadow: 0 3px 2px black;
-  margin-left: 5px;
 }
 
 #header img {
   max-width: 400px;
   width: 80%;
+  margin-left: 5px;
 }
 
 
 @media screen and (max-width: 480px) {
-  #header {
+  #header img {
     margin-left: 30px;
   }
 }
