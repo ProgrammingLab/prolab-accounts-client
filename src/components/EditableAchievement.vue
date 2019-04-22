@@ -1,7 +1,12 @@
 <template>
   <div>
     <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
-    <EditAchievement v-if="editting" :defaultAchievement="defaultAchievement" v-on:close="onClose"/>
+    <EditAchievement
+      v-if="editting"
+      :defaultAchievement="defaultAchievement"
+      v-on:close="onClose"
+      @delete="$emit('delete', defaultAchievement)"
+    />
     <Achievement v-else :achievement="defaultAchievement"/>
   </div>
 </template>

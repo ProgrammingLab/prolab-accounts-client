@@ -100,7 +100,7 @@
     <div>
       <input class="save" type="submit" value="保存" :disabled="!isValid || sending">
       <button class="cancel" v-on:click.prevent="$emit('close')" :disabled="sending">キャンセル</button>
-      <button class="erase" v-on:click.prevent="onDelete" :disabled="sending">削除</button>
+      <button class="erase" v-on:click.prevent="$emit('delete')" :disabled="sending">削除</button>
     </div>
     <div>
       <ErrorMessage :error="achievementError"/>
@@ -167,7 +167,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('achievement', ['saveAchievement', 'deleteAchievement']),
+    ...mapActions('achievement', ['saveAchievement']),
     ...mapActions('memberIntroduction/searchPrivateMembers', ['searchMembers']),
     onSubmit() {
       this.saveAchievement({
@@ -175,9 +175,6 @@ export default {
         achievement: this.achievement,
         image: this.image,
       });
-    },
-    onDelete() {
-      this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
     onSearchChanged(query) {
       this.searchMembers({ sessionID: this.sessionID, query });
