@@ -43,6 +43,11 @@ body {
   }
 
 #header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 127;
+  background-color: white;
   margin-left: 5px;
 }
 
@@ -50,6 +55,7 @@ body {
   max-width: 400px;
   width: 80%;
 }
+
 
 @media screen and (max-width: 480px) {
   #header {
