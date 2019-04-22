@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <error-page v-if="isError"/>
-    <section id="header">
+    <header>
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" alt="ProLab">
       </router-link>
-    </section>
+    </header>
     <router-view v-show="!isError"/>
   </div>
 </template>
@@ -43,7 +43,7 @@ body {
   height: 100%;
 }
 
-#header {
+header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -52,7 +52,7 @@ body {
   box-shadow: 0 3px 2px black;
 }
 
-#header img {
+header img {
   max-width: 400px;
   width: 80%;
   margin-left: 5px;
@@ -60,7 +60,7 @@ body {
 
 
 @media screen and (max-width: 480px) {
-  #header img {
+  header img {
     margin-left: 30px;
   }
 }
