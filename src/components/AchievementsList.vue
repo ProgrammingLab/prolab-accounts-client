@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="item in achievements" :key="item.id">
-      <a v-bind:href="item.url">
+      <a v-bind:href="item.url" target="_blank" rel="noopener noreferrer">
         <Achievement :achievement="item"/>
       </a>
     </li>

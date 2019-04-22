@@ -29,11 +29,11 @@ export default {
   },
   /* eslint-enable no-param-reassign */
   actions: {
-    async getAchievements({ commit }, sessionID) {
+    async getAchievements({ commit, dispatch }, sessionID) {
       try {
         commit('setAchievements', await achievementClient.getAchievements(sessionID));
       } catch (e) {
-        commit('criticalError/createError', e, { root: true });
+        dispatch('criticalError/createError', e, { root: true });
       }
     },
     async saveAchievement({ commit, dispatch }, { sessionID, achievement, image }) {

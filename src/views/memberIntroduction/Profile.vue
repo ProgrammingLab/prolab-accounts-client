@@ -81,7 +81,7 @@ dd.small {
 </style>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import utils from '@/utils';
 
 const { IdToURLHelper } = utils;
@@ -110,7 +110,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('criticalError', [
+    ...mapActions('criticalError', [
       'createError',
     ]),
     ...mapActions('memberIntroduction/memberProfile', [

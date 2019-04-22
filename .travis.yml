@@ -3,7 +3,9 @@ node_js:
   - 'stable'
 
 script:
-  - npm run build && npm run lint
+  - echo VUE_APP_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID > .env.production.local
+  - npm run build
+  - npm run lint
 
 after_success:
   - |
