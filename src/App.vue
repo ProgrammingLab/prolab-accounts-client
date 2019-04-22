@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <error-page v-if="isError"/>
-    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab"></h1>
+    <section id="header">
+      <img class="logo" src="@/assets/logo.svg" alt="ProLab">
+    </section>
     <router-view v-show="!isError"/>
   </div>
 </template>
@@ -38,17 +40,17 @@ body {
   height: 100%;
   }
 
-h1 {
+#header {
   margin-left: 5px;
 }
 
-h1 img {
+#header img {
   max-width: 400px;
   width: 80%;
 }
 
 @media screen and (max-width: 480px) {
-  h1 {
+  #header {
     margin-left: 30px;
   }
 }
