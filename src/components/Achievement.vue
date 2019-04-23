@@ -55,10 +55,11 @@ img {
   object-fit: cover;
   position: relative;
   z-index: 2;
+  background: white;
 }
 dl {
   margin: 20px 20px 0;
-  height: 130px;
+  height: 150px;
   position: relative;
 }
 dt {
