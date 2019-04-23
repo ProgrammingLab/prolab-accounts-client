@@ -43,13 +43,13 @@ header {
   width: 100%;
   background-color: white;
   box-shadow: 0 0 5px black;
-  padding: 3px;
 }
 
 header img {
   max-width: 400px;
   width: 80%;
   margin-left: 5px;
+  padding: 3px;
 }
 
 
