@@ -1,6 +1,6 @@
 <template>
   <div class="loading-indicator-container">
-    <div v-if="isLoading" class="loading-indicator"></div>
+    <div :class="[ isLoading ? 'loading-indicator-active' : 'loading-indicator-inactive' ]"></div>
   </div>
 </template>
 
@@ -20,7 +20,13 @@ export default {
   width: 100%;
 }
 
-.loading-indicator {
+.loading-indicator-inactive {
+  height: 100%;
+  width: 0;
+  margin-left: 0;
+}
+
+.loading-indicator-active {
   height: 100%;
   background-color: cornflowerblue;
   animation: loading 1.5s linear infinite;
