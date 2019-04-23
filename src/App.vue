@@ -5,6 +5,7 @@
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" alt="ProLab">
       </router-link>
+    <loading-indicator/>
     </header>
     <router-view v-show="!isError"/>
   </div>
@@ -13,10 +14,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import ErrorPage from './components/ErrorPage.vue';
+import LoadingIndicator from './components/LoadingIndicator.vue';
 
 export default {
   components: {
     ErrorPage,
+    LoadingIndicator,
   },
   computed: {
     ...mapGetters('criticalError', ['isError']),
@@ -55,5 +58,4 @@ header img {
     margin-left: 30px;
   }
 }
-
 </style>

@@ -96,6 +96,7 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
+  store.commit('ui/setLoading');
   store.commit('criticalError/clearError');
   if (to.matched.length === 0) {
     store.dispatch('criticalError/createError', {
@@ -132,6 +133,11 @@ router.beforeEach(async (to, from, next) => {
   }
 
   next();
+});
+
+// eslint-disable-next-line no-unused-vars
+router.afterEach(async (to, from) => {
+  store.commit('ui/clearLoading');
 });
 
 export default router;
