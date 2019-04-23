@@ -11,6 +11,7 @@ import emailConfirmations from './modules/emailConfirmations';
 import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
 import invitation from './modules/invitation';
+import ui from './modules/ui';
 
 Vue.use(Vuex);
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     memberIntroduction,
     editUser,
     invitation,
+    ui,
   },
   plugins: [
     createPersistedState({
