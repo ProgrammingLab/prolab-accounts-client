@@ -4,7 +4,7 @@
       <dt>{{ achievement.title }}</dt>
       <dd class="award">{{ achievement.award }}</dd>
       <dd class="year">{{ year }}</dd>
-      <dd class="desc">{{ achievement.description }}</dd>
+      <dd>{{ achievement.description }}</dd>
       <dd class="members" v-if="achievement.members.length">
         <ul>
           <p>参加メンバー</p>
