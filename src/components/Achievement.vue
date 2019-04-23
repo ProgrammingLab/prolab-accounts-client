@@ -46,6 +46,18 @@ div.achievement:hover {
 div.achievement:hover dd.year {
   color: inherit;
 }
+div.achievement::after{
+  display: block;
+  content: "";
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  bottom: 250px;
+  background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+}
+div.achievement:hover::after{
+  opacity: 0;
+}
 p {
   text-overflow: ellipsis;
 }
@@ -85,16 +97,6 @@ dd.year {
   transform-origin: right top;
   line-height: 1;
   font-family: "Barlow";
-}
-dd.desc:after{
-  display: block;
-  content: "";
-  height: 30px;
-  width: calc(100% + 40px);
-  margin: 0 -20px;
-  position: absolute;
-  bottom: 0;
-  background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
 }
 .members {
   display: hidden;
