@@ -12,7 +12,7 @@
             </h1>
           </div>
 
-          <div class="modal-body" v-scroll-lock="isOpened">
+          <div class="modal-body">
             <p>
               <slot name="body">
                 ! Body is not set !
