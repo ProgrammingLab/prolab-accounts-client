@@ -73,6 +73,7 @@ dl {
   margin: 20px 20px 0;
   height: 150px;
   position: relative;
+  overflow: hidden;
 }
 dt {
   font-size: 1.4rem;
