@@ -28,7 +28,7 @@ export default {
 
 .loading-indicator-active {
   height: 100%;
-  background-color: cornflowerblue;
+  background-color: rgb(147, 176, 255);
   animation: loading 1.5s linear infinite;
 }
 

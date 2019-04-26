@@ -6,7 +6,7 @@
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" alt="ProLab">
       </router-link>
-    <loading-indicator/>
+      <loading-indicator/>
     </header>
 
     <router-view v-show="!isError"/>
@@ -58,15 +58,17 @@ header {
   top: 0;
   z-index: 127;
   width: 100%;
-  background-color: white;
-  box-shadow: 0 0 5px black;
+  padding-top: 10px;
+  max-width: 1500px;
+  margin: 0 auto;
+  border-bottom: 4px #333 solid;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 header img {
-  max-width: 400px;
-  width: 80%;
-  margin-left: 5px;
-  padding: 3px;
+  max-width: 250px;
+  width: 40%;
+  margin: 20px 40px;
 }
 
 footer div {
