@@ -5,24 +5,47 @@
       <button v-on:click="createNewAchievement">戦歴を新しく追加する</button>
       <ul>
         <li v-for="item in achievements" :key="item.achievement_id">
-          <EditableAchievement :defaultAchievement="item"/>
+          <EditableAchievement :defaultAchievement="item" @delete="deleteConfirmation"/>
         </li>
       </ul>
     </section>
+    <Modal
+      :isOpened="confirmationIsOpened"
+      @cancel="confirmationIsOpened = false"
+      @click="onModalClick"
+    >
+      <template #header>警告</template>
+      <template #body>
+        戦歴「{{deleteTerget.title}}」を削除しようとしています。<br/>
+        よろしいですか。
+      </template>
+      <template #footer="{ onClick }">
+        <button class="danger-button" @click="onClick(true)">削除</button>
+        <button @click="onClick(false)">キャンセル</button>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 import EditableAchievement from '@/components/EditableAchievement.vue';
+import Modal from '@/components/Modal.vue';
 
 export default {
   name: 'editAchievements',
   metaInfo: {
     title: '実績編集',
   },
+  data() {
+    return {
+      deleteTerget: null,
+      confirmationIsOpened: false,
+    };
+  },
   components: {
     EditableAchievement,
+    Modal,
   },
   computed: {
     ...mapState('achievement', ['achievements']),
@@ -30,11 +53,23 @@ export default {
   },
   methods: {
     ...mapActions(
-      'achievement', ['getAchievements'],
+      'achievement', ['getAchievements', 'deleteAchievement'],
     ),
     ...mapMutations(
       'achievement', ['createNewAchievement'],
     ),
+    deleteConfirmation(achievement) {
+      this.deleteTerget = achievement;
+      this.confirmationIsOpened = true;
+    },
+    onModalClick(isAgreed) {
+      this.confirmationIsOpened = false;
+      if (!isAgreed) return;
+      this.deleteAchievement({
+        sessionID: this.sessionID,
+        achievement: this.deleteTerget,
+      });
+    },
   },
   async created() {
     this.getAchievements(this.sessionID);
@@ -62,6 +97,9 @@ button {
   border-radius: 3px;
   margin-bottom: 0.25rem;
   margin-right: 0.25rem;
+}
+button.danger-button {
+  background: #b50000;
 }
 li {
   list-style: none;
