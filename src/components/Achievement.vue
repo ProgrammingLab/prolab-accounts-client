@@ -46,14 +46,34 @@ div.achievement:hover {
 div.achievement:hover dd.year {
   color: inherit;
 }
+div.achievement::after{
+  display: block;
+  content: "";
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  bottom: 250px;
+  background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+}
+div.achievement:hover::after{
+  opacity: 0;
+}
 p {
   text-overflow: ellipsis;
 }
 img {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  background: white;
 }
 dl {
-  margin: 20px;
+  margin: 20px 20px 0;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
 }
 dt {
   font-size: 1.4rem;
@@ -82,6 +102,9 @@ dd.year {
 .members {
   display: hidden;
   position: absolute;
+  bottom: -240px;
+  z-index: 3;
+  width: 100%;
   background-color: #222;
   color: white;
   padding: 20px;
@@ -91,9 +114,6 @@ dd.year {
   transition: ease-in-out 0.2s;
 }
 div.achievement:hover .members {
-  position: absolute;
-  padding: 20px;
-  border-radius: 8px;
   opacity: 0.95;
 }
 .members ul {
