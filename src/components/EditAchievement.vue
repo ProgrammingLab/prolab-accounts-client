@@ -155,7 +155,7 @@ export default {
         return date;
       },
       set(newValue) {
-        this.achievement.happened_at = `${newValue}T00:00:00Z`;
+        this.achievement.happened_at = `${newValue}T09:00:00Z`;
       },
     },
     isImageTooLarge() {
