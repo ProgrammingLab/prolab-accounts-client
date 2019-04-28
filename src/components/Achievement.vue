@@ -72,7 +72,6 @@ img {
 dl {
   margin: 20px 20px 0;
   height: 150px;
-  position: relative;
   overflow: hidden;
 }
 dt {
@@ -102,9 +101,7 @@ dd.year {
 .members {
   display: hidden;
   position: absolute;
-  bottom: -240px;
   z-index: 3;
-  width: 100%;
   background-color: #222;
   color: white;
   padding: 20px;
