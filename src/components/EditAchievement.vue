@@ -100,7 +100,7 @@
     <div>
       <input class="save" type="submit" value="保存" :disabled="!isValid || sending">
       <button class="cancel" v-on:click.prevent="$emit('close')" :disabled="sending">キャンセル</button>
-      <button class="erase" v-on:click.prevent="onDelete" :disabled="sending">削除</button>
+      <button class="erase" v-on:click.prevent="$emit('delete')" :disabled="sending">削除</button>
     </div>
     <div>
       <ErrorMessage :error="achievementError"/>
@@ -111,6 +111,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import { debounceTime } from 'rxjs/operators';
+import moment from 'moment';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import Multiselect from 'vue-multiselect';
 import ImageSelector from '@/components/ImageSelector.vue';
@@ -151,11 +152,11 @@ export default {
         if (!this.achievement.happened_at) {
           return null;
         }
-        const date = this.achievement.happened_at.substring(0, '2019-01-01'.length);
-        return date;
+        return moment(this.achievement.happened_at).local().format('YYYY-MM-DD');
       },
       set(newValue) {
-        this.achievement.happened_at = `${newValue}T00:00:00Z`;
+        const UTCDate = moment(newValue).utc().format('YYYY-MM-DD[T]HH:mm:ss[Z]');
+        this.achievement.happened_at = UTCDate;
       },
     },
     isImageTooLarge() {
@@ -167,7 +168,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('achievement', ['saveAchievement', 'deleteAchievement']),
+    ...mapActions('achievement', ['saveAchievement']),
     ...mapActions('memberIntroduction/searchPrivateMembers', ['searchMembers']),
     onSubmit() {
       this.saveAchievement({
@@ -175,9 +176,6 @@ export default {
         achievement: this.achievement,
         image: this.image,
       });
-    },
-    onDelete() {
-      this.deleteAchievement({ sessionID: this.sessionID, achievement: this.achievement });
     },
     onSearchChanged(query) {
       this.searchMembers({ sessionID: this.sessionID, query });

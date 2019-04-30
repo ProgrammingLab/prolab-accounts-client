@@ -10,7 +10,8 @@
   "dependencies": {
     "ajv": "^5.5.2",
     "axios": "^0.18.0",
-    "rxjs": "^6.4.0",
+    "moment": "^2.24.0",
+    "rxjs": "^6.5.1",
     "vue": "^2.6.10",
     "vue-analytics": "^5.16.4",
     "vue-meta": "^1.6.0",
