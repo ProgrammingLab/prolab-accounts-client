@@ -103,7 +103,7 @@ dd.year {
   z-index: 3;
   background-color: #222;
   color: white;
-  top: 170px;
+  top: 150px;
   padding: 20px;
   margin-top: 40px;
   border-radius: 8px;
