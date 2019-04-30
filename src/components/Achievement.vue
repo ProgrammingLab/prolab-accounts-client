@@ -99,7 +99,6 @@ dd.year {
   font-family: "Barlow";
 }
 .members {
-  display: hidden;
   position: absolute;
   z-index: 3;
   background-color: #222;
