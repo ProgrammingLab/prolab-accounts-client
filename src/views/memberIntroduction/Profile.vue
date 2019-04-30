@@ -34,7 +34,6 @@
         {{ memberProfile.atcoder_user_name }}
       </a></dd>
     </dl>
-    <button v-on:click="onBack">もどる</button>
   </div>
 </template>
 
