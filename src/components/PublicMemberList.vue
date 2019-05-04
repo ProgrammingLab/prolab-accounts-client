@@ -4,7 +4,7 @@
     <ul class="member-list">
       <li v-for="member in filteredList" :key="member.user_id">
         <router-link :to="{ name: 'profile', params: { name: member.name }}">
-          <img :src="member.icon_url || require('@/assets/no_image.png')" alt="User Icon">
+          <img :src="member.icon_url ? `${member.icon_url}_64px` : require('@/assets/no_image.png')" alt="User Icon">
           <dl>
             <dt class="name">{{member.display_name || member.name}}</dt>
             <dd class="role" v-if="member.role">{{member.role.name}}</dd>
