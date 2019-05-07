@@ -19,20 +19,26 @@
         <dd>{{ memberProfile.role.name }}</dd>
       </template>
 
-      <dt>Twitter</dt>
-      <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
-        {{ memberProfile.twitter_screen_name }}
-      </a></dd>
+      <template v-if="memberProfile.twitter_screen_name">
+        <dt>Twitter</dt>
+        <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
+          {{ memberProfile.twitter_screen_name }}
+        </a></dd>
+      </template>
 
-      <dt>GitHub</dt>
-      <dd class="english"><a :href="github_url" target="_blank" rel="noopener noreferrer">
-        {{ memberProfile.github_user_name }}
-      </a></dd>
+      <template v-if="memberProfile.github_user_name">
+        <dt>GitHub</dt>
+        <dd class="english"><a :href="github_url" target="_blank" rel="noopener noreferrer">
+          {{ memberProfile.github_user_name }}
+        </a></dd>
+      </template>
 
-      <dt>AtCoder</dt>
-      <dd class="english"><a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
-        {{ memberProfile.atcoder_user_name }}
-      </a></dd>
+      <template v-if="memberProfile.atcoder_user_name">
+        <dt>AtCoder</dt>
+        <dd class="english"><a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
+          {{ memberProfile.atcoder_user_name }}
+        </a></dd>
+      </template>
     </dl>
     <button v-on:click="onBack">もどる</button>
   </div>
