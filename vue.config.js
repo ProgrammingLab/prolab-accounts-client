@@ -3,6 +3,9 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const ifProd = (...plugins) => (process.env.NODE_ENV === 'production' ? plugins : []);
 
 module.exports = {
+  chainWebpack: config => {
+    config.plugins.delete('prefetch');
+  },
   configureWebpack: {
     plugins: [
       ...ifProd(
