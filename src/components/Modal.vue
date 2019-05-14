@@ -1,9 +1,8 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" @click="$emit('cancel')" v-if="isOpened">
+    <div v-if="isOpened" class="modal-mask" @click="$emit('cancel')">
       <div class="modal-wrapper">
         <div class="modal-container" @click.stop>
-
           <div class="modal-header">
             <h1>
               <slot name="header">
@@ -21,7 +20,7 @@
           </div>
 
           <div class="modal-footer">
-            <slot name="footer" :onClick="(val)=>$emit('click', val)">
+            <slot name="footer" :onClick="val => $emit('click', val)">
               ! Footer is not set !
             </slot>
           </div>
@@ -47,9 +46,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: table;
-  transition: opacity .1s ease;
+  transition: opacity 0.1s ease;
 }
 
 .modal-wrapper {
@@ -64,11 +63,11 @@ export default {
   padding: 20px;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 2px 8px rgb(0, 0, 0, .75);
-  transition: all .1s ease;
+  box-shadow: 0 2px 8px rgb(0, 0, 0, 0.75);
+  transition: all 0.1s ease;
 }
 
-.modal-header  {
+.modal-header {
   margin: 0;
 }
 

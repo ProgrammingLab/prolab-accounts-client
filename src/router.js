@@ -26,7 +26,7 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import(/* webpackChunkName: "login" */'./views/Login.vue'),
+      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
     },
     {
       path: '/oauth/login',
@@ -52,7 +52,10 @@ const router = new Router({
     {
       path: '/user/email',
       name: 'createEmailConfirmation',
-      component: () => import(/* webpackChunkName: "createEmailConfirmation" */ './views/CreateEmailConfirmation.vue'),
+      component: () =>
+        import(
+          /* webpackChunkName: "createEmailConfirmation" */ './views/CreateEmailConfirmation.vue'
+        ),
       meta: { requiresAuth: true },
     },
     {
@@ -64,17 +67,22 @@ const router = new Router({
     {
       path: '/members',
       name: 'memberList',
-      component: () => import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
+      component: () =>
+        import(/* webpackChunkName: "memberList" */ './views/memberIntroduction/memberList.vue'),
     },
     {
       path: '/members/:name',
       name: 'profile',
-      component: () => import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
+      component: () =>
+        import(/* webpackChunkName: "profile" */ './views/memberIntroduction/Profile.vue'),
     },
     {
       path: '/achievements/edit',
       name: 'editAchievements',
-      component: () => import(/* webpackChunkName: "editAchievements" */ './views/achievement/EditAchievements.vue'),
+      component: () =>
+        import(
+          /* webpackChunkName: "editAchievements" */ './views/achievement/EditAchievements.vue'
+        ),
       meta: { requiresAuth: true },
     },
     {
@@ -136,7 +144,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 // eslint-disable-next-line no-unused-vars
-router.afterEach(async (to, from) => {
+router.afterEach((to, from) => {
   store.commit('ui/clearLoading');
 });
 

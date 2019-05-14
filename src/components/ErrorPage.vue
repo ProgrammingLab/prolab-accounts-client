@@ -1,11 +1,11 @@
 <template>
   <div id="container">
     <div id="error">
-        <h1 id="title">{{ number }}</h1>
-        <p id="message">{{ message }}</p>
-        <router-link :to="{ name: 'home' }">
-            Go to home page
-        </router-link>
+      <h1 id="title">{{ number }}</h1>
+      <p id="message">{{ message }}</p>
+      <router-link :to="{ name: 'home' }">
+        Go to home page
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,10 +36,7 @@ import { mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapState('criticalError', [
-      'number',
-      'message',
-    ]),
+    ...mapState('criticalError', ['number', 'message']),
   },
 };
 </script>

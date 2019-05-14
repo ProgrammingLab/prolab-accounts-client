@@ -14,7 +14,8 @@ export default {
     return res;
   },
   async consent(consentChallenge, accept, grantScopes) {
-    const res = (await api.client.post('/oauth/consent', { consentChallenge, accept, grantScopes })).data;
+    const res = (await api.client.post('/oauth/consent', { consentChallenge, accept, grantScopes }))
+      .data;
     return res;
   },
 };

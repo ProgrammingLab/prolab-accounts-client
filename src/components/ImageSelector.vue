@@ -1,26 +1,38 @@
 <template>
-<div>
-  <img class="preview" :src="localSrc">
-  <div class="file">
-    <label class="file-label">
-      <input class="file-input" type="file" @change="onChange" accept="image/*">
-      <span class="file-cta">
-        <span class="file-label">
-          画像ファイルを選択
+  <div>
+    <img class="preview" :src="localSrc" />
+    <div class="file">
+      <label class="file-label">
+        <input class="file-input" type="file" accept="image/*" @change="onChange" />
+        <span class="file-cta">
+          <span class="file-label">
+            画像ファイルを選択
+          </span>
         </span>
-      </span>
-    </label>
+      </label>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 import '@/assets/bulma.css';
 
 export default {
-  props: ['src'],
+  props: {
+    src: {
+      type: String,
+      default() {
+        return require('@/assets/no_image.png');
+      },
+    },
+  },
   data() {
     return { localSrc: this.src };
+  },
+  watch: {
+    src(src) {
+      if (!this.localSrc) this.localSrc = src;
+    },
   },
   methods: {
     onChange(ev) {
@@ -35,19 +47,14 @@ export default {
       });
     },
   },
-  watch: {
-    src(src) {
-      if (!this.localSrc) this.localSrc = src;
-    },
-  },
 };
 </script>
 
 <style scoped>
-.preview{
+.preview {
   width: 256px;
   transition-property: height;
   border: 1px solid #ccc;
-  transition-duration:1s;
+  transition-duration: 1s;
 }
 </style>

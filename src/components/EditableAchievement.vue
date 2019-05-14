@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button class="edit" v-on:click="editting = true" v-if="!editting">編集</button>
+    <button v-if="!editting" class="edit" @click="editting = true">編集</button>
     <EditAchievement
       v-if="editting"
-      :defaultAchievement="defaultAchievement"
-      v-on:close="onClose"
+      :default-achievement="defaultAchievement"
+      @close="onClose"
       @delete="$emit('delete', defaultAchievement)"
     />
-    <Achievement v-else :achievement="defaultAchievement"/>
+    <Achievement v-else :achievement="defaultAchievement" />
   </div>
 </template>
 
@@ -17,10 +17,16 @@ import Achievement from '@/components/Achievement.vue';
 import EditAchievement from '@/components/EditAchievement.vue';
 
 export default {
-  name: 'editableAchievement',
+  name: 'EditableAchievement',
   components: {
     Achievement,
     EditAchievement,
+  },
+  props: {
+    defaultAchievement: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
@@ -30,7 +36,6 @@ export default {
   computed: {
     ...mapState('session', ['sessionID']),
   },
-  props: ['defaultAchievement'],
   watch: {
     defaultAchievement() {
       this.editting = false;
@@ -64,13 +69,13 @@ button {
   margin-right: 0.25rem;
 }
 button.edit {
-    background: white;
-    color: #666;
-    width: 100%;
-    border: solid black;
-    border-width: 1px 1px 0;
-    border-radius: 4px 4px 0 0;
-    margin-bottom: 0;
+  background: white;
+  color: #666;
+  width: 100%;
+  border: solid black;
+  border-width: 1px 1px 0;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0;
 }
 button.delete {
   background: #ff3860;

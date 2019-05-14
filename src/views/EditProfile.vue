@@ -2,36 +2,38 @@
   <div class="container">
     <section class="section">
       <h1 class="title">プロフィール編集</h1>
-      <form v-on:submit.prevent="updateProfile">
+      <form @submit.prevent="updateProfile">
         <label class="label">アイコン</label>
-        <ImageSelector :src="iconURL" @onChange="onImageChange"/>
-        <p class="help is-danger" v-if="iconSizeIsTooLarge">アイコンサイズを1MB未満にしてください</p>
+        <ImageSelector :src="iconURL" @onChange="onImageChange" />
+        <p v-if="iconSizeIsTooLarge" class="help is-danger">
+          アイコンサイズを1MB未満にしてください
+        </p>
         <label class="label">本名</label>
         <div class="field">
           <div class="control">
             <input
+              v-model="realName"
               class="input"
-              :class="{'is-danger': realNameIsInvalid}"
+              :class="{ 'is-danger': realNameIsInvalid }"
               type="text"
               placeholder="山村 大介"
-              v-model="realName"
             />
           </div>
           <p class="help">※この項目は公開範囲設定に関わらず外部に公開されません</p>
-          <p class="help is-danger" v-if="realNameIsInvalid">127文字以下にしてください</p>
+          <p v-if="realNameIsInvalid" class="help is-danger">127文字以下にしてください</p>
         </div>
         <label class="label">表示名</label>
         <div class="field">
           <div class="control">
             <input
+              v-model="displayName"
               class="input"
-              :class="{'is-danger': displayNameIsInvalid}"
+              :class="{ 'is-danger': displayNameIsInvalid }"
               type="text"
               placeholder="むーちょ"
-              v-model="displayName"
             />
           </div>
-          <p class="help is-danger" v-if="displayNameIsInvalid">50文字以下にしてください</p>
+          <p v-if="displayNameIsInvalid" class="help is-danger">50文字以下にしてください</p>
         </div>
         <label class="label">学年</label>
         <div class="field">
@@ -51,7 +53,7 @@
         <div class="field">
           <div class="control">
             <label class="checkbox">
-              <input type="checkbox" v-model="left">
+              <input v-model="left" type="checkbox" />
               卒部済み
             </label>
           </div>
@@ -75,12 +77,12 @@
         <div class="field">
           <div class="control">
             <textarea
+              v-model="description"
               class="textarea"
               :class="{ 'is-danger': descriptionIsInvalid }"
-              v-model="description"
             ></textarea>
           </div>
-          <p class="help is-danger" v-if="descriptionIsInvalid">1023文字以下にしてください</p>
+          <p v-if="descriptionIsInvalid" class="help is-danger">1023文字以下にしてください</p>
         </div>
         <label class="label">Twitter Screen Name</label>
         <div class="field has-addons flex-wrap">
@@ -91,13 +93,15 @@
           </p>
           <p class="control is-expanded">
             <input
-              class="input right-radios-4"
-              :class="{'is-danger': twitterScreenNameIsInvalid}"
-              type="text"
               v-model="twitterScreenName"
-            >
+              class="input right-radios-4"
+              :class="{ 'is-danger': twitterScreenNameIsInvalid }"
+              type="text"
+            />
           </p>
-          <p class="help is-danger w-100" v-if="twitterScreenNameIsInvalid">127文字以下にしてください</p>
+          <p v-if="twitterScreenNameIsInvalid" class="help is-danger w-100">
+            127文字以下にしてください
+          </p>
         </div>
         <label class="label">GitHub User Name</label>
         <div class="field has-addons flex-wrap">
@@ -108,13 +112,15 @@
           </p>
           <p class="control is-expanded">
             <input
-              class="input right-radios-4"
-              :class="{'is-danger': githubUserNameIsInvalid}"
-              type="text"
               v-model="githubUserName"
-            >
+              class="input right-radios-4"
+              :class="{ 'is-danger': githubUserNameIsInvalid }"
+              type="text"
+            />
           </p>
-          <p class="help is-danger w-100" v-if="githubUserNameIsInvalid">127文字以下にしてください</p>
+          <p v-if="githubUserNameIsInvalid" class="help is-danger w-100">
+            127文字以下にしてください
+          </p>
         </div>
         <label class="label">AtCoder User Name</label>
         <div class="field has-addons flex-wrap">
@@ -125,13 +131,15 @@
           </p>
           <p class="control is-expanded">
             <input
-              class="input right-radios-4"
-              :class="{'is-danger': atcoderUserNameIsInvalid}"
-              type="text"
               v-model="atcoderUserName"
-            >
+              class="input right-radios-4"
+              :class="{ 'is-danger': atcoderUserNameIsInvalid }"
+              type="text"
+            />
           </p>
-          <p class="help is-danger w-100" v-if="atcoderUserNameIsInvalid">127文字以下にしてください</p>
+          <p v-if="atcoderUserNameIsInvalid" class="help is-danger w-100">
+            127文字以下にしてください
+          </p>
         </div>
         <label class="label">公開範囲</label>
         <div class="field">
@@ -147,9 +155,9 @@
         <div class="control">
           <button class="button is-primary" type="submit">送信</button>
         </div>
-        <ErrorMessage :error="patchProfileError"/>
-        <ErrorMessage :error="postIconError"/>
-        <p class="has-text-danger" v-if="hasValidationError">入力値に誤りがあります</p>
+        <ErrorMessage :error="patchProfileError" />
+        <ErrorMessage :error="postIconError" />
+        <p v-if="hasValidationError" class="has-text-danger">入力値に誤りがあります</p>
         <p v-if="isSuccess">保存しました</p>
       </form>
       <router-link :to="{ name: 'home' }" exact>トップページに戻る</router-link>
@@ -164,7 +172,7 @@ import ErrorMessage from '@/components/ErrorMessage.vue';
 import ImageSelector from '@/components/ImageSelector.vue';
 
 export default {
-  name: 'editProfile',
+  name: 'EditProfile',
   metaInfo: {
     title: 'プロフィール編集',
   },
@@ -196,7 +204,6 @@ export default {
       githubUserNameIsInvalid: false,
       atcoderUserNameIsInvalid: false,
       iconSizeIsTooLarge: false,
-
     };
   },
   computed: {
@@ -319,7 +326,7 @@ export default {
 .w-100 {
   width: 100%;
 }
-.right-radios-4{
+.right-radios-4 {
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 4px !important;
 }

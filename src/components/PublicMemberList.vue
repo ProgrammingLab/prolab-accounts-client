@@ -1,22 +1,19 @@
 <template>
   <div>
-    <ErrorMessage :error="error"/>
+    <ErrorMessage :error="error" />
     <ul class="member-list">
       <li v-for="member in filteredList" :key="member.user_id">
-        <router-link :to="{ name: 'profile', params: { name: member.name }}">
+        <router-link :to="{ name: 'profile', params: { name: member.name } }">
           <ImgX
             :src="member.icon_url"
-            :media="[
-              {pixelRatio: '1x', size: '64px'},
-              {pixelRatio: '2x', size: '128px'},
-            ]"
+            :media="[{ pixelRatio: '1x', size: '64px' }, { pixelRatio: '2x', size: '128px' }]"
             alt="User Icon"
           />
           <dl>
-            <dt class="name">{{member.display_name || member.name}}</dt>
-            <dd class="role" v-if="member.role">{{member.role.name}}</dd>
-            <dd class="grade">{{member.left ? '卒業生' : `${member.grade}年`}}</dd>
-            <dd class="description">{{member.description}}</dd>
+            <dt class="name">{{ member.display_name || member.name }}</dt>
+            <dd v-if="member.role" class="role">{{ member.role.name }}</dd>
+            <dd class="grade">{{ member.left ? '卒業生' : `${member.grade}年` }}</dd>
+            <dd class="description">{{ member.description }}</dd>
           </dl>
         </router-link>
       </li>
@@ -91,24 +88,21 @@ import ImgX from '@/components/ImgX.vue';
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'publicMemberList',
+  name: 'PublicMemberList',
+  components: {
+    ErrorMessage,
+    ImgX,
+  },
   props: {
     includeLeftUser: {
       type: Boolean,
       default: false,
     },
   },
-  components: {
-    ErrorMessage,
-    ImgX,
-  },
   data() {
     return {
       loading: false,
     };
-  },
-  mounted() {
-    if (this.isEmpty) this.getList();
   },
   computed: {
     ...mapState('memberIntroduction/memberList', ['list', 'error']),
@@ -117,6 +111,9 @@ export default {
       if (this.includeLeftUser) return this.list;
       return this.list.filter(user => !user.left);
     },
+  },
+  mounted() {
+    if (this.isEmpty) this.getList();
   },
   methods: {
     ...mapActions('memberIntroduction/memberList', { getListAction: 'getList' }),

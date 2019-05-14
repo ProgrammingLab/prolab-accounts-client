@@ -1,11 +1,14 @@
 <template>
-  <img :src="src ? src : require('@/assets/no_image.png')" :srcset="srcset" :alt="alt">
+  <img :src="src ? src : require('@/assets/no_image.png')" :srcset="srcset" :alt="alt" />
 </template>
 <script>
 export default {
   props: {
     src: {
       type: String,
+      default() {
+        return null;
+      },
     },
     media: {
       type: Array,
@@ -21,7 +24,9 @@ export default {
   computed: {
     srcset() {
       if (!this.src) return '';
-      return this.media.map(({ pixelRatio, size }) => `${this.src}_${size} ${pixelRatio}`).join(',');
+      return this.media
+        .map(({ pixelRatio, size }) => `${this.src}_${size} ${pixelRatio}`)
+        .join(',');
     },
   },
 };

@@ -22,7 +22,7 @@ module.exports = {
           test: /\.(js|map|css|json|txt|html|ico|svg)(\?.*)?$/i,
           compressionOptions: { level: 9 },
           minRatio: 0.8,
-        }),
+        })
       ),
     ],
   },

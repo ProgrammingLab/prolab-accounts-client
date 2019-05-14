@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <error-page v-if="isError"/>
-    <loading-indicator class="loading"/>
-    <router-view v-show="!isError"/>
+    <error-page v-if="isError" />
+    <loading-indicator class="loading" />
+    <router-view v-show="!isError" />
   </div>
 </template>
 

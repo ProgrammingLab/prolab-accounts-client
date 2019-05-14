@@ -1,6 +1,6 @@
 <template>
   <div class="loading-indicator-container">
-    <div :class="[ isLoading ? 'loading-indicator-active' : 'loading-indicator-inactive' ]"></div>
+    <div :class="[isLoading ? 'loading-indicator-active' : 'loading-indicator-inactive']"></div>
   </div>
 </template>
 

@@ -9,12 +9,10 @@ import store from './store';
 Vue.config.productionTip = false;
 Vue.use(Meta);
 Vue.use(VueRx);
-Vue.use(
-  VueAnalytics, {
-    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
-    router,
-  },
-);
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+  router,
+});
 
 new Vue({
   router,

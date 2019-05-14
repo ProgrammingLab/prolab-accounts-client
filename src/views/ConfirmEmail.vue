@@ -14,17 +14,13 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  name: 'confirmEmail',
+  name: 'ConfirmEmail',
   metaInfo: {
     title: 'メールアドレス確認',
   },
   computed: {
-    ...mapState('emailConfirmations', [
-      'emailConfirmationError',
-    ]),
-    ...mapState('session', [
-      'sessionID',
-    ]),
+    ...mapState('emailConfirmations', ['emailConfirmationError']),
+    ...mapState('session', ['sessionID']),
   },
   async created() {
     this.token = this.$route.params.token;
@@ -37,12 +33,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions('criticalError', [
-      'createError',
-    ]),
-    ...mapActions('emailConfirmations', [
-      'ConfirmEmail',
-    ]),
+    ...mapActions('criticalError', ['createError']),
+    ...mapActions('emailConfirmations', ['ConfirmEmail']),
   },
 };
 </script>

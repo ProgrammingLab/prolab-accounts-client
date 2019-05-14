@@ -2,21 +2,23 @@
   <div class="container">
     <section class="section">
       <h1 class="title">戦歴の編集</h1>
-      <button v-on:click="createNewAchievement">戦歴を新しく追加する</button>
+      <button @click="createNewAchievement">戦歴を新しく追加する</button>
       <ul>
         <li v-for="item in achievements" :key="item.achievement_id">
-          <EditableAchievement :defaultAchievement="item" @delete="deleteConfirmation"/>
+          <EditableAchievement :default-achievement="item" @delete="deleteConfirmation" />
         </li>
       </ul>
     </section>
     <Modal
-      :isOpened="confirmationIsOpened"
+      :is-opened="confirmationIsOpened"
       @cancel="confirmationIsOpened = false"
       @click="onModalClick"
     >
-      <template #header>警告</template>
+      <template #header
+        >警告</template
+      >
       <template #body>
-        戦歴「{{deleteTerget.title}}」を削除しようとしています。<br/>
+        戦歴「{{ deleteTerget.title }}」を削除しようとしています。<br />
         よろしいですか。
       </template>
       <template #footer="{ onClick }">
@@ -33,9 +35,13 @@ import EditableAchievement from '@/components/EditableAchievement.vue';
 import Modal from '@/components/Modal.vue';
 
 export default {
-  name: 'editAchievements',
+  name: 'EditAchievements',
   metaInfo: {
     title: '実績編集',
+  },
+  components: {
+    EditableAchievement,
+    Modal,
   },
   data() {
     return {
@@ -43,21 +49,16 @@ export default {
       confirmationIsOpened: false,
     };
   },
-  components: {
-    EditableAchievement,
-    Modal,
-  },
   computed: {
     ...mapState('achievement', ['achievements']),
     ...mapState('session', ['sessionID']),
   },
+  async created() {
+    await this.getAchievements(this.sessionID);
+  },
   methods: {
-    ...mapActions(
-      'achievement', ['getAchievements', 'deleteAchievement'],
-    ),
-    ...mapMutations(
-      'achievement', ['createNewAchievement'],
-    ),
+    ...mapActions('achievement', ['getAchievements', 'deleteAchievement']),
+    ...mapMutations('achievement', ['createNewAchievement']),
     deleteConfirmation(achievement) {
       this.deleteTerget = achievement;
       this.confirmationIsOpened = true;
@@ -70,9 +71,6 @@ export default {
         achievement: this.deleteTerget,
       });
     },
-  },
-  async created() {
-    this.getAchievements(this.sessionID);
   },
 };
 </script>

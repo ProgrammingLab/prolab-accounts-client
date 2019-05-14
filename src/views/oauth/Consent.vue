@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <ErrorMessage :error="challengeError"/>
+    <ErrorMessage :error="challengeError" />
     <div v-if="checkingChallenge">Please Wait</div>
     <div v-else-if="!challengeError">
       <div class="client">
         <figure>
-          <img :src="client.logo_uri">
+          <img :src="client.logo_uri" />
         </figure>
         <div>
           <div class="client-name">{{ client.name }} ({{ client.id }})</div>
@@ -14,64 +14,64 @@
       </div>
       が次の権限をリクエストしています
       <ul>
-        <li v-for="scope in requestedScopes" v-bind:key="scope">{{ scope }}</li>
+        <li v-for="scope in requestedScopes" :key="scope">{{ scope }}</li>
       </ul>
       <div>
-        <button v-on:click="onAccept()">許可する</button>
-        <button v-on:click="onReject()">許可しない</button>
+        <button @click="onAccept()">許可する</button>
+        <button @click="onReject()">許可しない</button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
 
-  .client {
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    padding: 1em;
-    margin-bottom: 1em;
-    display: flex;
-  }
+.client {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  display: flex;
+}
 
-  .client figure {
-    background-color: #ccc;
-    border: 2px solid #ccc;
-    margin: 0 1em 0 0;
-  }
+.client figure {
+  background-color: #ccc;
+  border: 2px solid #ccc;
+  margin: 0 1em 0 0;
+}
 
-  .client figure img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-  }
+.client figure img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
 
-  .client-owner {
-    font-size: 0.7em;
-  }
+.client-owner {
+  font-size: 0.7em;
+}
 
-  button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    appearance: none;
-    display: inline-block;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    background: #668ad8;
-    color: #FFF;
-    border-radius: 3px;
-    margin-right: 1em;
-  }
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #fff;
+  border-radius: 3px;
+  margin-right: 1em;
+}
 </style>
 
 <script>
@@ -79,7 +79,7 @@ import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
-  name: 'oauthConsent',
+  name: 'OauthConsent',
   metaInfo: {
     title: 'OAuth Consent',
   },
@@ -103,28 +103,24 @@ export default {
       'client',
     ]),
   },
-  methods: {
-    ...mapActions('oauthConsent', [
-      'startOAuthConsent',
-      'accept',
-      'reject',
-    ]),
-    onAccept() {
-      this.accept(this.consentChallenge);
-    },
-    onReject() {
-      this.reject(this.consentChallenge);
-    },
-  },
-  async created() {
-    this.consentChallenge = this.$route.query.consent_challenge;
-    this.startOAuthConsent(this.consentChallenge);
-  },
   watch: {
     redirectURL(newURL) {
       if (newURL) {
         window.location.href = newURL;
       }
+    },
+  },
+  async created() {
+    this.consentChallenge = this.$route.query.consent_challenge;
+    await this.startOAuthConsent(this.consentChallenge);
+  },
+  methods: {
+    ...mapActions('oauthConsent', ['startOAuthConsent', 'accept', 'reject']),
+    onAccept() {
+      this.accept(this.consentChallenge);
+    },
+    onReject() {
+      this.reject(this.consentChallenge);
     },
   },
 };

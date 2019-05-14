@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab"></h1>
-    <publicMemberList includeLeftUser/>
+    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab" /></h1>
+    <publicMemberList include-left-user />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ h1 img {
 import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
-  name: 'memberList',
+  name: 'MemberList',
   metaInfo: {
     title: '部員一覧',
   },

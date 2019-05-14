@@ -8,7 +8,7 @@ export default {
   },
 
   async deleteSession(sessionID) {
-    const ret = (await api.client.delete('/sessions', getHeader(sessionID)));
+    const ret = await api.client.delete('/sessions', getHeader(sessionID));
     return ret;
   },
 };

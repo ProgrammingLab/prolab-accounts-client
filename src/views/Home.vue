@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab"></h1>
+    <h1><img class="logo" src="@/assets/logo.svg" alt="ProLab" /></h1>
     <section>
       <h2>部員募集中!</h2>
       <p>
-        久留米高専プロラボ部は平日授業を終えた学生が集まり次第、電気電子・制御情報工学科棟のSJ（制御情報実験室）で活動しています。<br>
+        久留米高専プロラボ部は平日授業を終えた学生が集まり次第、電気電子・制御情報工学科棟のSJ（制御情報実験室）で活動しています。<br />
         興味のある方は、活動時間にSJ教室を訪ねてみてくださいね！
       </p>
     </section>
@@ -12,14 +12,14 @@
     <section class="achievements-list">
       <h2>戦歴</h2>
       <div>
-        <AchievementsList/>
+        <AchievementsList />
       </div>
     </section>
 
     <section class="member-list">
       <h2>部員一覧</h2>
       <div>
-        <publicMemberList includeLeftUser/>
+        <publicMemberList include-left-user />
       </div>
     </section>
 
@@ -27,7 +27,7 @@
       <div v-if="loggedIn">
         <router-link to="/editprofile">プロフィール編集</router-link>
         <router-link :to="{ name: 'editAchievements' }" exact>実績編集</router-link>
-        <Logout/>
+        <Logout />
       </div>
       <div v-else>
         <router-link to="/login">ログイン</router-link>
@@ -44,7 +44,7 @@ import Logout from '@/components/Logout.vue';
 import publicMemberList from '@/components/PublicMemberList.vue';
 
 export default {
-  name: 'home',
+  name: 'Home',
   metaInfo: {
     title: process.env.VUE_APP_TITLE,
     titleTemplate: null,
@@ -91,7 +91,8 @@ footer small {
   margin: 40px auto;
 }
 
-.achievements-list > div, .member-list > div {
+.achievements-list > div,
+.member-list > div {
   margin-left: 60px;
   margin-right: 30px;
 }
@@ -124,7 +125,7 @@ h2 {
 h2::after {
   display: block;
   height: 100%;
-  content: "";
+  content: '';
   position: absolute;
   background-color: white;
   top: 0;
@@ -152,7 +153,8 @@ small {
   p {
     margin-left: 30px;
   }
-  .achievements-list > div, .member-list > div {
+  .achievements-list > div,
+  .member-list > div {
     margin-left: 30px;
   }
 }

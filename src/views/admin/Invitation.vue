@@ -3,21 +3,21 @@
     <section class="section">
       <h1 class="title">部員の招待</h1>
       <div>
-        <form v-on:submit.prevent="onInvite">
+        <form @submit.prevent="onInvite">
           <div class="field">
             <label class="label">メールアドレス</label>
             <div class="control">
               <textarea
+                v-model="emails"
                 class="textarea"
                 :placeholder="'hoge@example.com\nfuga@example.com\npiyo@example.com\n...'"
-                v-model="emails"
               ></textarea>
             </div>
           </div>
           <div class="control">
             <button type="submit" class="button">招待</button>
           </div>
-          <ErrorMessage :error="invitationError"/>
+          <ErrorMessage :error="invitationError" />
         </form>
       </div>
     </section>
@@ -47,7 +47,7 @@ import { mapState, mapActions } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
-  name: 'invitation',
+  name: 'Invitation',
   metaInfo: {
     title: '部員招待',
   },
@@ -59,12 +59,12 @@ export default {
       emails: null,
     };
   },
-  created() {
-    this.listInvitations(this.sessionID);
-  },
   computed: {
     ...mapState('invitation', ['invitations', 'invitationError']),
     ...mapState('session', ['sessionID']),
+  },
+  created() {
+    this.listInvitations(this.sessionID);
   },
   methods: {
     ...mapActions('invitation', ['listInvitations', 'invite']),
@@ -76,5 +76,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

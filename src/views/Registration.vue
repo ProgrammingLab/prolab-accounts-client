@@ -2,22 +2,22 @@
   <div class="container">
     <div class="box">
       <h1>新規登録</h1>
-      <form v-on:submit.prevent='onRegister'>
+      <form @submit.prevent="onRegister">
         <label for="username">ユーザーネーム</label>
-        <input required type="text" id="username" v-model="name">
-        <div class="errorMessage" v-if="isUserNameViolated && name.length !== 0">
+        <input id="username" v-model="name" required type="text" />
+        <div v-if="isUserNameViolated && name.length !== 0" class="errorMessage">
           ユーザーネームは英数字と_のみを使用し20文字以下にしてください
         </div>
         <label for="full_name">フルネーム</label>
-        <input required type="text" id="full_name" v-model="full_name">
+        <input id="full_name" v-model="full_name" required type="text" />
         <label for="password">パスワード</label>
-        <input required type="password" id="password" v-model="password">
-        <div class="errorMessage" v-if="isUserPasswordViolated && password.length !== 0">
+        <input id="password" v-model="password" required type="password" />
+        <div v-if="isUserPasswordViolated && password.length !== 0" class="errorMessage">
           パスワードの長さは6文字以上72文字以下にしてください
         </div>
         <label for="password_confirm">パスワード(確認)</label>
-        <input required type="password" id="password_confirm" v-model="password_confirm">
-        <div class="errorMessage" v-if="passwordConfirmationError && password_confirm.length !== 0">
+        <input id="password_confirm" v-model="password_confirm" required type="password" />
+        <div v-if="passwordConfirmationError && password_confirm.length !== 0" class="errorMessage">
           パスワードが一致しません
         </div>
         <button
@@ -26,7 +26,7 @@
         >
           Register
         </button>
-        <ErrorMessage :error="registrationError"/>
+        <ErrorMessage :error="registrationError" />
       </form>
     </div>
   </div>
@@ -37,7 +37,7 @@ import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
-  name: 'registration',
+  name: 'Registration',
   metaInfo: {
     title: '部員登録',
   },
@@ -54,13 +54,8 @@ export default {
     };
   },
   computed: {
-    ...mapState('user', [
-      'tokenVerificationError',
-      'registrationError',
-    ]),
-    ...mapState('session', [
-      'loginError',
-    ]),
+    ...mapState('user', ['tokenVerificationError', 'registrationError']),
+    ...mapState('session', ['loginError']),
     isUserNameViolated() {
       return !/^[A-Za-z0-9_]{1,20}$/.test(this.name);
     },
@@ -81,16 +76,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions('criticalError', [
-      'createError',
-    ]),
-    ...mapActions('user', [
-      'verifyRegistrationToken',
-      'register',
-    ]),
-    ...mapActions('session', [
-      'login',
-    ]),
+    ...mapActions('criticalError', ['createError']),
+    ...mapActions('user', ['verifyRegistrationToken', 'register']),
+    ...mapActions('session', ['login']),
     async onRegister() {
       await this.register({
         name: this.name,
@@ -112,46 +100,47 @@ export default {
 </script>
 
 <style scoped>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 1024px;
-    margin: auto;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 1024px;
+  margin: auto;
+}
 
-  .box {
-    margin: 0 2em;
-  }
+.box {
+  margin: 0 2em;
+}
 
-  input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border-width: 0 0 2px;
-    margin-bottom: 20px;
-  }
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  border-width: 0 0 2px;
+  margin-bottom: 20px;
+}
 
-  button[type="submit"] {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    appearance: none;
-    display: inline-block;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    background: #668ad8;
-    color: #FFF;
-    border-radius: 3px;
-  }
-  button[type="submit"]:disabled {
-    background: #a9b8d1;
-  }
+button[type='submit'] {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #fff;
+  border-radius: 3px;
+}
+button[type='submit']:disabled {
+  background: #a9b8d1;
+}
 
-  .errorMessage {
-    color: red;
-  }
+.errorMessage {
+  color: red;
+}
 </style>

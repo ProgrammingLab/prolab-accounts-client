@@ -52,7 +52,7 @@ export default {
           await achievementClient.updateAchievementImage(
             sessionID,
             newAchievement.achievement_id,
-            image,
+            image
           );
         }
         dispatch('getAchievements', sessionID);

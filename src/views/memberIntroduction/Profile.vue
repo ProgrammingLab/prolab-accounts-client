@@ -1,12 +1,12 @@
 <template>
   <div>
-    <img :src="memberProfile.icon_url || require('@/assets/no_image.png')" alt="User Avatar">
+    <img :src="memberProfile.icon_url || require('@/assets/no_image.png')" alt="User Avatar" />
     <dl>
       <dt>名前</dt>
       <dd>{{ memberProfile.display_name || memberProfile.name }}</dd>
 
       <dt>学年</dt>
-      <dd>{{ memberProfile.left ? "卒業生" : memberProfile.grade + "年" }}</dd>
+      <dd>{{ memberProfile.left ? '卒業生' : memberProfile.grade + '年' }}</dd>
 
       <dt>学科</dt>
       <dd>{{ memberProfile.department ? memberProfile.department.name : '' }}</dd>
@@ -21,26 +21,32 @@
 
       <template v-if="memberProfile.twitter_screen_name">
         <dt>Twitter</dt>
-        <dd class="english"><a :href="twitter_url" target="_blank" rel="noopener noreferrer">
-          {{ memberProfile.twitter_screen_name }}
-        </a></dd>
+        <dd class="english">
+          <a :href="twitter_url" target="_blank" rel="noopener noreferrer">
+            {{ memberProfile.twitter_screen_name }}
+          </a>
+        </dd>
       </template>
 
       <template v-if="memberProfile.github_user_name">
         <dt>GitHub</dt>
-        <dd class="english"><a :href="github_url" target="_blank" rel="noopener noreferrer">
-          {{ memberProfile.github_user_name }}
-        </a></dd>
+        <dd class="english">
+          <a :href="github_url" target="_blank" rel="noopener noreferrer">
+            {{ memberProfile.github_user_name }}
+          </a>
+        </dd>
       </template>
 
       <template v-if="memberProfile.atcoder_user_name">
         <dt>AtCoder</dt>
-        <dd class="english"><a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
-          {{ memberProfile.atcoder_user_name }}
-        </a></dd>
+        <dd class="english">
+          <a :href="atcoder_url" target="_blank" rel="noopener noreferrer">
+            {{ memberProfile.atcoder_user_name }}
+          </a>
+        </dd>
       </template>
     </dl>
-    <button v-on:click="onBack">もどる</button>
+    <button @click="onBack">もどる</button>
   </div>
 </template>
 
@@ -77,7 +83,8 @@ dd.small {
 }
 
 @media screen and (max-width: 480px) {
-  div img, div dl {
+  div img,
+  div dl {
     width: 100%;
   }
   dd {
@@ -93,20 +100,25 @@ import utils from '@/utils';
 const { IdToURLHelper } = utils;
 
 export default {
-  name: 'profile',
+  name: 'Profile',
   metaInfo() {
     return {
-      title: `${this.memberProfile.display_name || this.memberProfile.name}${this.memberProfile.display_name ? ` (${this.memberProfile.name})` : ''}`,
+      title: `${this.memberProfile.display_name || this.memberProfile.name}${
+        this.memberProfile.display_name ? ` (${this.memberProfile.name})` : ''
+      }`,
     };
   },
   computed: {
-    ...mapState('memberIntroduction/memberProfile', [
-      'memberProfileError',
-      'memberProfile',
-    ]),
-    atcoder_url() { return IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name); },
-    github_url() { return IdToURLHelper.GitHub(this.memberProfile.github_user_name); },
-    twitter_url() { return IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name); },
+    ...mapState('memberIntroduction/memberProfile', ['memberProfileError', 'memberProfile']),
+    atcoder_url() {
+      return IdToURLHelper.AtCoder(this.memberProfile.atcoder_user_name);
+    },
+    github_url() {
+      return IdToURLHelper.GitHub(this.memberProfile.github_user_name);
+    },
+    twitter_url() {
+      return IdToURLHelper.Twitter(this.memberProfile.twitter_screen_name);
+    },
   },
   async created() {
     const name = this.$route.params.name.toString();
@@ -116,12 +128,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions('criticalError', [
-      'createError',
-    ]),
-    ...mapActions('memberIntroduction/memberProfile', [
-      'getMemberProfile',
-    ]),
+    ...mapActions('criticalError', ['createError']),
+    ...mapActions('memberIntroduction/memberProfile', ['getMemberProfile']),
     onBack() {
       this.$router.go(-1);
     },

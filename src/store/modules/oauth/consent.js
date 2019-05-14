@@ -12,9 +12,7 @@ export default {
   },
   /* eslint no-param-reassign: 0 */
   mutations: {
-    setConsentRequest(state, {
-      skip, redirectURL, requestedScopes, client,
-    }) {
+    setConsentRequest(state, { skip, redirectURL, requestedScopes, client }) {
       state.skip = skip;
       state.redirectURL = redirectURL;
       state.requestedScopes = requestedScopes;

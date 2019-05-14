@@ -2,14 +2,14 @@
   <div class="container">
     <div class="box">
       <h1>メールアドレス変更</h1>
-      <form v-on:submit.prevent="onCreateEmailConfirmation">
+      <form @submit.prevent="onCreateEmailConfirmation">
         <label for="new_email">新しいメールアドレス</label>
-        <input required type="email" id="new_email" v-model="new_email">
+        <input id="new_email" v-model="new_email" required type="email" />
         <label for="password">パスワード</label>
-        <input required type="password" id="password" v-model="password">
+        <input id="password" v-model="password" required type="password" />
         <button type="submit">Confirm</button>
       </form>
-      <ErrorMessage :error="emailConfirmationError"/>
+      <ErrorMessage :error="emailConfirmationError" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ import { mapActions, mapState } from 'vuex';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
-  name: 'createEmailConfirmation',
+  name: 'CreateEmailConfirmation',
   metaInfo: {
     title: 'メールアドレス変更',
   },
@@ -33,17 +33,11 @@ export default {
     };
   },
   computed: {
-    ...mapState('emailConfirmations', [
-      'emailConfirmationError',
-    ]),
-    ...mapState('session', [
-      'sessionID',
-    ]),
+    ...mapState('emailConfirmations', ['emailConfirmationError']),
+    ...mapState('session', ['sessionID']),
   },
   methods: {
-    ...mapActions('emailConfirmations', [
-      'CreateEmailConfirmation',
-    ]),
+    ...mapActions('emailConfirmations', ['CreateEmailConfirmation']),
     async onCreateEmailConfirmation() {
       await this.CreateEmailConfirmation({
         session: this.sessionID,
@@ -73,14 +67,15 @@ export default {
   margin: 0 2em;
 }
 
-input[type="email"], input[type="password"] {
+input[type='email'],
+input[type='password'] {
   width: 100%;
   padding: 10px;
   border-width: 0 0 2px;
   margin-bottom: 20px;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -91,7 +86,7 @@ button[type="submit"] {
   padding: 0.5em 1em;
   text-decoration: none;
   background: #668ad8;
-  color: #FFF;
+  color: #fff;
   border-radius: 3px;
 }
 </style>

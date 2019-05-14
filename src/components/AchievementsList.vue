@@ -1,8 +1,8 @@
 <template>
   <ul>
     <li v-for="item in achievements" :key="item.id">
-      <a v-bind:href="item.url" target="_blank" rel="noopener noreferrer">
-        <Achievement :achievement="item"/>
+      <a :href="item.url" target="_blank" rel="noopener noreferrer">
+        <Achievement :achievement="item" />
       </a>
     </li>
   </ul>
@@ -17,16 +17,12 @@ export default {
   components: {
     Achievement,
   },
-  computed: mapState(
-    'achievement', ['achievements'],
-  ),
-  methods: {
-    ...mapActions(
-      'achievement', ['getAchievements'],
-    ),
-  },
+  computed: mapState('achievement', ['achievements']),
   async created() {
-    this.getAchievements();
+    await this.getAchievements();
+  },
+  methods: {
+    ...mapActions('achievement', ['getAchievements']),
   },
 };
 </script>

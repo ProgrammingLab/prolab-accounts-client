@@ -3,7 +3,8 @@ import getHeader from '../utils/get-header';
 
 export default {
   async getUserList(token) {
-    const res = (await api.client.get('/users', { params: { page_token: token, page_size: 100 } })).data;
+    const res = (await api.client.get('/users', { params: { page_token: token, page_size: 100 } }))
+      .data;
     return res;
   },
   async getPrivateUserList(sessionID, token, query) {

@@ -38,10 +38,8 @@ export default {
         commit('setTokenVerificationError', e);
       }
     },
-    async register({ commit }, {
-      // eslint-disable-next-line camelcase
-      name, full_name, password, registration_token,
-    }) {
+    // eslint-disable-next-line camelcase
+    async register({ commit }, { name, full_name, password, registration_token }) {
       commit('clearRegistrationError');
       try {
         await userClient.registerUser(name, full_name, password, registration_token);
