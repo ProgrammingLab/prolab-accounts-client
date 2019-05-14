@@ -46,7 +46,6 @@ export default {
 
   modules: ['@nuxtjs/axios'],
 
-  buildDir: 'dist',
   build: {
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
