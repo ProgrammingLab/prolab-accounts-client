@@ -81,7 +81,7 @@
         </template>
         <template slot="option" slot-scope="{ option }">
           <div class="option__desc">
-            <img class="option-image" :src="option.icon_url || require('@/assets/no_image.png')" alt="No icon">
+            <img class="option-image" :src="option.icon_url || 'https://placehold.jp/000000/ffffff/150x150.png?text=No%20Image'" alt="No icon">
             <span class="option__title">@{{ option.name }}</span>
           </div>
         </template>
