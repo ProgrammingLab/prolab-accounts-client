@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <error-page v-if="isError"/>
-
     <header>
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" alt="ProLab">
       </router-link>
       <loading-indicator/>
     </header>
+
+    <error-page v-if="isError"/>
 
     <router-view v-show="!isError"/>
 

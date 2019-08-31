@@ -3,9 +3,6 @@
     <div id="error">
         <h1 id="title">{{ number }}</h1>
         <p id="message">{{ message }}</p>
-        <router-link :to="{ name: 'home' }">
-            Go to home page
-        </router-link>
     </div>
   </div>
 </template>
@@ -18,6 +15,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  margin: 200px 0;
 }
 #error {
   margin: auto;
