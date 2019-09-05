@@ -40,7 +40,6 @@
         </a></dd>
       </template>
     </dl>
-    <button v-on:click="onBack">もどる</button>
   </div>
 </template>
 

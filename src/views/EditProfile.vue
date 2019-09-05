@@ -152,7 +152,6 @@
         <p class="has-text-danger" v-if="hasValidationError">入力値に誤りがあります</p>
         <p v-if="isSuccess">保存しました</p>
       </form>
-      <router-link :to="{ name: 'home' }" exact>トップページに戻る</router-link>
     </section>
   </div>
 </template>

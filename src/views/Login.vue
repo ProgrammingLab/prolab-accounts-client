@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="box">
-      <img class="logo" src="../assets/logo.svg" alt="ProLab">
       <form v-on:submit.prevent="onLogin">
         <label for="id">Name or Email Address</label>
         <input required type="text" v-model="name">
@@ -61,6 +60,7 @@ export default {
     align-items: center;
     flex-direction: column;
     height: 100%;
+    margin-top: 100px;
   }
 
   img {
