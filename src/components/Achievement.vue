@@ -9,6 +9,7 @@
         <ul>
           <p>参加メンバー</p>
           <li v-for="member in achievement.members" :key="member.member_id">
+            <!-- eslint-disable-next-line max-len -->
             <router-link :to="{ name: 'profile' , params: { name: member.name } }">{{ member.display_name || member.name }}</router-link>
           </li>
         </ul>
