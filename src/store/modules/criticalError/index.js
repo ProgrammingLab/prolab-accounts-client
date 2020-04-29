@@ -1,5 +1,3 @@
-import { exception } from 'vue-analytics';
-
 export default {
   namespaced: true,
   state: {
@@ -28,16 +26,12 @@ export default {
       if (!error.response) {
         const number = '';
         const message = 'Connection refused';
-        exception(message);
         commit('setError', { number, message });
         return;
       }
 
       const number = error.response.status;
       const message = error.response.data.message || error.response.statusText;
-      if (number >= 500 && number < 600) {
-        exception(error);
-      }
       commit('setError', { number, message });
     },
   },
