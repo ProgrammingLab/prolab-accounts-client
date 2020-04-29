@@ -65,7 +65,7 @@
                 <option value="1">制御情報工学科</option>
                 <option value="2">機械工学科</option>
                 <option value="3">電気電子工学科</option>
-                <option value="4">生物応用科学科</option>
+                <option value="4">生物応用化学科</option>
                 <option value="5">材料システム工学科</option>
               </select>
             </div>
