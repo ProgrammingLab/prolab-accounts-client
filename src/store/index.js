@@ -12,6 +12,7 @@ import memberIntroduction from './modules/memberIntroduction';
 import editUser from './modules/editUser';
 import invitation from './modules/invitation';
 import ui from './modules/ui';
+import contributionsCollection from './modules/githubContributionsCollection';
 
 Vue.use(Vuex);
 
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     editUser,
     invitation,
     ui,
+    contributionsCollection,
   },
   plugins: [
     createPersistedState({
