@@ -12,7 +12,7 @@
     "axios": "^0.20.0",
     "moment": "^2.27.0",
     "rxjs": "^6.6.2",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-meta": "^2.4.0",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.4.3",
@@ -29,7 +29,7 @@
     "compression-webpack-plugin": "^1.1.12",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
