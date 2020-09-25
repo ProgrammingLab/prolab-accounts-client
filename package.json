@@ -15,7 +15,7 @@
     "vue": "^2.6.12",
     "vue-meta": "^2.4.0",
     "vue-multiselect": "^2.1.6",
-    "vue-router": "^3.4.3",
+    "vue-router": "^3.4.4",
     "vue-rx": "^6.2.0",
     "vuex": "^3.5.1",
     "vuex-persistedstate": "^3.1.0"
